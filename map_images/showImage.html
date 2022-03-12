@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <style>
+            html,
+            body,
+            #container {
+                padding: 0;
+                margin: 0;
+                height: 100%;
+                width: 100%;
+                background-color: black;
+            }
+
+            #container {
+                background-size: contain;
+                background-position: center center;
+                background-repeat: no-repeat;
+            }
+
+
+        </style>
+    </head>
+    <body>
+        <div id="container">
+        </div>        
+        <script>
+            // const params = new Proxy(new URLSearchParams(window.location.search), {
+            // get: (searchParams, prop) => searchParams.get(prop),
+            // });
+            // // Get the value of "some_key" in eg "https://example.com/?some_key=some_value"
+            // let value = params.image; // "some_value"
+
+            function getParameterByName(name, url = window.location.href) {
+                name = name.replace(/[\[\]]/g, '\\$&');
+                var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                    results = regex.exec(url);
+                if (!results) return null;
+                if (!results[2]) return '';
+                return decodeURIComponent(results[2].replace(/\+/g, ' '));
+            }
+
+            var value = getParameterByName("image")
+
+            var viewDiv = document.getElementById("container");
+            var url = "url(" + value + ")";
+            viewDiv.style.backgroundImage = url;
+        </script>
+
+
+    </body>
+</html>

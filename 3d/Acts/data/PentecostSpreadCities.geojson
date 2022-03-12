@@ -1,0 +1,214 @@
+{
+	"type" : "FeatureCollection",
+	"name" : "PentecostSpreadCities",
+	"features" : [
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 35.1824141114, 31.7784638396 ]
+			},
+			"properties" : {
+				"FID" : 0,
+				"Id" : 0,
+				"Name" : "Jerusalem",
+				"Size" : 0
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 56.7875013517, 35.284264732 ]
+			},
+			"properties" : {
+				"FID" : 1,
+				"Id" : 1,
+				"Name" : "Partha",
+				"Size" : 0
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 48.088423321, 36.2868427249 ]
+			},
+			"properties" : {
+				"FID" : 2,
+				"Id" : 2,
+				"Name" : "Media",
+				"Size" : 0
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 48.8014625038, 31.2719652037 ]
+			},
+			"properties" : {
+				"FID" : 3,
+				"Id" : 3,
+				"Name" : "Elam",
+				"Size" : 0
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 42.907005259, 34.8172874322 ]
+			},
+			"properties" : {
+				"FID" : 4,
+				"Id" : 4,
+				"Name" : "Mesopotania",
+				"Size" : 0
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 34.6642723052, 31.5105642464 ]
+			},
+			"properties" : {
+				"FID" : 5,
+				"Id" : 5,
+				"Name" : "Judea",
+				"Size" : 0
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 35.6316287966, 38.68284318 ]
+			},
+			"properties" : {
+				"FID" : 6,
+				"Id" : 6,
+				"Name" : "Cappadocia",
+				"Size" : 0
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 36.3446679795, 40.6854939941 ]
+			},
+			"properties" : {
+				"FID" : 7,
+				"Id" : 7,
+				"Name" : "Pontus",
+				"Size" : 0
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 27.9308056219, 38.8496315523 ]
+			},
+			"properties" : {
+				"FID" : 8,
+				"Id" : 8,
+				"Name" : "Asia",
+				"Size" : 0
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 30.6403545167, 38.7940787535 ]
+			},
+			"properties" : {
+				"FID" : 9,
+				"Id" : 9,
+				"Name" : "Phrygia",
+				"Size" : 0
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 31.3177417404, 37.2494645783 ]
+			},
+			"properties" : {
+				"FID" : 10,
+				"Id" : 10,
+				"Name" : "Pamphylia",
+				"Size" : 0
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 31.3890456587, 30.4161355662 ]
+			},
+			"properties" : {
+				"FID" : 11,
+				"Id" : 11,
+				"Name" : "Egypt",
+				"Size" : 0
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 21.9056245268, 31.9714210633 ]
+			},
+			"properties" : {
+				"FID" : 12,
+				"Id" : 12,
+				"Name" : "Libya",
+				"Size" : 0
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 12.5529272451, 41.9263137193 ]
+			},
+			"properties" : {
+				"FID" : 13,
+				"Id" : 13,
+				"Name" : "Rome",
+				"Size" : 0
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 24.9122730811, 35.2310866066 ]
+			},
+			"properties" : {
+				"FID" : 14,
+				"Id" : 14,
+				"Name" : "Crete",
+				"Size" : 0
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 37.7493551697, 28.6272481759 ]
+			},
+			"properties" : {
+				"FID" : 15,
+				"Id" : 15,
+				"Name" : "Arabia",
+				"Size" : 0
+			}
+		}
+	]
+}

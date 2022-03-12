@@ -1,0 +1,444 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <title>
+      Spread of the Good News
+    </title>
+
+
+    <link
+      rel="stylesheet"
+      href="https://js.arcgis.com/4.22/esri/themes/light/main.css"
+    />
+    <link
+    rel="stylesheet"
+    href="esri.css"
+  />
+
+    <script src="https://js.arcgis.com/4.22/"></script>
+
+    <script>
+        var layers = [];
+        var labels = [];
+        var buttons = [];
+        var imageHighlight = [];
+        var theView;
+        var basemaps;
+        var mapGalleryOn = false;
+        var theMap;
+        var gallery;
+        var features;
+        var watercolorLayer;
+        var watercolor2Layer;
+        var dataListOn = false;
+        var theSpreadLayer;
+        var theSpreadLabels;
+        var thePentecostLayer;
+        var thePentecostLines;
+        
+        function showLayer (index) {
+      
+            for (i=0; i<4;i++) {
+                if (index==i) {
+                layers[i].visible = true;
+                buttons[i].style.borderColor = "darkgrey";
+                buttons[i].style.backgroundImage = "radial-gradient(transparent 80%, darkgrey)";
+                theView.goTo(layers[i].fullExtent);
+
+                } else {
+                layers[i].visible = false;
+                buttons[i].style.borderColor = "transparent";
+                buttons[i].style.backgroundImage ="none";
+                }
+            }
+        }
+
+        function toggleMapGallery() {
+            mapGalleryOn = !mapGalleryOn;
+            if (mapGalleryOn) {
+                gallery.style.visibility = "visible";
+                features.style.visibility = "hidden";
+            } else {
+                gallery.style.visibility = "hidden";
+            }
+        }
+
+        function changeBasemap (name) {
+            if (name=="watercolor") name = watercolorLayer;
+            if (name=="watercolor2") name = watercolor2Layer;
+            theMap.basemap = name;
+        }
+
+        function toggleTrek (e) {
+            var checkbox = e.target;
+            trekToBabylonLayer.visible = checkbox.checked;
+        }
+
+        function toggleFeatures() {
+            dataListOn = !dataListOn;
+            if (dataListOn) {
+                features.style.visibility = "visible";
+                gallery.style.visibility = "hidden";
+            } else {
+                features.style.visibility = "hidden";
+            }
+        }
+
+        function toggleSpread(e) {
+            var checkbox = e.target;
+            theSpreadLabels.visible = checkbox.checked;
+            theSpreadLayer.visible = checkbox.checked;
+        }
+
+        function togglePentecost(e) {
+            var checkbox = e.target;
+            thePentecostLayer.visible = checkbox.checked;
+            thePentecostLines.visible = checkbox.checked;
+        }
+
+
+      require(["esri/Map", 
+        "esri/layers/GeoJSONLayer", 
+        "esri/views/SceneView", 
+        "esri/views/MapView",
+        "esri/views/ui/UI", 
+        "esri/config",
+        "esri/Basemap",
+        "esri/layers/WebTileLayer",
+        "esri/layers/VectorTileLayer"
+        ], 
+        (Map, GeoJSONLayer, SceneView, MapView, UI, esriConfig, Basemap, WebTileLayer, VectorTileLayer) => {
+
+        // Empire layers
+        const pentecostUrl = "data/PentecostSpreadLines.geojson";
+        const pentecostRenderer = {
+            type: "simple",
+
+            symbol: {
+                type: "simple-line",
+                color: "rgba(255,0,0,0.75)",
+                width: "5px",
+                style: "short-dash"
+            
+            }
+        }
+        const pentecostLayer = new GeoJSONLayer({
+            url: pentecostUrl,
+            copyright: "",
+            renderer: pentecostRenderer,
+            opacity: 0.6,
+            visible: true
+        })
+        layers.push(pentecostLayer); // #0
+        thePentecostLines = pentecostLayer;
+
+        const pentecostLabelsUrl = "data/PentecostSpreadCities.geojson";
+        const pentecostLabelsRenderer = {
+            type: "simple",
+
+            symbol: {
+                type: "simple-marker",
+                style: "circle",
+                color: "rgba(255,0,0,0.75)",
+                size: "6px",
+                outline: {
+                    color: [255,0,0,192],
+                    width: 1
+                }
+                
+            }
+        };
+
+        const pentecostLabelslabelClass = {
+          // autocasts as new LabelClass()
+          symbol: {
+            type: "text", // autocasts as new TextSymbol()
+            color: [255, 255, 255, 128],  // white
+            font: { family: "Arial Unicode MS", size: 13, weight: "bold" },
+            haloColor: [0,0,0, 128],  // black
+            haloSize: 1
+          },
+          labelPlacement: "above-center",
+          labelExpressionInfo: {
+            expression: "$feature.Name"
+          }
+        };
+
+        const pentecostLabelsLayer = new GeoJSONLayer({
+            url: pentecostLabelsUrl,
+            copyright: "",
+            renderer: pentecostLabelsRenderer,
+            opacity: 0.6,
+            labelingInfo: [pentecostLabelslabelClass],
+            visible: true
+        })
+        labels.push(pentecostLabelsLayer); // #0
+        thePentecostLayer = pentecostLabelsLayer;
+
+        // Spread layers
+
+        const spreadUrl = "data/GoodNewsSpreads.geojson";
+        const spreadRenderer = {
+            type: "simple",
+
+            symbol: {
+                type: "simple-fill",
+                color: "rgba(255,255,255, 0.25)",
+                outline: {
+                  color: [192,0,0, 1],
+                  width: "5px"
+                }                
+            }
+        }
+        const spreadLayer = new GeoJSONLayer({
+            url: spreadUrl,
+            copyright: "",
+            renderer: spreadRenderer,
+            opacity: 0.6,
+            visible: false
+        })
+        layers.push(spreadLayer); // #0
+        theSpreadLayer = spreadLayer;
+
+        const spreadLabelsUrl = "data/SpreadLabels.geojson";
+        const spreadLabelsRenderer = {
+            type: "simple",
+
+            symbol: {
+                type: "simple-marker",
+                color: "rgba(0,0,0,0.5)",
+                size: 2
+                
+            }
+        };
+
+        const spreadLabelslabelClass = {
+          // autocasts as new LabelClass()
+          symbol: {
+            type: "text", // autocasts as new TextSymbol()
+            color: [255, 255, 255, 255],  // white
+            font: { family: "Arial Unicode MS", size: 16, weight: "bold" },
+            haloColor: [0, 0, 0, 255],  // black
+            haloSize: 2
+          },
+          labelPlacement: "center-center",
+          labelExpressionInfo: {
+            expression: "$feature.Name"
+          }
+        };
+
+        const spreadLabelsLayer = new GeoJSONLayer({
+            url: spreadLabelsUrl,
+            copyright: "",
+            renderer: spreadLabelsRenderer,
+            opacity: 0.6,
+            labelingInfo: [spreadLabelslabelClass],
+            visible: false
+        })
+        labels.push(spreadLabelsLayer); // #0
+        theSpreadLabels = spreadLabelsLayer;
+
+        const watercolorBaseLayer = new WebTileLayer({
+            urlTemplate: "https://stamen-tiles-{subDomain}.a.ssl.fastly.net/watercolor/{level}/{col}/{row}.png",
+            subDomains: ["a", "b", "c", "d"],
+            copyright:
+                'Map tiles by <a href="http://stamen.com/">Stamen Design</a>, ' +
+                'under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. ' +
+                'Data by <a href="http://openstreetmap.org/">OpenStreetMap</a>, ' +
+                'under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.'
+        });
+
+            // Create a Basemap with the WebTileLayer. The thumbnailUrl will be used for
+            // the image in the BasemapToggle widget.
+            const watercolor = new Basemap({
+            baseLayers: [watercolorBaseLayer],
+            title: "Watercolor",
+            id: "watercolor",
+            thumbnailUrl: "https://stamen-tiles.a.ssl.fastly.net/watercolor/10/177/409.png"
+        });
+        watercolorLayer = watercolor;
+
+        const watercolorLayer2 = new VectorTileLayer({
+            portalItem: {
+                id: "fdf540eef40344b79ead3c0c49be76a9"
+            },
+            opacity: 1
+        });
+        const watercolor2 = new Basemap({
+            baseLayers: [watercolorLayer2],
+            title: "Watercolor 2",
+            id: "watercolor2",
+            thumbnailUrl: "../../map_images/watercolor2.png"
+        });
+        watercolor2Layer = watercolor2;
+
+        esriConfig.apiKey = "AAPKe5fcea6dfd22406bb18190ba0b202ce8GojQ3I4PUpCZPEtliruqUxWVSBBCUeuCTlnUv8td5pAhtznoxe5gQckABM6xac_q";
+
+        var swapButton = document.getElementById("switchButton");
+
+        var appConfig = {
+            mapView: null,
+            sceneView: null,
+            activeView: null,
+            container: "viewDiv" // use same container for views
+        };
+
+        var map = new Map({
+            basemap: watercolorLayer,
+            ground: "world-elevation",
+            layers: [pentecostLayer, pentecostLabelsLayer, spreadLayer, spreadLabelsLayer]
+        });
+        theMap = map;
+
+        var initialViewParams = {
+            map: map,
+            zoom: 5,
+            center: [27, 30],
+            container: appConfig.container
+        };
+
+        // create 2D view and and set active
+        appConfig.mapView = createView(initialViewParams, "2d");
+        appConfig.activeView = appConfig.mapView;
+
+        // create 3D view, won't initialize until container is set
+        initialViewParams.container = null;
+        appConfig.sceneView = createView(initialViewParams, "3d");
+
+        // swap the view between 2D and 3D each time the button is clicked
+        swapButton.addEventListener("click", function() {
+        swapView();
+        });
+
+        // Swaps the view from 2D to 3D and vice versa
+        function swapView() {
+            var is3D = appConfig.activeView.type === "3d";
+            const activeViewpoint = appConfig.activeView.viewpoint.clone();
+            
+            // remove the reference to the container for the previous view
+            appConfig.activeView.container = null;
+
+            if (is3D) {
+                // if the input view is a SceneView, set the viewpoint on the
+                // mapView instance. Set the container on the mapView and flag
+                // it as the active view
+                appConfig.mapView.viewpoint = activeViewpoint;
+                appConfig.mapView.container = appConfig.container;
+                appConfig.activeView = appConfig.mapView;
+                switchButton.value = "3D";
+          } else {
+                appConfig.sceneView.viewpoint = activeViewpoint;
+                appConfig.sceneView.container = appConfig.container;
+                appConfig.activeView = appConfig.sceneView;
+                switchButton.value = "2D";
+          }
+        }
+
+        // convenience function for creating a 2D or 3D view
+        function createView(params, type) {
+            var view;
+            var is2D = type === "2d";
+            if (is2D) {
+                view = new MapView(params);
+                return view;
+            } else {
+                view = new SceneView(params);
+            }
+
+            return view;
+        }
+
+ 
+
+      });
+    </script>
+
+
+  </head>
+
+  <body>
+    <div id="mainBox" ><div id="viewDiv"></div></div>
+    <button id="showGallery" onclick="toggleMapGallery()" >Map Style</button>
+    <button id="showData" onclick="toggleFeatures()" >Layers</button>
+    <div id="galleryList" >
+        <ul>
+            <li onclick="changeBasemap('satellite')" title="Imagery">
+                <img alt="Imagery" class="esri-basemap-gallery__item-thumbnail" src="https://www.arcgis.com/sharing/rest/content/items/86de95d4e0244cba80f0fa2c9403a7b2/info/thumbnail/thumbnail1591224931210.jpeg?f=json">
+            </li>
+            <li onclick="changeBasemap('arcgis-streets-relief')" title="Streets">
+                <img alt="Streets" class="esri-basemap-gallery__item-thumbnail" src="https://www.arcgis.com/sharing/rest/content/items/f81bc478e12c4f1691d0d7ab6361f5a6/info/thumbnail/street_thumb_b2wm.jpg?f=json">
+            </li>
+            <li onclick="changeBasemap('osm-standard-relief')" title="OpenStreetMap">
+                <img alt="OpenStreetMap" class="esri-basemap-gallery__item-thumbnail" src="https://www.arcgis.com/sharing/rest/content/items/c29cfb7875fc4b97b58ba6987c460862/info/thumbnail/thumbnail1547740877120.jpeg?f=json">   
+            </li>
+
+            <li onclick="changeBasemap('arcgis-charted-territory')" title="Charted Territory Map">
+                <img alt="Charted Territory Map" class="esri-basemap-gallery__item-thumbnail" src="https://www.arcgis.com/sharing/rest/content/items/d582a9e953c44c09bb998c7d9b66f8d4/info/thumbnail/ChartedTerritory_T2_600x400_thumb.jpg?f=json">
+
+            </li>
+            <li onclick="changeBasemap('arcgis-nova')" title="Nova Map">
+                <img alt="" class="esri-basemap-gallery__item-thumbnail" src="https://www.arcgis.com/sharing/rest/content/items/8d91bd39e873417ea21673e0fee87604/info/thumbnail/thumbnail1580490916023.jpeg?f=json">
+            </li>
+            <li onclick="changeBasemap('arcgis-light-gray')" title="Light Gray Map">
+                <img alt="" class="esri-basemap-gallery__item-thumbnail" src="https://www.arcgis.com/sharing/rest/content/items/de45b9cad20141ebb82fae0da8b3e2c6/info/thumbnail/lightgray_thumb_b2wm.jpg?f=json">
+            </li>
+            <li onclick="changeBasemap('watercolor')" title="Watercolor">
+                <img alt="" class="esri-basemap-gallery__item-thumbnail" src="https://stamen-tiles.a.ssl.fastly.net/watercolor/10/177/409.png">
+            </li>
+            <li onclick="changeBasemap('watercolor2')" title="Watercolor 2">
+                <img alt="" class="esri-basemap-gallery__item-thumbnail" src="../../map_images/watercolor2.png">
+            </li>
+
+        </ul>
+    </div>
+    <div id="dataList">
+        <ul>
+            <li title="Spread of Good News" >
+                <input id="spreadCheck" type="checkbox" onchange="togglePentecost(event)" checked=checked>Pentecost 33 CE spread
+            </li>
+            <li title="Spread of Good News" >
+                <input id="spreadCheck" type="checkbox" onchange="toggleSpread(event)">Spread of Good News
+            </li>
+            <!-- <li title="Spread of Good News" >
+                <input id="spreadCheck" type="checkbox" onchange="togglePentecost(event)">Paul
+            </li> -->
+        </ul>
+    </div>
+</div>
+<div id="infoDiv">
+        <input class="esri-component esri-widget-button esri-widget esri-interactive" type="button"
+          id="switchButton" value="3D">
+      </div>
+
+    <script>
+        gallery = document.getElementById("galleryList");
+        features = document.getElementById("dataList");
+    </script>
+
+    <style>
+        /* .esri-view .esri-basemap-gallery {
+            min-width: 100px!important;
+            max-width: 500px!important;
+            margin-top: 50px;
+            border: 4px solid grey;
+            border-radius: 15px;
+            padding: 15px;
+        }
+
+        .esri-ui-corner .esri-component.esri-widget--panel-height-only {
+            max-height: 200px;
+        } */
+        .esri-basemap-gallery__item-thumbnail {
+            height: 64px;
+            width: 64px;
+            object-fit: cover;
+            margin: 2px 5px;
+        }
+    </style>
+
+  </body>
+</html>

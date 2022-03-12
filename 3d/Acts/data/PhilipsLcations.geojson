@@ -1,0 +1,71 @@
+{
+	"type" : "FeatureCollection",
+	"name" : "Philips_Locations",
+	"features" : [
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 35.2304452231, 31.7756772007, 0 ]
+			},
+			"properties" : {
+				"FID" : 0,
+				"Id" : 1,
+				"Name" : "Jerusalem",
+				"Event" : "Performs administrative work - Acts 6:5"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 35.1924164666, 32.2894792221, 0 ]
+			},
+			"properties" : {
+				"FID" : 1,
+				"Id" : 2,
+				"Name" : "Samaria",
+				"Event" : "Preaches the good news Acts 8:5"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 34.7432017815, 31.5612508005, 0 ]
+			},
+			"properties" : {
+				"FID" : 2,
+				"Id" : 3,
+				"Name" : "Desert road to Gaza",
+				"Event" : "Explains the Scriptures to an Ethiopian eunuch and baptises him - Acts 8:26-39"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 34.7241874032, 31.826177257, 0 ]
+			},
+			"properties" : {
+				"FID" : 3,
+				"Id" : 4,
+				"Name" : "Costal region",
+				"Event" : "Declares the good news to all the cities - Acts 8:40"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 34.9048239962, 32.5022092018, 0 ]
+			},
+			"properties" : {
+				"FID" : 4,
+				"Id" : 5,
+				"Name" : "Caesarea",
+				"Event" : "Philip welcomes Paul to his house - Acts 21:8,9"
+			}
+		}
+	]
+}
