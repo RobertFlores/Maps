@@ -1,0 +1,111 @@
+html,
+body,
+#viewDiv {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+}
+
+#mainBox {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.buttonColors {
+  background-color: rgba(255,255,255,0.1);
+  cursor: pointer;
+  border: 3px solid transparent;
+  background-image: none;
+
+}
+#showGallery {
+    color: black; 
+    background-color: white; 
+    border: 1px solid grey; 
+    position: absolute; 
+    right: 5px; 
+    top: 5px;
+    z-index: 1;
+    width: 100px;
+    cursor: pointer;
+}
+#galleryList {
+    color: black; 
+    background-color: white; 
+    border: 1px solid grey; 
+    position: absolute; 
+    right: 5px; 
+    top: 25px;
+    visibility: hidden;
+    width: 100px;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+#galleryList ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    margin-top: 2px;
+}
+#galleryList ul li{
+    cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+}
+#showData {
+    color: black; 
+    background-color: white; 
+    border: 1px solid grey; 
+    position: absolute; 
+    right: 5px; 
+    top: 25px;
+
+    width: 100px;
+    cursor: pointer;
+}
+#dataList {
+    color: black; 
+    background-color: white; 
+    border: 3px solid grey; 
+    position: absolute; 
+    right: 5px; 
+    top: 45px;
+    visibility: hidden;
+    width: 275px;
+    padding: 5px 5px 10px 10px;
+}
+#dataList ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    margin-top: 2px;
+}
+#dataList ul li {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+#infoDiv {
+    position: absolute;
+    top: 15px;
+    left: 60px;
+}
+
+#infoDiv input {
+    border: none;
+    box-shadow: none;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    vertical-align: middle;
+    text-align: center;
+    border-radius: 20px;
+
+}
+

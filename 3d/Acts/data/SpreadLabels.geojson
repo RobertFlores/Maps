@@ -1,0 +1,318 @@
+{
+	"type" : "FeatureCollection",
+	"name" : "SpreadLabels",
+	"features" : [
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 12.9167065576, 42.5057157351, 0 ]
+			},
+			"properties" : {
+				"FID" : 0,
+				"Id" : 0,
+				"Name" : "ITALY",
+				"Size" : 0
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 17.2543615866, 44.0200643073, 0 ]
+			},
+			"properties" : {
+				"FID" : 1,
+				"Id" : 0,
+				"Name" : "ILLYRICUM",
+				"Size" : 0
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 21.3662208743, 41.0255383953, 0 ]
+			},
+			"properties" : {
+				"FID" : 2,
+				"Id" : 0,
+				"Name" : "MACEDONIA",
+				"Size" : 0
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 22.0079561389, 38.9775230677, 0 ]
+			},
+			"properties" : {
+				"FID" : 3,
+				"Id" : 0,
+				"Name" : "GREECE",
+				"Size" : 0
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 28.4609607437, 39.2817376119, 0 ]
+			},
+			"properties" : {
+				"FID" : 4,
+				"Id" : 0,
+				"Name" : "ASIA",
+				"Size" : 0
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 31.3844213934, 40.7290131799, 0 ]
+			},
+			"properties" : {
+				"FID" : 5,
+				"Id" : 0,
+				"Name" : "BITHYNIA",
+				"Size" : 0
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 36.8391711422, 40.7290131799, 0 ]
+			},
+			"properties" : {
+				"FID" : 6,
+				"Id" : 0,
+				"Name" : "PONTUS",
+				"Size" : 0
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 33.4878869828, 39.6395676792, 0 ]
+			},
+			"properties" : {
+				"FID" : 7,
+				"Id" : 0,
+				"Name" : "GALATIA",
+				"Size" : 0
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 30.6713822105, 38.1411846895, 0 ]
+			},
+			"properties" : {
+				"FID" : 8,
+				"Id" : 0,
+				"Name" : "PHRYGIA",
+				"Size" : 0
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 36.4113476324, 38.5047926303, 0 ]
+			},
+			"properties" : {
+				"FID" : 9,
+				"Id" : 0,
+				"Name" : "CAPPADOCIA",
+				"Size" : 0
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 31.5626811891, 37.1816153419, 0 ]
+			},
+			"properties" : {
+				"FID" : 10,
+				"Id" : 0,
+				"Name" : "PAMPHYLIA",
+				"Size" : 0
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 36.5183035099, 37.295148926, 0 ]
+			},
+			"properties" : {
+				"FID" : 11,
+				"Id" : 0,
+				"Name" : "CILICIA",
+				"Size" : 0
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 24.9314167886, 35.1672929546, 0 ]
+			},
+			"properties" : {
+				"FID" : 12,
+				"Id" : 0,
+				"Name" : "CRETE",
+				"Size" : 0
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 32.8461517182, 34.8753259031, 0 ]
+			},
+			"properties" : {
+				"FID" : 13,
+				"Id" : 0,
+				"Name" : "CYPRUS",
+				"Size" : 0
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 37.801774039, 35.341972065, 0 ]
+			},
+			"properties" : {
+				"FID" : 14,
+				"Id" : 0,
+				"Name" : "SYRIA",
+				"Size" : 0
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 23.4340345046, 31.2613075419, 0 ]
+			},
+			"properties" : {
+				"FID" : 15,
+				"Id" : 0,
+				"Name" : "LIBYA",
+				"Size" : 0
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 43.0426120329, 34.1998589938, 0 ]
+			},
+			"properties" : {
+				"FID" : 16,
+				"Id" : 0,
+				"Name" : "MESOPOTAMIA",
+				"Size" : 0
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 47.9625823946, 36.0945502103, 0 ]
+			},
+			"properties" : {
+				"FID" : 17,
+				"Id" : 0,
+				"Name" : "MEDIA",
+				"Size" : 0
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 49.1747490054, 31.9293804339, 0 ]
+			},
+			"properties" : {
+				"FID" : 18,
+				"Id" : 0,
+				"Name" : "ELAM",
+				"Size" : 0
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 36.4469995916, 32.5625915624, 0 ]
+			},
+			"properties" : {
+				"FID" : 19,
+				"Id" : 0,
+				"Name" : "SAMARIA",
+				"Size" : 0
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 35.3774408173, 30.9560600888, 0 ]
+			},
+			"properties" : {
+				"FID" : 20,
+				"Id" : 0,
+				"Name" : "JUDEA",
+				"Size" : 0
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 44.4686903986, 25.0744043173, 0 ]
+			},
+			"properties" : {
+				"FID" : 21,
+				"Id" : 0,
+				"Name" : "ARABIA",
+				"Size" : 0
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 30.5644263331, 29.5704193861, 0 ]
+			},
+			"properties" : {
+				"FID" : 22,
+				"Id" : 0,
+				"Name" : "EGYPT",
+				"Size" : 0
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 32.7748477999, 21.837107586, 0 ]
+			},
+			"properties" : {
+				"FID" : 23,
+				"Id" : 0,
+				"Name" : "ETHIOPA",
+				"Size" : 0
+			}
+		}
+	]
+}
