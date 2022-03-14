@@ -1,0 +1,414 @@
+{
+	"type" : "FeatureCollection",
+	"name" : "Exodus2_cities",
+	"features" : [
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 31.3422007079, 29.9091086904 ]
+			},
+			"properties" : {
+				"FID" : 0,
+				"Id" : 0,
+				"Name" : "Rameses?"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 31.2881720479, 29.8575790864 ]
+			},
+			"properties" : {
+				"FID" : 1,
+				"Id" : 0,
+				"Name" : "Memphis"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 32.1310191444, 30.0635375222 ]
+			},
+			"properties" : {
+				"FID" : 2,
+				"Id" : 0,
+				"Name" : "Succoth?"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 32.5740541567, 30.0354774232 ]
+			},
+			"properties" : {
+				"FID" : 3,
+				"Id" : 0,
+				"Name" : "Etham?"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 32.5011154656, 29.8575790864 ]
+			},
+			"properties" : {
+				"FID" : 4,
+				"Id" : 0,
+				"Name" : "Pihahiroth"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 33.0035820039, 29.3149166448 ]
+			},
+			"properties" : {
+				"FID" : 5,
+				"Id" : 0,
+				"Name" : "Elim?"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 33.4601241812, 29.0483994963 ]
+			},
+			"properties" : {
+				"FID" : 6,
+				"Id" : 0,
+				"Name" : "Dophkah"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 33.6546273573, 28.8829538409 ]
+			},
+			"properties" : {
+				"FID" : 7,
+				"Id" : 0,
+				"Name" : "Alush?"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 33.8518319665, 28.6295485529 ]
+			},
+			"properties" : {
+				"FID" : 8,
+				"Id" : 0,
+				"Name" : "Rephidim"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 33.9896050495, 28.5251663623 ]
+			},
+			"properties" : {
+				"FID" : 9,
+				"Id" : 0,
+				"Name" : "Mt. Sinai"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 34.0868566376, 28.6010909574 ]
+			},
+			"properties" : {
+				"FID" : 10,
+				"Id" : 0,
+				"Name" : "Taberah?"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 34.2624497827, 28.7456702934 ]
+			},
+			"properties" : {
+				"FID" : 11,
+				"Id" : 0,
+				"Name" : "Kibroth-hattaavah"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 34.4434457938, 28.8900497897 ]
+			},
+			"properties" : {
+				"FID" : 12,
+				"Id" : 0,
+				"Name" : "Hazeroth"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 34.5542045469, 29.248941551 ]
+			},
+			"properties" : {
+				"FID" : 13,
+				"Id" : 0,
+				"Name" : "Rithmah?"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 34.721693393, 29.5172876268 ]
+			},
+			"properties" : {
+				"FID" : 14,
+				"Id" : 0,
+				"Name" : "Rimmon-perez"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 34.651456135, 29.7661657548 ]
+			},
+			"properties" : {
+				"FID" : 15,
+				"Id" : 0,
+				"Name" : "Libnah?"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 34.673067599, 29.9910326809 ]
+			},
+			"properties" : {
+				"FID" : 16,
+				"Id" : 0,
+				"Name" : "Rissah"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 34.5596074129, 30.7345840925 ]
+			},
+			"properties" : {
+				"FID" : 17,
+				"Id" : 0,
+				"Name" : "Bene-jaakan"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 34.694679063, 30.1032757156 ]
+			},
+			"properties" : {
+				"FID" : 18,
+				"Id" : 0,
+				"Name" : "Gudgodah"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 35.0566710852, 29.881004935 ]
+			},
+			"properties" : {
+				"FID" : 19,
+				"Id" : 0,
+				"Name" : "Jotbathah"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 35.0215524562, 29.7004841739 ]
+			},
+			"properties" : {
+				"FID" : 20,
+				"Id" : 0,
+				"Name" : "Abronah"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 34.9891352602, 29.5736912404 ]
+			},
+			"properties" : {
+				"FID" : 21,
+				"Id" : 0,
+				"Name" : "Ezion-geber"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 34.4866687219, 30.5858615882 ]
+			},
+			"properties" : {
+				"FID" : 22,
+				"Id" : 0,
+				"Name" : "Kadesh"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 35.0458653532, 30.8320587297 ]
+			},
+			"properties" : {
+				"FID" : 23,
+				"Id" : 0,
+				"Name" : "Mt. Hor"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 35.3808430454, 30.7926166112 ]
+			},
+			"properties" : {
+				"FID" : 24,
+				"Id" : 0,
+				"Name" : "Zalmonah"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 35.4672889015, 30.6416593426 ]
+			},
+			"properties" : {
+				"FID" : 25,
+				"Id" : 0,
+				"Name" : "Punon"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 35.6888064076, 30.8436562704 ]
+			},
+			"properties" : {
+				"FID" : 26,
+				"Id" : 0,
+				"Name" : "Oboth?"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 35.7509393666, 30.9618710691 ]
+			},
+			"properties" : {
+				"FID" : 27,
+				"Id" : 0,
+				"Name" : "I"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 35.7617450987, 31.4954797029 ]
+			},
+			"properties" : {
+				"FID" : 28,
+				"Id" : 0,
+				"Name" : "Dibon-gad"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 35.7995651607, 31.4563126583 ]
+			},
+			"properties" : {
+				"FID" : 29,
+				"Id" : 0,
+				"Name" : "Aroer"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 35.8022665937, 31.7944494237 ]
+			},
+			"properties" : {
+				"FID" : 30,
+				"Id" : 0,
+				"Name" : "Heshbon"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 35.6996121396, 31.7577050674 ]
+			},
+			"properties" : {
+				"FID" : 31,
+				"Id" : 0,
+				"Name" : "Mt. Nebo"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 35.6347777476, 31.8288839967 ]
+			},
+			"properties" : {
+				"FID" : 32,
+				"Id" : 0,
+				"Name" : "Abel-shittim"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 35.4132602414, 31.8656000539 ]
+			},
+			"properties" : {
+				"FID" : 33,
+				"Id" : 0,
+				"Name" : "Jericho"
+			}
+		}
+	]
+}

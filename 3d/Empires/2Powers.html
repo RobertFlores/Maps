@@ -29,6 +29,7 @@
         var theView;
         var basemaps;
         var mapGalleryOn = false;
+        var theConfig;
         var theMap;
         var gallery;
         var features;
@@ -36,8 +37,9 @@
         var watercolor2Layer;
         var dataListOn = false;
         var theEgyptLayer;
-        var theSpreadLabels;
-        var thePentecostLayer;
+        var theExodusLabelsLayer;
+        var theJacobLabelLayer;
+        var theJonahLabelLayer;
         var theJonahLayer;
         var theJacobLayer;
         var theExodusLayer;
@@ -77,8 +79,27 @@
 
         function toggleLayer (e, index) {
             var checkbox = e.target;
-
-            layers[index].visible = checkbox.checked;
+            var visible = checkbox.checked;
+            var is3D = theConfig.activeView.type === "3d";
+            layers[index].visible = visible;
+            if (visible) {
+                if (is3D) {
+                    theConfig.sceneView.goTo(layers[index].fullExtent);
+                } else {
+                    theConfig.mapView.goTo(layers[index].fullExtent);
+                }
+            }
+            switch (index) {
+                case 1: 
+                    theJacobLabelLayer.visible = visible;
+                    break;
+                case 2:
+                    theExodusLabelsLayer.visible = visible;
+                    break;
+                case 4:
+                    theJonahLabelLayer.visible = visible;
+                    break;
+            }
         }
 
         function toggleFeatures() {
@@ -211,6 +232,7 @@
         layers.push(assyrianLayer); // #0
         theAssyriaLayer = assyrianLayer;
 
+        // Jonah's travels
         const jonahUrl = "data/JonahsTravels.geojson";
         const jonahRenderer = {
             type: "simple",
@@ -233,90 +255,137 @@
         layers.push(jonahLayer); // #0
         theJonahLayer = jonahLayer;
 
-        // const pentecostLabelsUrl = "data/PentecostSpreadCities.geojson";
-        // const pentecostLabelsRenderer = {
-        //     type: "simple",
+        // Jonah's cities
+        const jonahLabelsUrl = "data/Jonah_Cities.geojson";
+        const jonahLabelsRenderer = {
+            type: "simple",
 
-        //     symbol: {
-        //         type: "simple-marker",
-        //         style: "circle",
-        //         color: "rgba(255,0,0,0.75)",
-        //         size: "6px",
-        //         outline: {
-        //             color: [255,0,0,192],
-        //             width: 1
-        //         }
+            symbol: {
+                type: "simple-marker",
+                style: "circle",
+                color: "rgba(255,0,0,0.75)",
+                size: "8px",
+                outline: {
+                    color: [255,0,0,192],
+                    width: 6
+                }
                 
-        //     }
-        // };
+            }
+        };
 
-        // const pentecostLabelslabelClass = {
-        //   // autocasts as new LabelClass()
-        //   symbol: {
-        //     type: "text", // autocasts as new TextSymbol()
-        //     color: [255, 255, 255, 128],  // white
-        //     font: { family: "Arial Unicode MS", size: 13, weight: "bold" },
-        //     haloColor: [0,0,0, 128],  // black
-        //     haloSize: 1
-        //   },
-        //   labelPlacement: "above-center",
-        //   labelExpressionInfo: {
-        //     expression: "$feature.Name"
-        //   }
-        // };
+        const jonahLabelslabelClass = {
+          // autocasts as new LabelClass()
+          symbol: {
+            type: "text", // autocasts as new TextSymbol()
+            color: [255, 255, 255, 128],  // white
+            font: { family: "Arial Unicode MS", size: 12, weight: "bold" },
+            haloColor: [0,0,0, 128],  // black
+            haloSize: 1
+          },
+          labelPlacement: "above-center",
+          labelExpressionInfo: {
+            expression: "$feature.Name"
+          }
+        };
 
-        // const pentecostLabelsLayer = new GeoJSONLayer({
-        //     url: pentecostLabelsUrl,
-        //     copyright: "",
-        //     renderer: pentecostLabelsRenderer,
-        //     opacity: 0.6,
-        //     labelingInfo: [pentecostLabelslabelClass],
-        //     visible: true
-        // })
-        // labels.push(pentecostLabelsLayer); // #0
-        // thePentecostLayer = pentecostLabelsLayer;
-
-        // // Spread layers
+        const jonahLabelsLayer = new GeoJSONLayer({
+            url: jonahLabelsUrl,
+            copyright: "",
+            renderer: jonahLabelsRenderer,
+            opacity: 0.6,
+            labelingInfo: [jonahLabelslabelClass],
+            visible: false
+        })
+        // labels.push(jonahLabelsLayer); // #0
+        theJonahLabelLayer = jonahLabelsLayer;
 
 
+        // Jacob's cities
+        const jacobLabelsUrl = "data/JacobCities.geojson";
+        const jacobLabelsRenderer = {
+            type: "simple",
 
-        // const spreadLabelsUrl = "data/SpreadLabels.geojson";
-        // const spreadLabelsRenderer = {
-        //     type: "simple",
-
-        //     symbol: {
-        //         type: "simple-marker",
-        //         color: "rgba(0,0,0,0.5)",
-        //         size: 2
+            symbol: {
+                type: "simple-marker",
+                style: "circle",
+                color: "rgba(255,0,0,0.75)",
+                size: "6px",
+                outline: {
+                    color: [255,0,0,192],
+                    width: 4
+                }
                 
-        //     }
-        // };
+            }
+        };
 
-        // const spreadLabelslabelClass = {
-        //   // autocasts as new LabelClass()
-        //   symbol: {
-        //     type: "text", // autocasts as new TextSymbol()
-        //     color: [255, 255, 255, 255],  // white
-        //     font: { family: "Arial Unicode MS", size: 16, weight: "bold" },
-        //     haloColor: [0, 0, 0, 255],  // black
-        //     haloSize: 2
-        //   },
-        //   labelPlacement: "center-center",
-        //   labelExpressionInfo: {
-        //     expression: "$feature.Name"
-        //   }
-        // };
+        const jacobLabelslabelClass = {
+          // autocasts as new LabelClass()
+          symbol: {
+            type: "text", // autocasts as new TextSymbol()
+            color: [255, 255, 255, 128],  // white
+            font: { family: "Arial Unicode MS", size: 12, weight: "bold" },
+            haloColor: [0,0,0, 128],  // black
+            haloSize: 1
+          },
+          labelPlacement: "above-center",
+          labelExpressionInfo: {
+            expression: "$feature.Name"
+          }
+        };
 
-        // const spreadLabelsLayer = new GeoJSONLayer({
-        //     url: spreadLabelsUrl,
-        //     copyright: "",
-        //     renderer: spreadLabelsRenderer,
-        //     opacity: 0.6,
-        //     labelingInfo: [spreadLabelslabelClass],
-        //     visible: false
-        // })
-        // labels.push(spreadLabelsLayer); // #0
-        // theSpreadLabels = spreadLabelsLayer;
+        const jacobLabelsLayer = new GeoJSONLayer({
+            url: jacobLabelsUrl,
+            copyright: "",
+            renderer: jacobLabelsRenderer,
+            opacity: 0.6,
+            labelingInfo: [jacobLabelslabelClass],
+            visible: false
+        })
+        // labels.push(jacobLabelsLayer); // #0
+        theJacobLabelLayer = jacobLabelsLayer;
+
+        const exodusLabelsUrl = "data/Exodus1_cities.geojson";
+        const exodusLabelsRenderer = {
+            type: "simple",
+
+            symbol: {
+                type: "simple-marker",
+                style: "circle",
+                color: "rgba(255,0,0,0.75)",
+                size: "6px",
+                outline: {
+                    color: [255,0,0,192],
+                    width: 4
+                }
+                
+            }
+        };
+
+        const exodusLabelslabelClass = {
+          // autocasts as new LabelClass()
+          symbol: {
+            type: "text", // autocasts as new TextSymbol()
+            color: [255, 255, 255, 128],  // white
+            font: { family: "Arial Unicode MS", size: 12, weight: "bold" },
+            haloColor: [0,0,0, 128],  // black
+            haloSize: 1
+          },
+          labelPlacement: "above-center",
+          labelExpressionInfo: {
+            expression: "$feature.Name"
+          }
+        };
+
+        const exodusLabelsLayer = new GeoJSONLayer({
+            url: exodusLabelsUrl,
+            copyright: "",
+            renderer: exodusLabelsRenderer,
+            opacity: 0.6,
+            labelingInfo: [exodusLabelslabelClass],
+            visible: false
+        })
+        // labels.push(exodusLabelsLayer); // #0
+        theExodusLabelsLayer = exodusLabelsLayer;
 
         const watercolorBaseLayer = new WebTileLayer({
             urlTemplate: "https://stamen-tiles-{subDomain}.a.ssl.fastly.net/watercolor/{level}/{col}/{row}.png",
@@ -362,11 +431,11 @@
             activeView: null,
             container: "viewDiv" // use same container for views
         };
-
+        theConfig = appConfig;
         var map = new Map({
             basemap: watercolor2,
             ground: "world-elevation",
-            layers: [egyptLayer, jacobLayer, exodusLayer, assyrianLayer, jonahLayer]
+            layers: [egyptLayer, jacobLayer, exodusLayer, assyrianLayer, jonahLayer, jacobLabelsLayer, exodusLabelsLayer, jonahLabelsLayer]
         });
         theMap = map;
 

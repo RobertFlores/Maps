@@ -1,0 +1,78 @@
+{
+	"type" : "FeatureCollection",
+	"name" : "Exodus1_cities",
+	"features" : [
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 31.3422007079, 29.9091086904 ]
+			},
+			"properties" : {
+				"FID" : 0,
+				"Id" : 0,
+				"Name" : "Rameses?"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 31.2881720479, 29.8575790864 ]
+			},
+			"properties" : {
+				"FID" : 1,
+				"Id" : 0,
+				"Name" : "Memphis"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 32.1310191444, 30.0635375222 ]
+			},
+			"properties" : {
+				"FID" : 2,
+				"Id" : 0,
+				"Name" : "Succoth?"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 32.5740541567, 30.0354774232 ]
+			},
+			"properties" : {
+				"FID" : 3,
+				"Id" : 0,
+				"Name" : "Etham?"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 32.5011154656, 29.8575790864 ]
+			},
+			"properties" : {
+				"FID" : 4,
+				"Id" : 0,
+				"Name" : "Pihahiroth"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 33.0035820039, 29.3149166448 ]
+			},
+			"properties" : {
+				"FID" : 5,
+				"Id" : 0,
+				"Name" : "Elim?"
+			}
+		}
+	]
+}

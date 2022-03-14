@@ -97,8 +97,8 @@
 
         }
         #showGallery {
-            color: white; 
-            background-color: black; 
+            color: black; 
+            background-color: white; 
             border: 1px solid grey; 
             position: absolute; 
             right: 5px; 
@@ -108,16 +108,18 @@
             cursor: pointer;
         }
         #galleryList {
-            color: white; 
-            background-color: black; 
-            border: 3px solid grey; 
+            color: black; 
+            background-color: white; 
+            border: 1px solid grey; 
             position: absolute; 
             right: 5px; 
             top: 25px;
             visibility: hidden;
             width: 100px;
             text-align: center;
-        }
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }        
         #galleryList ul {
             list-style-type: none;
             margin: 0;
@@ -130,8 +132,8 @@
             font-size: 13px;
         }
         #showData {
-            color: white; 
-            background-color: black; 
+            color: black; 
+            background-color: white; 
             border: 1px solid grey; 
             position: absolute; 
             right: 5px; 
@@ -143,12 +145,13 @@
         #dataList {
             color: black; 
             background-color: white; 
-            border: 3px solid grey; 
+            border: 1px solid grey; 
             position: absolute; 
             right: 5px; 
             top: 45px;
             visibility: hidden;
-            width: 200px;
+            width: 250px;
+            padding: 0 0 5px 5px
         }
         #dataList ul {
             list-style-type: none;
@@ -167,17 +170,29 @@
             left: 460px;
         }
 
-#infoDiv input {
-    border: none;
-    box-shadow: none;
-    width: 40px;
-    height: 40px;
-    background-color: white;
-    vertical-align: middle;
-    text-align: center;
-    border-radius: 20px;
+        #infoDiv input {
+            border: none;
+            box-shadow: none;
+            width: 40px;
+            height: 40px;
+            background-color: white;
+            vertical-align: middle;
+            text-align: center;
+            border-radius: 20px;
 
-}
+        }
+        #generals {
+            border: 2px solid grey;
+            box-shadow: none;
+            width: 273px;
+            height: 154px;
+            background-color: white;
+            position: absolute;
+            right: 25px;
+            bottom: 25px;
+            display: none;
+            background-image: url(images/Generals.jpeg);
+        }
 
     </style>
 
@@ -196,8 +211,8 @@
         var watercolorLayer;
         var watercolor2Layer;
         var dataListOn = false;
-        var theSpreadLayer;
-        var theSpreadLabels;
+        var theBreakupLayer;
+        var theGeneralsLegend;
         var thePentecostLayer;
         var thePentecostLines;
         
@@ -243,6 +258,12 @@
         function toggleTrek (e) {
             var checkbox = e.target;
             trekToBabylonLayer.visible = checkbox.checked;
+        }
+
+        function toggleBreakup (e) {
+            var checkbox = e.target;
+            theBreakupLayer.visible = checkbox.checked;
+            theGeneralsLegend.style.display = checkbox.checked ? "block" : "none";
         }
 
         function toggleFeatures() {
@@ -294,14 +315,14 @@
                   width: "5px"
                 }                
             }
-        }
+        };
         const babylonLayer = new GeoJSONLayer({
             url: babylonUrl,
             copyright: "",
             renderer: babylonRenderer,
             opacity: 0.6,
             visible: false
-        })
+        });
         layers.push(babylonLayer); // #0
 
         const medoUrl = "data/Medo-PersianEmpire.geojson";
@@ -316,14 +337,14 @@
                   width: "5px"
                 }                
             }
-        }
+        };
         const medoLayer = new GeoJSONLayer({
             url: medoUrl,
             copyright: "",
             renderer: medoRenderer,
             opacity: 0.6,
             visible: false
-        })
+        });
         layers.push(medoLayer); // #1
 
         const greecianUrl = "data/GreecianEmpire.geojson";
@@ -338,14 +359,14 @@
                   width: "5px"
                 }                
             }
-        }
+        };
         const greecianLayer = new GeoJSONLayer({
             url: greecianUrl,
             copyright: "",
             renderer: greecianRenderer,
             opacity: 0.6,
             visible: false
-        })
+        });
         layers.push(greecianLayer); // #2
 
         const romanUrl = "data/RomanEmpire.geojson";
@@ -360,14 +381,14 @@
                   width: "5px"
                 }                
             }
-        }
+        };
         const romanLayer = new GeoJSONLayer({
             url: romanUrl,
             copyright: "",
             renderer: romanRenderer,
             opacity: 0.6,
             visible: false
-        })
+        });
         layers.push(romanLayer); // #3
 
         // Feature layers
@@ -385,14 +406,14 @@
                   style: "short-dash"
              
             }
-        }
+        };
         const trekLayer = new GeoJSONLayer({
             url: trekUrl,
             copyright: "",
             renderer: trekRenderer,
             opacity: 0.75,
             visible: false
-        })
+        });
         trekToBabylonLayer = trekLayer;
 
         const britUrl = "data/BritishEmpire.geojson";
@@ -407,14 +428,14 @@
                   width: "5px"
                 }                
             }
-        }
+        };
         const britLayer = new GeoJSONLayer({
             url: britUrl,
             copyright: "",
             renderer: britRenderer,
             opacity: 0.6,
             visible: false
-        })
+        });
         layers.push(britLayer); // #2
 
         const usaUrl = "data/USA.geojson";
@@ -429,15 +450,35 @@
                   width: "5px"
                 }                
             }
-        }
+        };
         const usaLayer = new GeoJSONLayer({
             url: usaUrl,
             copyright: "",
             renderer: usaRenderer,
             opacity: 0.6,
             visible: false
-        })
+        });
         layers.push(usaLayer); // #2
+
+        const breakupUrl = "data/GreecianEmpireBreakup.geojson";
+        const breakupRenderer = {
+            type: "unique-value",
+            field: "General",
+            uniqueValueInfos: [
+                {value: "Cassander", symbol: {type: "simple-fill", color: [248,147,31,1]}},
+                {value: "Lysimachus", symbol: {type: "simple-fill",color: [0,167,108,1]}},
+                {value: "Ptolemy I", symbol: {type: "simple-fill",color: [155,116,179,1]}},
+                {value: "Seleucus I", symbol: {type: "simple-fill",color: [244,114,101,1]}}
+            ]
+        };
+        const breakupLayer = new GeoJSONLayer({
+            url: breakupUrl,
+            copyright: "",
+            renderer: breakupRenderer,
+            opacity: 0.6,
+            visible: false
+        });
+        theBreakupLayer = breakupLayer;
 
         const watercolorBaseLayer = new WebTileLayer({
             urlTemplate: "https://stamen-tiles-{subDomain}.a.ssl.fastly.net/watercolor/{level}/{col}/{row}.png",
@@ -487,7 +528,7 @@
         var map = new Map({
             basemap: watercolorLayer,
             ground: "world-elevation",
-            layers: [babylonLayer, medoLayer, greecianLayer, romanLayer, britLayer, usaLayer, trekLayer]
+            layers: [babylonLayer, medoLayer, greecianLayer, romanLayer, britLayer, usaLayer, trekLayer, breakupLayer]
         });
         theMap = map;
 
@@ -605,13 +646,19 @@
             <li title="Long trek to Babylon" >
                 <input id="trekCheck" type="checkbox" onchange="toggleTrek(event)">Long trek to Babylon
             </li>
+            <li title="Breakup of Alexander's kingdom" >
+                <input id="trekCheck" type="checkbox" onchange="toggleBreakup(event)">Breakup of Alexander's kingdom
+            </li>
         </ul>
     </div>
-</div>
-<div id="infoDiv">
+<!-- </div> -->
+    <div id="infoDiv">
         <input class="esri-component esri-widget-button esri-widget esri-interactive" type="button"
           id="switchButton" value="3D">
-      </div>
+    </div>
+    <div id="generals">
+
+    </div>
 
     <script>
         gallery = document.getElementById("galleryList");
@@ -619,18 +666,6 @@
     </script>
 
     <style>
-        /* .esri-view .esri-basemap-gallery {
-            min-width: 100px!important;
-            max-width: 500px!important;
-            margin-top: 50px;
-            border: 4px solid grey;
-            border-radius: 15px;
-            padding: 15px;
-        }
-
-        .esri-ui-corner .esri-component.esri-widget--panel-height-only {
-            max-height: 200px;
-        } */
         .esri-basemap-gallery__item-thumbnail {
             height: 64px;
             width: 64px;
@@ -638,15 +673,16 @@
             margin: 2px 5px;
         }
     </style>
-        <script>
-            buttons.push(document.getElementById("babylonClick"));
-            buttons.push(document.getElementById("medoClick"));
-            buttons.push(document.getElementById("greeceClick"));
-            buttons.push(document.getElementById("romeClick"));
-            buttons.push(document.getElementById("angloAmerClick"));
-            gallery = document.getElementById("galleryList");
-            features = document.getElementById("dataList");
-        </script>
+    <script>
+        buttons.push(document.getElementById("babylonClick"));
+        buttons.push(document.getElementById("medoClick"));
+        buttons.push(document.getElementById("greeceClick"));
+        buttons.push(document.getElementById("romeClick"));
+        buttons.push(document.getElementById("angloAmerClick"));
+        gallery = document.getElementById("galleryList");
+        features = document.getElementById("dataList");
+        theGeneralsLegend = document.getElementById("generals");
+    </script>
     
     
 

@@ -1,0 +1,54 @@
+{
+	"type" : "FeatureCollection",
+	"name" : "JacobToEgypt_cities",
+	"features" : [
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 35.2940319742, 32.2122007237 ]
+			},
+			"properties" : {
+				"FID" : 0,
+				"Id" : 0,
+				"Name" : "Shechem"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 35.2524380218, 31.9302312448 ]
+			},
+			"properties" : {
+				"FID" : 1,
+				"Id" : 0,
+				"Name" : "Bethel"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 35.1098301853, 31.5208489396 ]
+			},
+			"properties" : {
+				"FID" : 2,
+				"Id" : 0,
+				"Name" : "Hebron"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 34.8483824849, 31.2418453865 ]
+			},
+			"properties" : {
+				"FID" : 3,
+				"Id" : 0,
+				"Name" : "Beer-sheba"
+			}
+		}
+	]
+}

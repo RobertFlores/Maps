@@ -1,0 +1,78 @@
+{
+	"type" : "FeatureCollection",
+	"name" : "Jonah_cities",
+	"features" : [
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 43.1380368951, 36.4744824083 ]
+			},
+			"properties" : {
+				"FID" : 0,
+				"Id" : 0,
+				"Name" : "Nineveh"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 35.3768314754, 33.6043856472 ]
+			},
+			"properties" : {
+				"FID" : 1,
+				"Id" : 0,
+				"Name" : "Sidon"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 35.2917305388, 33.4412104813 ]
+			},
+			"properties" : {
+				"FID" : 2,
+				"Id" : 0,
+				"Name" : "Zarephath"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 35.3342810071, 32.7711325204 ]
+			},
+			"properties" : {
+				"FID" : 3,
+				"Id" : 0,
+				"Name" : "Gath-hepher"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 34.7470845444, 32.0527049205 ]
+			},
+			"properties" : {
+				"FID" : 4,
+				"Id" : 0,
+				"Name" : "Joppa"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 35.2491800704, 31.7782080106 ]
+			},
+			"properties" : {
+				"FID" : 5,
+				"Id" : 0,
+				"Name" : "Jerusalem"
+			}
+		}
+	]
+}
