@@ -35,10 +35,12 @@
         var watercolorLayer;
         var watercolor2Layer;
         var dataListOn = false;
-        var theSpreadLayer;
+        var theEgyptLayer;
         var theSpreadLabels;
         var thePentecostLayer;
         var theJonahLayer;
+        var theJacobLayer;
+        var theExodusLayer;
         
         function showLayer (index) {
       
@@ -115,6 +117,77 @@
         (Map, GeoJSONLayer, SceneView, MapView, UI, esriConfig, Basemap, WebTileLayer, VectorTileLayer) => {
 
         // layers
+        // Egypt highlight
+        const egyptUrl = "data/EgyptHighlight.geojson";
+        const egyptRenderer = {
+            type: "simple",
+
+            symbol: {
+                type: "simple-fill",
+                color: "rgba(255,255,255, 0.25)",
+                outline: {
+                  color: [255,0,127, 1],
+                  width: "5px"
+                }                   
+            }
+        }
+        const egyptLayer = new GeoJSONLayer({
+            url: egyptUrl,
+            copyright: "",
+            renderer: egyptRenderer,
+            opacity: 0.6,
+            visible: true
+        })
+        layers.push(egyptLayer); // #0
+        theEgyptLayer = egyptLayer;
+
+        // Jacob to Egypt
+        const jacobUrl = "data/JacobToEgypt.geojson";
+        const jacobRenderer = {
+            type: "simple",
+
+            symbol: {
+                type: "simple-line",
+                color: "rgba(192,99,0,0.75)",
+                width: "5px",
+                style: "short-dash"
+            
+            }
+        }
+        const jacobLayer = new GeoJSONLayer({
+            url: jacobUrl,
+            copyright: "",
+            renderer: jacobRenderer,
+            opacity: 0.75,
+            visible: false
+        })
+        layers.push(jacobLayer); // #1
+        theJacobLayer = jacobLayer;
+
+        // Exodus from Egypt
+        const exodusUrl = "data/Exodus1.geojson";
+        const exodusRenderer = {
+            type: "simple",
+
+            symbol: {
+                type: "simple-line",
+                color: "rgba(127,0,255,0.75)",
+                width: "5px",
+                style: "short-dash"
+            
+            }
+        }
+        const exodusLayer = new GeoJSONLayer({
+            url: exodusUrl,
+            copyright: "",
+            renderer: exodusRenderer,
+            opacity: 0.75,
+            visible: false
+        })
+        layers.push(exodusLayer); // #1
+        theExodusLayer = exodusLayer;
+
+        // Assyrian empire
         const assyriaUrl = "data/AssyrianEmpire.geojson";
         const assyriaRenderer = {
             type: "simple",
@@ -291,9 +364,9 @@
         };
 
         var map = new Map({
-            basemap: "satellite",
+            basemap: watercolor2,
             ground: "world-elevation",
-            layers: [assyrianLayer, jonahLayer]
+            layers: [egyptLayer, jacobLayer, exodusLayer, assyrianLayer, jonahLayer]
         });
         theMap = map;
 
@@ -400,11 +473,20 @@
     </div>
     <div id="dataList">
         <ul>
+            <li title="Highlight Egypt" >
+                <input id="spreadCheck" type="checkbox" onchange="toggleLayer(event, 0)" checked="checked">Highlight Egypt
+            </li>
+            <li title="Jacob to Egypt" >
+                <input id="spreadCheck" type="checkbox" onchange="toggleLayer(event, 1)" >Jacob to Egypt
+            </li>
+            <li title="Exodus from Egypt" >
+                <input id="spreadCheck" type="checkbox" onchange="toggleLayer(event, 2)" >Exodus from Egypt
+            </li>
             <li title="Assyrian Empire" >
-                <input id="spreadCheck" type="checkbox" onchange="toggleLayer(event, 0)" >Assyrian Empire
+                <input id="spreadCheck" type="checkbox" onchange="toggleLayer(event, 3)" >Assyrian Empire
             </li>
             <li title="Jonah's travels" >
-                <input id="spreadCheck" type="checkbox" onchange="toggleLayer(event, 1)">Jonah's travels
+                <input id="spreadCheck" type="checkbox" onchange="toggleLayer(event, 4)">Jonah's travels
             </li>
             <!-- <li title="Spread of Good News" >
                 <input id="spreadCheck" type="checkbox" onchange="togglePentecost(event)">Paul
