@@ -188,10 +188,39 @@
             height: 154px;
             background-color: white;
             position: absolute;
-            right: 25px;
+            /* right: 25px; */
+            left: 415px;
             bottom: 25px;
             display: none;
             background-image: url(images/Generals.jpeg);
+        }
+
+        #assyriaGreeceInfo {
+            border: 2px solid grey;
+            box-shadow: none;
+            width: 400x;
+            height: 400x;
+            background-color: white;
+            position: absolute;
+            right: 10px;
+            bottom: 25px;
+            display: none;
+            padding: 15px;
+        }
+        .smallTitle {
+            font-size: 10px;
+            font-weight: bold;
+        }
+        .largeTitle {
+            font-size: 25px;
+            font-weight: bold;
+        }
+        .scriptureHeading {
+            color: blue;
+            font-weight: bold;
+        }
+        .infoContent {
+            max-width: 550px;
         }
 
     </style>
@@ -215,6 +244,7 @@
         var theGeneralsLegend;
         var thePentecostLayer;
         var thePentecostLines;
+        var infoContent = [];
         
         function showLayer (index) {
             var is3D = theConfig.activeView.type === "3d";
@@ -264,6 +294,12 @@
             var checkbox = e.target;
             theBreakupLayer.visible = checkbox.checked;
             theGeneralsLegend.style.display = checkbox.checked ? "block" : "none";
+        }
+
+        function toggleAssyriaGreeceInfo (e) {
+            // theAssyriaGreeceInfo.innerHTML = infoContent[0];
+            var checkbox = e.target;
+            theAssyriaGreeceInfo.style.display = checkbox.checked ? "block" : "none";
         }
 
         function toggleFeatures() {
@@ -646,6 +682,9 @@
             <li title="Long trek to Babylon" >
                 <input id="trekCheck" type="checkbox" onchange="toggleTrek(event)">Long trek to Babylon
             </li>
+            <li title="Jehovah Foresaw the Future of Kings" >
+                <input id="trekCheck" type="checkbox" onchange="toggleAssyriaGreeceInfo(event)">Jehovah Foresaw the Future of Kings
+            </li>
             <li title="Breakup of Alexander's kingdom" >
                 <input id="trekCheck" type="checkbox" onchange="toggleBreakup(event)">Breakup of Alexander's kingdom
             </li>
@@ -656,9 +695,8 @@
         <input class="esri-component esri-widget-button esri-widget esri-interactive" type="button"
           id="switchButton" value="3D">
     </div>
-    <div id="generals">
-
-    </div>
+    <div id="generals"></div>
+    <div id="assyriaGreeceInfo"></div>
 
     <script>
         gallery = document.getElementById("galleryList");
@@ -682,6 +720,10 @@
         gallery = document.getElementById("galleryList");
         features = document.getElementById("dataList");
         theGeneralsLegend = document.getElementById("generals");
+        theAssyriaGreeceInfo = document.getElementById("assyriaGreeceInfo");
+
+        infoContent[0] = "<div class='smallTitle'>TREASURES FROM GOD’S WORD | DANIEL 10-12</div><div class='largeTitle'>Jehovah Foresaw the Future of Kings</div><br/><div class='scriptureHeading'>11:2</div><div class='infoContent'>Four kings would stand up for Persia. The fourth would 'rouse up everything against the kingdom of Greece.'<ol><li>Cyrus the Great</li><li>Cambyses II</li><li>Darius I</li><li>Xerxes I (believed to be King Ahasuerus, who married Esther)</li></ol><div class='scriptureHeading'>11:3</div>A powerful king of Greece would arise and rule an extensive empire.<ul><li>Alexander the Great</li></ul><div class='scriptureHeading'>11:4</div>The Greek Empire would be divided among four of Alexander’s generals.<ol><li>Cassander</li><li>Lysimachus</li><li>Seleucus I</li><li>Ptolemy I</li></ol></div>";
+        theAssyriaGreeceInfo.innerHTML = infoContent[0];
     </script>
     
     
