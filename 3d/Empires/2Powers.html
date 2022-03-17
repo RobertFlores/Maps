@@ -137,6 +137,20 @@
         ], 
         (Map, GeoJSONLayer, SceneView, MapView, UI, esriConfig, Basemap, WebTileLayer, VectorTileLayer) => {
 
+        // popup template
+        const puTemplate = {
+          title: "{Name}",
+          content: [{
+            type: "media",
+            mediaInfos: [{
+                title: '{Caption}',
+                type: "image",
+                value: {sourceURL: '{Image}'}
+            }]
+          }]
+        };
+
+
         // layers
         // Egypt highlight
         const egyptUrl = "data/EgyptHighlight.geojson";
@@ -339,6 +353,7 @@
             renderer: jacobLabelsRenderer,
             opacity: 0.6,
             labelingInfo: [jacobLabelslabelClass],
+            popupTemplate: puTemplate,
             visible: false
         })
         // labels.push(jacobLabelsLayer); // #0
@@ -382,6 +397,7 @@
             renderer: exodusLabelsRenderer,
             opacity: 0.6,
             labelingInfo: [exodusLabelslabelClass],
+            popupTemplate: puTemplate,
             visible: false
         })
         // labels.push(exodusLabelsLayer); // #0
@@ -591,6 +607,12 @@
             width: 64px;
             object-fit: cover;
             margin: 2px 5px;
+        }
+        .esri-popup__main-container {
+            max-height: 500px!important;
+        }
+        .esri-popup__footer  {
+            display: none;
         }
     </style>
 
