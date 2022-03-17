@@ -188,9 +188,8 @@
             height: 154px;
             background-color: white;
             position: absolute;
-            /* right: 25px; */
-            left: 415px;
-            bottom: 25px;
+            left: 425px;
+            bottom: 45px;
             display: none;
             background-image: url(images/Generals.jpeg);
         }
@@ -588,6 +587,16 @@
         swapView();
         });
 
+        var coordsWidget = document.createElement("div");
+        coordsWidget.id = "coordsWidget";
+        coordsWidget.className = "esri-widget esri-component";
+        coordsWidget.style.padding = "2px 5px";
+        coordsWidget.style.margin = "0 0 -12px 0";
+        coordsWidget.style.opacity = 0.8;
+        coordsWidget.style.fontSize = "12px";
+
+        appConfig.mapView.ui.add(coordsWidget, "bottom-left");
+
         // Swaps the view from 2D to 3D and vice versa
         function swapView() {
             var is3D = appConfig.activeView.type === "3d";
@@ -626,10 +635,26 @@
             return view;
         }
 
- 
+
+      function showCoordinates(pt) {
+        var coords =
+            "Lat/Lon: " +
+            pt.latitude.toFixed(3) +
+            ", " +
+            pt.longitude.toFixed(3) +
+            "  |  Scale: 1:" +
+            Math.round(appConfig.mapView.scale * 1) / 1 +
+            "  |  Zoom: " +
+            appConfig.mapView.zoom;
+            coordsWidget.innerHTML = coords;
+        }
+
+        appConfig.mapView.on("pointer-move", function (evt) {
+            showCoordinates(appConfig.mapView.toMap({ x: evt.x, y: evt.y }));
+        });
 
       });
-    </script>
+     </script>
 
 
   </head>
@@ -704,11 +729,18 @@
     </script>
 
     <style>
+        /* esri overrides */
         .esri-basemap-gallery__item-thumbnail {
             height: 64px;
             width: 64px;
             object-fit: cover;
             margin: 2px 5px;
+        }
+        .esri-popup__main-container {
+            max-height: 500px!important;
+        }
+        .esri-popup__footer  {
+            display: none;
         }
     </style>
     <script>
