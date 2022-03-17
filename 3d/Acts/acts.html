@@ -113,7 +113,21 @@
         ], 
         (Map, GeoJSONLayer, SceneView, MapView, UI, esriConfig, Basemap, WebTileLayer, VectorTileLayer) => {
 
-        // Empire layers
+        // popup template
+        const puTemplate = {
+          title: "{Name}",
+          content: [{
+            type: "media",
+            mediaInfos: [{
+                title: '{Event}',
+                type: "image",
+                value: {sourceURL: '{Image}'}
+            }]
+          }]
+        };
+
+
+        // layers
         const pentecostUrl = "data/PentecostSpreadLines.geojson";
         const pentecostRenderer = {
             type: "simple",
