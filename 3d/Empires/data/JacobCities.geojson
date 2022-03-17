@@ -11,7 +11,8 @@
 			"properties" : {
 				"FID" : 0,
 				"Id" : 0,
-				"Name" : "Shechem"
+				"Name" : "Shechem",
+				"Image" : ""
 			}
 		},
 		{
@@ -23,7 +24,8 @@
 			"properties" : {
 				"FID" : 1,
 				"Id" : 0,
-				"Name" : "Bethel"
+				"Name" : "Bethel",
+				"Image" : ""
 			}
 		},
 		{
@@ -35,7 +37,8 @@
 			"properties" : {
 				"FID" : 2,
 				"Id" : 0,
-				"Name" : "Hebron"
+				"Name" : "Hebron",
+				"Image" : ""
 			}
 		},
 		{
@@ -47,7 +50,21 @@
 			"properties" : {
 				"FID" : 3,
 				"Id" : 0,
-				"Name" : "Beer-sheba"
+				"Name" : "Beer-sheba",
+				"Image" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 31.9011538624, 30.9722053055 ]
+			},
+			"properties" : {
+				"FID" : 4,
+				"Id" : 0,
+				"Name" : "Egypt",
+				"Image" : "../../images/Jacob_and_Joseph.jpg"
 			}
 		}
 	]

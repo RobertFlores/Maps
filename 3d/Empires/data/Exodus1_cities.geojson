@@ -11,7 +11,8 @@
 			"properties" : {
 				"FID" : 0,
 				"Id" : 0,
-				"Name" : "Rameses?"
+				"Name" : "Rameses?",
+				"Image" : "../../images/Israelities_leaving_Egypt.jpg"
 			}
 		},
 		{
@@ -23,7 +24,8 @@
 			"properties" : {
 				"FID" : 1,
 				"Id" : 0,
-				"Name" : "Memphis"
+				"Name" : "Memphis",
+				"Image" : ""
 			}
 		},
 		{
@@ -35,7 +37,8 @@
 			"properties" : {
 				"FID" : 2,
 				"Id" : 0,
-				"Name" : "Succoth?"
+				"Name" : "Succoth?",
+				"Image" : ""
 			}
 		},
 		{
@@ -47,7 +50,8 @@
 			"properties" : {
 				"FID" : 3,
 				"Id" : 0,
-				"Name" : "Etham?"
+				"Name" : "Etham?",
+				"Image" : ""
 			}
 		},
 		{
@@ -59,7 +63,8 @@
 			"properties" : {
 				"FID" : 4,
 				"Id" : 0,
-				"Name" : "Pihahiroth"
+				"Name" : "Pihahiroth",
+				"Image" : "../../images/Read_Sea_parted.jpg"
 			}
 		},
 		{
@@ -71,7 +76,8 @@
 			"properties" : {
 				"FID" : 5,
 				"Id" : 0,
-				"Name" : "Elim?"
+				"Name" : "Elim?",
+				"Image" : ""
 			}
 		}
 	]
