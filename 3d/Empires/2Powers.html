@@ -171,7 +171,7 @@
             copyright: "",
             renderer: egyptRenderer,
             opacity: 0.6,
-            visible: true
+            visible: false
         })
         layers.push(egyptLayer); // #0
         theEgyptLayer = egyptLayer;
@@ -308,6 +308,7 @@
             renderer: jonahLabelsRenderer,
             opacity: 0.6,
             labelingInfo: [jonahLabelslabelClass],
+            popupTemplate: puTemplate,
             visible: false
         })
         // labels.push(jonahLabelsLayer); // #0
@@ -475,6 +476,16 @@
         swapView();
         });
 
+        var coordsWidget = document.createElement("div");
+        coordsWidget.id = "coordsWidget";
+        coordsWidget.className = "esri-widget esri-component";
+        coordsWidget.style.padding = "2px 5px";
+        coordsWidget.style.margin = "0 0 -12px -12px";
+        coordsWidget.style.opacity = 0.8;
+        coordsWidget.style.fontSize = "12px";
+
+        appConfig.mapView.ui.add(coordsWidget, "bottom-left");
+
         // Swaps the view from 2D to 3D and vice versa
         function swapView() {
             var is3D = appConfig.activeView.type === "3d";
@@ -513,7 +524,22 @@
             return view;
         }
 
- 
+        function showCoordinates(pt) {
+        var coords =
+            "Lat/Lon: " +
+            pt.latitude.toFixed(3) +
+            ", " +
+            pt.longitude.toFixed(3) +
+            "  |  Scale: 1:" +
+            Math.round(appConfig.mapView.scale * 1) / 1 +
+            "  |  Zoom: " +
+            appConfig.mapView.zoom;
+            coordsWidget.innerHTML = coords;
+        }
+
+        appConfig.mapView.on("pointer-move", function (evt) {
+            showCoordinates(appConfig.mapView.toMap({ x: evt.x, y: evt.y }));
+        });
 
       });
     </script>
@@ -559,7 +585,7 @@
     <div id="dataList">
         <ul>
             <li title="Highlight Egypt" >
-                <input id="spreadCheck" type="checkbox" onchange="toggleLayer(event, 0)" checked="checked">Highlight Egypt
+                <input id="spreadCheck" type="checkbox" onchange="toggleLayer(event, 0)" >Highlight Egypt
             </li>
             <li title="Jacob to Egypt" >
                 <input id="spreadCheck" type="checkbox" onchange="toggleLayer(event, 1)" >Jacob to Egypt
@@ -590,18 +616,7 @@
     </script>
 
     <style>
-        /* .esri-view .esri-basemap-gallery {
-            min-width: 100px!important;
-            max-width: 500px!important;
-            margin-top: 50px;
-            border: 4px solid grey;
-            border-radius: 15px;
-            padding: 15px;
-        }
-
-        .esri-ui-corner .esri-component.esri-widget--panel-height-only {
-            max-height: 200px;
-        } */
+        /* esri overrides */
         .esri-basemap-gallery__item-thumbnail {
             height: 64px;
             width: 64px;

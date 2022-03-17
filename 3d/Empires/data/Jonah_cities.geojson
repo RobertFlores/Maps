@@ -85,6 +85,22 @@
 				"Image" : "",
 				"Caption" : ""
 			}
+		},
+
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 30.819, 32.654 ]
+			},
+			"properties" : {
+				"FID" : 6,
+				"Id" : 0,
+				"Name" : "Bound for Tarshish",
+				"Image" : "../../images/Jonah.jpg",
+				"Caption" : "Jehovah told Jonah to go to Nineveh and warn them. But Jonah ran away in the opposite direction, boarding a ship bound for Tarshish. A violent storm came up, and Jonah was thrown into the sea. Jehovah sent a huge fish that swallowed Jonah."
+			}
 		}
-	]
+
+]
 }
