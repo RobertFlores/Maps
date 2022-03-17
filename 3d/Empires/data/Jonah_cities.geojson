@@ -11,7 +11,9 @@
 			"properties" : {
 				"FID" : 0,
 				"Id" : 0,
-				"Name" : "Nineveh"
+				"Name" : "Nineveh",
+				"Image" : "",
+				"Caption" : ""
 			}
 		},
 		{
@@ -23,7 +25,9 @@
 			"properties" : {
 				"FID" : 1,
 				"Id" : 0,
-				"Name" : "Sidon"
+				"Name" : "Sidon",
+				"Image" : "",
+				"Caption" : ""
 			}
 		},
 		{
@@ -35,7 +39,9 @@
 			"properties" : {
 				"FID" : 2,
 				"Id" : 0,
-				"Name" : "Zarephath"
+				"Name" : "Zarephath",
+				"Image" : "",
+				"Caption" : ""
 			}
 		},
 		{
@@ -47,7 +53,9 @@
 			"properties" : {
 				"FID" : 3,
 				"Id" : 0,
-				"Name" : "Gath-hepher"
+				"Name" : "Gath-hepher",
+				"Image" : "",
+				"Caption" : ""
 			}
 		},
 		{
@@ -59,7 +67,9 @@
 			"properties" : {
 				"FID" : 4,
 				"Id" : 0,
-				"Name" : "Joppa"
+				"Name" : "Joppa",
+				"Image" : "",
+				"Caption" : ""
 			}
 		},
 		{
@@ -71,7 +81,9 @@
 			"properties" : {
 				"FID" : 5,
 				"Id" : 0,
-				"Name" : "Jerusalem"
+				"Name" : "Jerusalem",
+				"Image" : "",
+				"Caption" : ""
 			}
 		}
 	]

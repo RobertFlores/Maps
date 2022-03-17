@@ -12,7 +12,8 @@
 				"FID" : 0,
 				"Id" : 0,
 				"Name" : "Shechem",
-				"Image" : ""
+				"Image" : "",
+				"Caption" : ""
 			}
 		},
 		{
@@ -25,7 +26,8 @@
 				"FID" : 1,
 				"Id" : 0,
 				"Name" : "Bethel",
-				"Image" : ""
+				"Image" : "",
+				"Caption" : ""
 			}
 		},
 		{
@@ -38,7 +40,8 @@
 				"FID" : 2,
 				"Id" : 0,
 				"Name" : "Hebron",
-				"Image" : ""
+				"Image" : "",
+				"Caption" : ""
 			}
 		},
 		{
@@ -51,7 +54,8 @@
 				"FID" : 3,
 				"Id" : 0,
 				"Name" : "Beer-sheba",
-				"Image" : ""
+				"Image" : "",
+				"Caption" : ""
 			}
 		},
 		{
@@ -64,7 +68,8 @@
 				"FID" : 4,
 				"Id" : 0,
 				"Name" : "Egypt",
-				"Image" : "../../images/Jacob_and_Joseph.jpg"
+				"Image" : "../../images/Jacob_and_Joseph.jpg",
+				"Caption" : "Joseph's brothers brought their father, Jacob, to Egypt."
 			}
 		}
 	]
