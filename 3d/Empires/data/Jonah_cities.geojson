@@ -12,8 +12,8 @@
 				"FID" : 0,
 				"Id" : 0,
 				"Name" : "Nineveh",
-				"Image" : "",
-				"Caption" : ""
+				"Image" : "../../images/Jonah_in_Nineveh.jpeg",
+				"Caption" : " Jonah’s message got the Ninevites’ attention. People listened! His words spread like wildfire. Before long, the whole city was talking about Jonah’s prophecy of doom."
 			}
 		},
 		{
@@ -86,7 +86,6 @@
 				"Caption" : ""
 			}
 		},
-
 		{
 			"type" : "Feature",
 			"geometry" : {
@@ -100,7 +99,22 @@
 				"Image" : "../../images/Jonah.jpg",
 				"Caption" : "Jehovah told Jonah to go to Nineveh and warn them. But Jonah ran away in the opposite direction, boarding a ship bound for Tarshish. A violent storm came up, and Jonah was thrown into the sea. Jehovah sent a huge fish that swallowed Jonah."
 			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 35.157, 33.148 ]
+			},
+			"properties" : {
+				"FID" : 6,
+				"Id" : 0,
+				"Name" : "?",
+				"Image" : "../../images/Jonah_on_shore.jpeg",
+				"Caption" : "Jonah 3:1-3: Then the word of Jehovah came to Jonah a second time, saying: 'Get up, go to Nineveh the great city, and proclaim to her the message that I tell you.'  So Jonah got up and went to Nineveh in obedience to the word of Jehovah."
+			}
 		}
+
 
 ]
 }

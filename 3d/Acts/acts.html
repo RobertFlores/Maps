@@ -30,6 +30,7 @@
         var basemaps;
         var mapGalleryOn = false;
         var theMap;
+        var theConfig;
         var gallery;
         var features;
         var watercolorLayer;
@@ -39,6 +40,8 @@
         var theSpreadLabels;
         var thePentecostLayer;
         var thePentecostLines;
+        var thePhilipLayer;
+        var thePhilipLabels;
         
         function showLayer (index) {
       
@@ -92,12 +95,43 @@
             var checkbox = e.target;
             theSpreadLabels.visible = checkbox.checked;
             theSpreadLayer.visible = checkbox.checked;
+            var is3D = theConfig.activeView.type === "3d";
+            if (checkbox.checked) {
+                if (is3D) {
+                    theConfig.sceneView.goTo(theSpreadLabels.fullExtent);
+                } else {
+                    theConfig.mapView.goTo(theSpreadLabels.fullExtent);
+                }
+            }
+ 
         }
 
         function togglePentecost(e) {
             var checkbox = e.target;
             thePentecostLayer.visible = checkbox.checked;
             thePentecostLines.visible = checkbox.checked;
+            var is3D = theConfig.activeView.type === "3d";
+            if (checkbox.checked) {
+                if (is3D) {
+                    theConfig.sceneView.goTo(thePentecostLayer.fullExtent);
+                } else {
+                    theConfig.mapView.goTo(thePentecostLayer.fullExtent);
+                }
+            }
+        }
+
+        function togglePhilip(e) {
+            var checkbox = e.target;
+            thePhilipLayer.visible = checkbox.checked;
+            thePhilipLabels.visible = checkbox.checked;
+            var is3D = theConfig.activeView.type === "3d";
+            if (checkbox.checked) {
+                if (is3D) {
+                    theConfig.sceneView.goTo(thePhilipLabels.fullExtent);
+                } else {
+                    theConfig.mapView.goTo(thePhilipLabels.fullExtent);
+                }
+            }
         }
 
 
@@ -119,11 +153,12 @@
           content: [{
             type: "media",
             mediaInfos: [{
-                title: '{Event}',
+                title: '',
                 type: "image",
                 value: {sourceURL: '{Image}'}
             }]
-          }]
+          },{type: "text", text: "{Event}"}
+            ]
         };
 
 
@@ -256,6 +291,69 @@
         labels.push(spreadLabelsLayer); // #0
         theSpreadLabels = spreadLabelsLayer;
 
+        // Philip's journeys
+        const philipUrl = "data/PhilipsJourneys.geojson";
+        const philipRenderer = {
+            type: "simple",
+
+            symbol: {
+                type: "simple-line",
+                color: "rgba(255,0,0,0.75)",
+                width: "5px",
+                style: "short-dash"
+                             
+            }
+        }
+        const philipLayer = new GeoJSONLayer({
+            url: philipUrl,
+            copyright: "",
+            renderer: philipRenderer,
+            opacity: 0.6,
+            visible: false
+        })
+        layers.push(philipLayer); // #0
+        thePhilipLayer = philipLayer;
+
+        const philipLabelsUrl = "data/PhilipsLocations.geojson";
+        const philipLabelsRenderer = {
+            type: "simple",
+
+            symbol: {
+                type: "simple-marker",
+                color: "rgba(255,0,0,0.5)",
+                size: 6
+                
+            }
+        };
+
+        const philipLabelslabelClass = {
+          // autocasts as new LabelClass()
+          symbol: {
+            type: "text", // autocasts as new TextSymbol()
+            color: [255, 255, 255, 255],  // white
+            font: { family: "Arial Unicode MS", size: 16, weight: "bold" },
+            haloColor: [0, 0, 0, 255],  // black
+            haloSize: 2
+          },
+          labelPlacement: "above-center",
+          labelExpressionInfo: {
+            expression: "$feature.Name"
+          }
+        };
+
+        const philipLabelsLayer = new GeoJSONLayer({
+            url: philipLabelsUrl,
+            copyright: "",
+            renderer: philipLabelsRenderer,
+            opacity: 0.6,
+            labelingInfo: [philipLabelslabelClass],
+            popupTemplate: puTemplate,
+            visible: false
+        })
+        labels.push(philipLabelsLayer); // #0
+        thePhilipLabels = philipLabelsLayer;
+
+
         const watercolorBaseLayer = new WebTileLayer({
             urlTemplate: "https://stamen-tiles-{subDomain}.a.ssl.fastly.net/watercolor/{level}/{col}/{row}.png",
             subDomains: ["a", "b", "c", "d"],
@@ -300,11 +398,12 @@
             activeView: null,
             container: "viewDiv" // use same container for views
         };
+        theConfig = appConfig;
 
         var map = new Map({
             basemap: watercolorLayer,
             ground: "world-elevation",
-            layers: [pentecostLayer, pentecostLabelsLayer, spreadLayer, spreadLabelsLayer]
+            layers: [pentecostLayer, pentecostLabelsLayer, spreadLayer, spreadLabelsLayer, philipLayer, philipLabelsLayer]
         });
         theMap = map;
 
@@ -417,9 +516,9 @@
             <li title="Spread of Good News" >
                 <input id="spreadCheck" type="checkbox" onchange="toggleSpread(event)">Spread of Good News
             </li>
-            <!-- <li title="Spread of Good News" >
-                <input id="spreadCheck" type="checkbox" onchange="togglePentecost(event)">Paul
-            </li> -->
+            <li title="Philip's Journeys" >
+                <input id="spreadCheck" type="checkbox" onchange="togglePhilip(event)">Philip's Journeys
+            </li>
         </ul>
     </div>
 </div>
@@ -440,6 +539,13 @@
             object-fit: cover;
             margin: 2px 5px;
         }
+        .esri-popup__main-container {
+            max-height: 500px!important;
+        }
+        .esri-popup__footer  {
+            display: none;
+        }
+
     </style>
 
   </body>
