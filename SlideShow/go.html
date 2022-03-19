@@ -1,0 +1,166 @@
+<html>
+    <head>
+        <title>Maps and the Bible</title>
+        <style>
+            html,
+            body,
+            .mapBox {
+                padding: 0;
+                margin: 0;
+                height: 100%;
+                width: 100%;
+                background-color: black;
+            }
+            .mapBox {
+                overflow: hidden;
+            }
+
+            .shown {
+                display: block;
+            }
+            .hidden {
+                display: none;
+            }
+
+            #mapChoice {
+                position: absolute;
+                right: 2px;
+                bottom: 0;
+                background-color: black;
+                padding: 5px 10px 0 10px;
+                border: 1px solid black;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: x-small;
+                color: #888888;
+                height: 15px;
+                overflow: hidden; 
+                z-index: 99999;           
+            }
+
+            /* The container */
+.container {
+  display: inline;
+  position: relative;
+  padding-left: 15px;
+
+  cursor: pointer;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 10px;
+  width: 10px;
+  background-color: #999999;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: #999999;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container .checkmark:after {
+ 	top: 3px;
+	left: 3px;
+	width: 4px;
+	height: 4px;
+	border-radius: 50%;
+	background: white;
+}
+
+        </style>
+
+    </head>
+    <body>
+        <div id="main">
+            <div id="Slides" class="mapBox shown" >
+                <iframe class="mapBox" src="../SlideShow/start.html" ></iframe>
+            </div>
+            <div id="2Powers" class="mapBox hidden" >
+                <iframe class="mapBox" src="../3d/Empires/2Powers.html" ></iframe>
+            </div>
+            <div id="5Powers" class="mapBox hidden" >
+                <iframe class="mapBox" src="../3d/Empires/5Powers.html" ></iframe>
+            </div>
+            <div id="Acts" class="mapBox hidden" >
+                <iframe class="mapBox" src="../3d/Acts/acts.html"></iframe>
+            </div>
+
+        </div>
+            <div id="mapChoice">
+                <label for="map0" class="container">Slides
+                    <input type="radio" id="map0" name="map" value="0" onclick="switchMaps(0)" checked="checked" />
+                    <span class="checkmark"></span>
+                </label> 
+                <label for="map1" class="container">Map 1
+                    <input type="radio" id="map1" name="map" value="1" onclick="switchMaps(1)" />
+                    <span class="checkmark"></span>
+                </label>
+                <label for="map2" class="container">Map 2
+                    <input type="radio" id="map2" name="map" value="2" onclick="switchMaps(2)" />
+                    <span class="checkmark"></span>
+                </label> 
+                <label for="map3" class="container">Map 3
+                    <input type="radio" id="map3" name="map" value="3" onclick="switchMaps(3)" />
+                    <span class="checkmark"></span>
+                </label> 
+            </div>
+        <script>
+            var maps = [];
+            maps.push(document.getElementById("Slides"));
+            maps.push(document.getElementById("2Powers"));
+            maps.push(document.getElementById("5Powers"));
+            maps.push(document.getElementById("Acts"));
+            var radioToggle = document.getElementById("mapChoice");
+
+            function switchMaps (index) {
+                for (i=0;i<maps.length;i++) {
+                    maps[i].style.display = (index==i) ? "block" : "none";
+                    if (index==0) {
+                        radioToggle.style.backgroundColor = "black";
+                        radioToggle.style.borderColor = "black";
+                        radioToggle.style.bottom = "0";
+                    } else {
+                        radioToggle.style.backgroundColor = "rgba(255,255,255,0.8)";
+                        radioToggle.style.borderColor = "grey";
+                        radioToggle.style.bottom = "15px";
+                    }
+                }
+            }
+
+        </script>
+    </body>
+</html>

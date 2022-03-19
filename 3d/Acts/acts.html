@@ -204,7 +204,7 @@
             copyright: "",
             renderer: pentecostRenderer,
             opacity: 0.6,
-            visible: true
+            visible: false
         })
         layers.push(pentecostLayer); // #0
         thePentecostLines = pentecostLayer;
@@ -247,7 +247,7 @@
             renderer: pentecostLabelsRenderer,
             opacity: 0.6,
             labelingInfo: [pentecostLabelslabelClass],
-            visible: true
+            visible: false
         })
         labels.push(pentecostLabelsLayer); // #0
         thePentecostLayer = pentecostLabelsLayer;
@@ -624,7 +624,7 @@
     <div id="dataList">
         <ul>
             <li title="Spread of Good News" >
-                <input id="spreadCheck" type="checkbox" onchange="togglePentecost(event)" checked=checked>Pentecost 33 CE spread
+                <input id="spreadCheck" type="checkbox" onchange="togglePentecost(event)" >Pentecost 33 CE spread
             </li>
             <li title="Spread of Good News" >
                 <input id="spreadCheck" type="checkbox" onchange="toggleSpread(event)">Spread of Good News

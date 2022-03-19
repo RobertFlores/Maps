@@ -6,7 +6,7 @@
             body,
             #viewBox,
             #slideBox, 
-            #mapBox {
+            .mapBox {
                 padding: 0;
                 margin: 0;
                 height: 100%;
@@ -20,9 +20,21 @@
                 position: absolute;
                 left: 20px;
                 top: 20px;
+                z-index: 0;
+            }
+            .mapBox {
+                overflow: hidden;
+                /* position: absolute;
+                left: 1px;
+                right: 1px;
+                top: 1px;
+                bottom: 1px; */
             }
 
-            #mapBox {
+            .shown {
+                display: block;
+            }
+            .hidden {
                 display: none;
             }
 
@@ -32,6 +44,7 @@
                 position: absolute;
                 left: 0;
                 top: 0;
+                overflow-y: hidden;
             }
 
             #leftPanel {
@@ -62,6 +75,8 @@
                 font-family: Arial, Helvetica, sans-serif;
                 font-size: x-small;
                 color: #888888;
+                background-color: black;
+                overflow: hidden;
             }
 
             .vertical-center {
@@ -125,12 +140,24 @@
                 position: absolute;
                 right: 200px;
                 bottom: 0;
+                padding: 5px 10px;
+                border: 1px solid black;
             }
 
             #mapChoice {
                 position: absolute;
-                right: 20px;
-                bottom: 0;            }
+                right: 5px;
+                bottom: 0;
+                background-color: black;
+                padding: 5px 10px 0 10px;
+                border: 1px solid black;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: x-small;
+                color: #888888;
+                height: 15px;
+                overflow: hidden; 
+                z-index: 99999;           
+            }
 
             .switch {
                 position: relative;
@@ -247,7 +274,7 @@ input[type="radio"]:checked~span:after {
 .container {
   display: inline;
   position: relative;
-  padding-left: 20px;
+  padding-left: 15px;
 
   cursor: pointer;
 
@@ -269,8 +296,8 @@ input[type="radio"]:checked~span:after {
   position: absolute;
   top: 0;
   left: 0;
-  height: 12px;
-  width: 12px;
+  height: 10px;
+  width: 10px;
   background-color: #999999;
   border-radius: 50%;
 }
@@ -301,8 +328,8 @@ input[type="radio"]:checked~span:after {
 .container .checkmark:after {
  	top: 3px;
 	left: 3px;
-	width: 6px;
-	height: 6px;
+	width: 4px;
+	height: 4px;
 	border-radius: 50%;
 	background: white;
 }
@@ -328,8 +355,7 @@ input[type="radio"]:checked~span:after {
             }
 
             var slides = [
-                "../map_images/Maps_and_the_Bible_intro.png",
- 
+  
                 "../map_images/Maps_and_the_Bible_title_page.png",
                 "../map_images/Maps_and_the_Bible_TOC.png",
 
@@ -352,16 +378,14 @@ input[type="radio"]:checked~span:after {
                 "../map_images/Pauls_3rd_Missionary_tour.jpg",
                 "../map_images/Pauls_trip_to_Rome.jpg",
                 "../map_images/Pauls_journeys_after_61CE.jpg",
-                "../map_images/Maps_and_the_Bible_end.jpg"
+                "../map_images/Maps_and_the_Bible_intro.png",
+                "../map_images/Maps_and_the_Bible_end.png"
                 
             ];
 
 
-            var maps = [
-                "../3d/Empires/esri.html",
-                // "https://aartvaarq.maps.arcgis.com/apps/mapviewer/index.html?webmap=0efcbf57511a4b25a501998c2ee5a980",
-                "../3d/Acts/esri.html"
-            ];
+
+            var maps = [];
 
         </script>
         <div id="topPanel"></div>
@@ -369,57 +393,57 @@ input[type="radio"]:checked~span:after {
             <div class="arrow left vertical-center" onclick="switchSlides(-1)" ></div>
         </div>
         <div id="mainBox">
-            <!-- <iframe id="slideBox" ></iframe> -->
             <div id="slideBox"></div>
-            <iframe id="mapBox" ></iframe>
         </div>
         <div id="rightPanel">
             <div class="arrow right vertical-center" onclick="switchSlides(1)" style="margin-left: 4px;"></div>
         </div>
-        <div id="bottomPanel">
-            <!-- <div id="mapSlideToggle" >
-                <input class="input" id="toggleMap" type="checkbox" onchange="toggleView(event)">
-                <label class="label" for="toggleMap">
-                  <div class="toggleLeft">
-                    Slide
-                  </div>
-                
-                  <div class="switch">
-                    <span class="slider round"></span>
-                  </div>
-                
-                  <div class="toggleRight">
-                    Map
-                  </div>
-                </label>        
-            </div>
-            <div id="mapChoice">
+        <!-- <div id="2Powers" class="mapBox hidden" style="z-index: 9997">
+            <iframe class="mapBox" src="../3d/Empires/2Powers.html" ></iframe>
+        </div>
+        <div id="5Powers" class="mapBox hidden" style="z-index: 9998">
+            <iframe class="mapBox" src="../3d/Empires/5Powers.html" ></iframe>
+        </div>
+        <div id="Acts" class="mapBox hidden" style="z-index: 9999">
+            <iframe class="mapBox" src="../3d/Acts/acts.html"></iframe>
+        </div> -->
+        <!-- <div id="bottomPanel"> -->
+
+            <!-- <div id="mapChoice">
+                <label for="map0" class="container">Slides
+                    <input type="radio" id="map0" name="map" value="0" onclick="switchMaps(0)" checked="checked" />
+                    <span class="checkmark"></span>
+                </label> 
                 <label for="map1" class="container">Map 1
-                    <input type="radio" id="map1" name="map" value="0" onclick="switchMaps(0)" checked="checked" />
+                    <input type="radio" id="map1" name="map" value="1" onclick="switchMaps(1)" />
                     <span class="checkmark"></span>
                 </label>
                 <label for="map2" class="container">Map 2
-                    <input type="radio" id="map2" name="map" value="1" onclick="switchMaps(1)" />
+                    <input type="radio" id="map2" name="map" value="2" onclick="switchMaps(2)" />
                     <span class="checkmark"></span>
-                </label> -->
-                <!-- <label for="map3" class="container">Map 3
-                    <input type="radio" id="map3" name="map" value="2" onclick="switchMaps(2)" />
+                </label> 
+                <label for="map3" class="container">Map 3
+                    <input type="radio" id="map3" name="map" value="3" onclick="switchMaps(3)" />
                     <span class="checkmark"></span>
-                </label> -->
-            </div>
+                </label> 
+            </div> -->
 
-        </div>
+        <!-- </div> -->
 
         <script>
             var viewer = document.getElementById("slideBox");
             var mapper = document.getElementById("mapBox");
-            var mapToggle = document.getElementById("toggleMap");
+            var radioToggle = document.getElementById("mapChoice");
+            maps.push(viewer);
+            maps.push(document.getElementById("2Powers"));
+            maps.push(document.getElementById("5Powers"));
+            maps.push(document.getElementById("Acts"));
             // viewer.src = slides[0];
             viewer.style.backgroundImage = "url(" + slides[0] + ")";
-            mapper.src = maps[0];
             var mapOn = false;
             var page = 0;
             var map = 0;
+            maps[0].style.display = "block";
 
             function switchSlides(val) {
                 var max = slides.length - 1;
@@ -437,7 +461,16 @@ input[type="radio"]:checked~span:after {
             }
 
             function switchMaps (index) {
-                mapper.src = maps[index];
+                for (i=0;i<maps.length;i++) {
+                    maps[i].style.display = (index==i) ? "block" : "none";
+                    if (index==0) {
+                        radioToggle.style.backgroundColor = "black";
+                        radioToggle.style.borderColor = "black";
+                    } else {
+                        radioToggle.style.backgroundColor = "white";
+                        radioToggle.style.borderColor = "grey";
+                    }
+                }
             }
 
             function toggleView (e) {
@@ -450,6 +483,17 @@ input[type="radio"]:checked~span:after {
                     mapper.style.display = "none";
                 }
             }
+
+            window.addEventListener("keydown", function onEvent(event) {
+                if (event.key === "ArrowLeft") {
+                    // Move forward
+                    switchSlides(-1);
+                }
+                else if (event.key === "ArrowRight") {
+                    // Move back
+                    switchSlides(1);
+                }
+            });
 
         </script>
 
