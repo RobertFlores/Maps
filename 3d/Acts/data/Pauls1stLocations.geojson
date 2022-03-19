@@ -1,0 +1,188 @@
+{
+	"type" : "FeatureCollection",
+	"name" : "Pauls1stLocations",
+	"features" : [
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 36.1466772831, 36.1714505238 ]
+			},
+			"properties" : {
+				"FID" : 0,
+				"Id" : 1,
+				"Image" : " ",
+				"Event" : "Barnabas and Saul sent as missionaries from Antioch of Syria. (Ac 13:1-3)",
+				"Name" : "Antioch (of Syria)"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 34.7633812683, 35.4389697241 ]
+			},
+			"properties" : {
+				"FID" : 1,
+				"Id" : 2,
+				"Image" : " ",
+				"Event" : "Barnabas and Saul sail from Seleucia to Salamis in Cyprus; they proclaim the word of God in local synagogues (Ac 13:4-6)",
+				"Name" : " "
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 33.899912957, 35.164455471 ]
+			},
+			"properties" : {
+				"FID" : 2,
+				"Id" : 0,
+				"Image" : " ",
+				"Event" : " ",
+				"Name" : "Salamis"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 32.4653976065, 34.7747100273 ]
+			},
+			"properties" : {
+				"FID" : 3,
+				"Id" : 3,
+				"Image" : "../../images/Sergius_Paulus.jpeg",
+				"Event" : " In Paphos, Saul is for the first time on record called Paul (Ac 13:6, 9)  Sergius Paulus, proconsul of Cyprus, becomes a believer (Ac 13:7, 12)",
+				"Name" : "Paphos"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 30.8249356242, 36.9882314893 ]
+			},
+			"properties" : {
+				"FID" : 4,
+				"Id" : 5,
+				"Image" : " ",
+				"Event" : "Paul and his companions arrive in Perga in Pamphylia; John Mark returns to Jerusalem (Ac 13:13)",
+				"Name" : "Perga"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 30.7227429106, 36.9065603434 ]
+			},
+			"properties" : {
+				"FID" : 5,
+				"Id" : 14,
+				"Image" : " ",
+				"Event" : "Paul and Barnabas travel back to Perga and proclaim the word; they go down to Attalia (Ac 14:24, 25)",
+				"Name" : "Attalia"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 31.185299404, 38.3083376738 ]
+			},
+			"properties" : {
+				"FID" : 6,
+				"Id" : 6,
+				"Image" : " ",
+				"Event" : "Paul and Barnabas preach in the synagogue in Antioch of Pisidia (Ac 13:14-16) Many gather in Antioch to hear Paul and Barnabas, but the Jews persecute the two men (Ac 13:44, 45, 50)",
+				"Name" : "Antioch (of Pisidia)"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 32.486911862, 37.8977965783 ]
+			},
+			"properties" : {
+				"FID" : 7,
+				"Id" : 8,
+				"Image" : " ",
+				"Event" : "Paul and Barnabas speak in the synagogue in Iconium; many Jews and Greeks become believers (Ac 14:1) Some Jews in Iconium oppose the brothers, and the city is divided; the Jews try to stone Paul and Barnabas (Ac 14:2-5)",
+				"Name" : "Iconium"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 32.2126051043, 37.7533501311 ]
+			},
+			"properties" : {
+				"FID" : 8,
+				"Id" : 10,
+				"Image" : " ",
+				"Event" : "Paul and Barnabas in Lystra, a city of Lycaonia; they are mistaken for gods (Ac 14:6-11) Jews who came from Antioch and Iconium fiercely oppose Paul in Lystra; Paul survives stoning (Ac 14:19, 20a)",
+				"Name" : "Lystra"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 33.3259678267, 37.3568043067 ]
+			},
+			"properties" : {
+				"FID" : 9,
+				"Id" : 12,
+				"Image" : " ",
+				"Event" : "Paul and Barnabas declare the good news in Derbe; quite a few become disciples (Ac 14:20b, 21a)",
+				"Name" : "Derbe"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 32.5729688841, 37.5190887089 ]
+			},
+			"properties" : {
+				"FID" : 10,
+				"Id" : 13,
+				"Image" : " ",
+				"Event" : "Paul and Barnabas return to newly established congregations in Lystra, Iconium, and Antioch to strengthen them; they appoint elders in each congregation (Ac 14:21b-23)",
+				"Name" : " "
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 33.35823921, 35.6360696138 ]
+			},
+			"properties" : {
+				"FID" : 11,
+				"Id" : 15,
+				"Image" : " ",
+				"Event" : "From Attalia, they sail for Antioch of Syria (Ac 14:26, 27)",
+				"Name" : " "
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 35.9829783817, 36.0807006572 ]
+			},
+			"properties" : {
+				"FID" : 12,
+				"Id" : 0,
+				"Image" : " ",
+				"Event" : " ",
+				"Name" : "Seleucia"
+			}
+		}
+	]
+}

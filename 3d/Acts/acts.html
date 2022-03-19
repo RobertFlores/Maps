@@ -42,6 +42,17 @@
         var thePentecostLines;
         var thePhilipLayer;
         var thePhilipLabels;
+        var thePauls1stLayer;
+        var thePauls1stLabels;
+        var thePauls2ndLayer;
+        var thePauls2ndLabels;
+        var thePauls3rdLayer;
+        var thePauls3rdLabels;
+        var theRomeLayer;
+        var theRomeLabels
+        var thePauls61Layer;
+        var thePauls61Labels;
+
         
         function showLayer (index) {
       
@@ -134,6 +145,19 @@
             }
         }
 
+        function togglePauls1st(e) {
+            var checkbox = e.target;
+            thePauls1stLayer.visible = checkbox.checked;
+            thePauls1stLabels.visible = checkbox.checked;
+            var is3D = theConfig.activeView.type === "3d";
+            if (checkbox.checked) {
+                if (is3D) {
+                    theConfig.sceneView.goTo(thePauls1stLayer.fullExtent);
+                } else {
+                    theConfig.mapView.goTo(thePauls1stLayer.fullExtent);
+                }
+            }
+        }
 
       require(["esri/Map", 
         "esri/layers/GeoJSONLayer", 
@@ -353,6 +377,69 @@
         labels.push(philipLabelsLayer); // #0
         thePhilipLabels = philipLabelsLayer;
 
+        // Paul's 1st
+        const paulsUrl = "data/Pauls1stLines.geojson";
+        const paulsRenderer = {
+            type: "simple",
+
+            symbol: {
+                type: "simple-line",
+                color: "rgba(255,0,0,0.75)",
+                width: "5px",
+                style: "short-dash"
+                             
+            }
+        }
+        const pauls1stLayer = new GeoJSONLayer({
+            url: paulsUrl,
+            copyright: "",
+            renderer: paulsRenderer,
+            opacity: 0.6,
+            visible: false
+        })
+        layers.push(pauls1stLayer); // #0
+        thePauls1stLayer = pauls1stLayer;
+
+        const paulsLabelsUrl = "data/Pauls1stLocations.geojson";
+        const paulsLabelsRenderer = {
+            type: "simple",
+
+            symbol: {
+                type: "simple-marker",
+                color: "rgba(255,0,0,0.5)",
+                size: 6
+                
+            }
+        };
+
+        const paulsLabelslabelClass = {
+          // autocasts as new LabelClass()
+          symbol: {
+            type: "text", // autocasts as new TextSymbol()
+            color: [255, 255, 255, 255],  // white
+            font: { family: "Arial Unicode MS", size: 16, weight: "bold" },
+            haloColor: [0, 0, 0, 255],  // black
+            haloSize: 2
+          },
+          labelPlacement: "above-center",
+          labelExpressionInfo: {
+            expression: "$feature.Name"
+          }
+        };
+
+        const pauls1stLabelsLayer = new GeoJSONLayer({
+            url: paulsLabelsUrl,
+            copyright: "",
+            renderer: paulsLabelsRenderer,
+            opacity: 0.6,
+            labelingInfo: [paulsLabelslabelClass],
+            popupTemplate: puTemplate,
+            visible: false
+        })
+        labels.push(pauls1stLabelsLayer); // #0
+        thePauls1stLabels = pauls1stLabelsLayer;
+
+
 
         const watercolorBaseLayer = new WebTileLayer({
             urlTemplate: "https://stamen-tiles-{subDomain}.a.ssl.fastly.net/watercolor/{level}/{col}/{row}.png",
@@ -403,7 +490,7 @@
         var map = new Map({
             basemap: watercolorLayer,
             ground: "world-elevation",
-            layers: [pentecostLayer, pentecostLabelsLayer, spreadLayer, spreadLabelsLayer, philipLayer, philipLabelsLayer]
+            layers: [pentecostLayer, pentecostLabelsLayer, spreadLayer, spreadLabelsLayer, philipLayer, philipLabelsLayer, pauls1stLayer, pauls1stLabelsLayer]
         });
         theMap = map;
 
@@ -426,6 +513,16 @@
         swapButton.addEventListener("click", function() {
         swapView();
         });
+
+        var coordsWidget = document.createElement("div");
+        coordsWidget.id = "coordsWidget";
+        coordsWidget.className = "esri-widget esri-component";
+        coordsWidget.style.padding = "2px 5px";
+        coordsWidget.style.margin = "0 0 -12px -12px";
+        coordsWidget.style.opacity = 0.8;
+        coordsWidget.style.fontSize = "12px";
+
+        appConfig.mapView.ui.add(coordsWidget, "bottom-left");
 
         // Swaps the view from 2D to 3D and vice versa
         function swapView() {
@@ -465,6 +562,22 @@
             return view;
         }
 
+        function showCoordinates(pt) {
+        var coords =
+            "Lat/Lon: " +
+            pt.latitude.toFixed(3) +
+            ", " +
+            pt.longitude.toFixed(3) +
+            "  |  Scale: 1:" +
+            Math.round(appConfig.mapView.scale * 1) / 1 +
+            "  |  Zoom: " +
+            appConfig.mapView.zoom;
+            coordsWidget.innerHTML = coords;
+        }
+
+        appConfig.mapView.on("pointer-move", function (evt) {
+            showCoordinates(appConfig.mapView.toMap({ x: evt.x, y: evt.y }));
+        });
  
 
       });
@@ -518,6 +631,9 @@
             </li>
             <li title="Philip's Journeys" >
                 <input id="spreadCheck" type="checkbox" onchange="togglePhilip(event)">Philip's Journeys
+            </li>
+            <li title="Paul's 1st Missionary tour" >
+                <input id="spreadCheck" type="checkbox" onchange="togglePauls1st(event)">Paul's 1st Missionary tour
             </li>
         </ul>
     </div>
