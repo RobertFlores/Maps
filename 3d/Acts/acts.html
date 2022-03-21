@@ -52,6 +52,9 @@
         var theRomeLabels
         var thePauls61Layer;
         var thePauls61Labels;
+        var tours = [];
+        var tourLabels = [];
+        var theRomanEmpire;
 
         
         function showLayer (index) {
@@ -102,6 +105,20 @@
             }
         }
 
+        function toggleRome (e) {
+            var checkbox = e.target;
+            theRomanEmpire.visible = checkbox.checked;
+            var is3D = theConfig.activeView.type === "3d";
+            if (checkbox.checked) {
+                if (is3D) {
+                    theConfig.sceneView.goTo(theRomanEmpire.fullExtent);
+                } else {
+                    theConfig.mapView.goTo(theRomanEmpire.fullExtent);
+                }
+            }
+ 
+        }
+
         function toggleSpread(e) {
             var checkbox = e.target;
             theSpreadLabels.visible = checkbox.checked;
@@ -145,16 +162,21 @@
             }
         }
 
-        function togglePauls1st(e) {
-            var checkbox = e.target;
-            thePauls1stLayer.visible = checkbox.checked;
-            thePauls1stLabels.visible = checkbox.checked;
+        function togglePauls1st(e, index) {
+            var checkbox = e.target; 
+            var tour = tours[index];
+            var isOn = checkbox.checked;
+            var labels = tourLabels[index];
+            // thePauls1stLayer.visible = checkbox.checked;
+            // thePauls1stLabels.visible = checkbox.checked;
+            tour.visible = isOn;
+            labels.visible = isOn;
             var is3D = theConfig.activeView.type === "3d";
             if (checkbox.checked) {
                 if (is3D) {
-                    theConfig.sceneView.goTo(thePauls1stLayer.fullExtent);
+                    theConfig.sceneView.goTo(tour.fullExtent);
                 } else {
-                    theConfig.mapView.goTo(thePauls1stLayer.fullExtent);
+                    theConfig.mapView.goTo(tour.fullExtent);
                 }
             }
         }
@@ -187,6 +209,29 @@
 
 
         // layers
+        const romanUrl = "data/RomanEmpire.geojson";
+        const romanRenderer = {
+            type: "simple",
+
+            symbol: {
+                type: "simple-fill",
+                // color: "darkblue",
+                outline: {
+                  color: [0,0,0, 1],
+                  width: "5px"
+                }                
+            }
+        };
+        const romanLayer = new GeoJSONLayer({
+            url: romanUrl,
+            copyright: "",
+            renderer: romanRenderer,
+            opacity: 0.6,
+            visible: false
+        });
+        // layers.push(romanLayer); // #3
+        theRomanEmpire = romanLayer;
+
         const pentecostUrl = "data/PentecostSpreadLines.geojson";
         const pentecostRenderer = {
             type: "simple",
@@ -397,7 +442,7 @@
             opacity: 0.6,
             visible: false
         })
-        layers.push(pauls1stLayer); // #0
+        tours.push(pauls1stLayer); // #0
         thePauls1stLayer = pauls1stLayer;
 
         const paulsLabelsUrl = "data/Pauls1stLocations.geojson";
@@ -436,7 +481,7 @@
             popupTemplate: puTemplate,
             visible: false
         })
-        labels.push(pauls1stLabelsLayer); // #0
+        tourLabels.push(pauls1stLabelsLayer); // #0
         thePauls1stLabels = pauls1stLabelsLayer;
 
 
@@ -490,7 +535,7 @@
         var map = new Map({
             basemap: watercolorLayer,
             ground: "world-elevation",
-            layers: [pentecostLayer, pentecostLabelsLayer, spreadLayer, spreadLabelsLayer, philipLayer, philipLabelsLayer, pauls1stLayer, pauls1stLabelsLayer]
+            layers: [romanLayer, pentecostLayer, pentecostLabelsLayer, spreadLayer, spreadLabelsLayer, philipLayer, philipLabelsLayer, pauls1stLayer, pauls1stLabelsLayer]
         });
         theMap = map;
 
@@ -623,6 +668,9 @@
     </div>
     <div id="dataList">
         <ul>
+            <li title="The Roman Empire" >
+                <input id="spreadCheck" type="checkbox" onchange="toggleRome(event)" >The Roman Empire
+            </li>
             <li title="Spread of Good News" >
                 <input id="spreadCheck" type="checkbox" onchange="togglePentecost(event)" >Pentecost 33 CE spread
             </li>
@@ -633,7 +681,7 @@
                 <input id="spreadCheck" type="checkbox" onchange="togglePhilip(event)">Philip's Journeys
             </li>
             <li title="Paul's 1st Missionary tour" >
-                <input id="spreadCheck" type="checkbox" onchange="togglePauls1st(event)">Paul's 1st Missionary tour
+                <input id="spreadCheck" type="checkbox" onchange="togglePauls1st(event,0)">Paul's 1st Missionary tour
             </li>
         </ul>
     </div>
