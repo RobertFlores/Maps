@@ -153,16 +153,16 @@
 
         // layers
         // Egypt highlight
-        const egyptUrl = "data/EgyptHighlight.geojson";
+        const egyptUrl = "data/Egypt.geojson";
         const egyptRenderer = {
             type: "simple",
 
             symbol: {
                 type: "simple-fill",
-                color: "rgba(255,255,255, 0.25)",
+                // color: "rgba(255,0,127, 0.5)",
                 outline: {
-                  color: [255,0,127, 1],
-                  width: "5px"
+                  color: [127,0,255, 1],
+                  width: "3px"
                 }                   
             }
         }
@@ -450,7 +450,7 @@
         };
         theConfig = appConfig;
         var map = new Map({
-            basemap: watercolor2,
+            basemap: watercolor,
             ground: "world-elevation",
             layers: [egyptLayer, jacobLayer, exodusLayer, assyrianLayer, jonahLayer, jacobLabelsLayer, exodusLabelsLayer, jonahLabelsLayer]
         });

@@ -227,48 +227,6 @@
                 padding-bottom: 0;
             }
 
-            /* input[type="radio"] {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-}
-
-.mapLabel {
-  position: relative;
-  cursor: pointer;
-  padding-left: 30px;
-  display: inline-block;
-  line-height: 1.6;
-  margin-right: 15px;
-}
-
-.mapSpan {
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 20px;
-  width: 20px;
-  background: #FFF;
-  border: 2px solid black;
-  border-radius: 50%;
-}
-
-.mapSpan:after {
-  content: '';
-  position: absolute;
-  left: 5px;
-  top: 5px;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: black;
-  display: none;
-}
-
-input[type="radio"]:checked~span:after {
-  display: block;
-
-} */
 
 /* The container */
 .container {
@@ -357,11 +315,15 @@ input[type="radio"]:checked~span:after {
             var slides = [
   
                 "../map_images/Maps_and_the_Bible_title_page.png",
+                "../map_images/Maps_and_the_Bible_intro.png",
                 "../map_images/Maps_and_the_Bible_TOC.png",
 
                 "../map_images/Maps_and_the_Bible_world_powers.png",
+                "../map_images/Egypt.png",
                 "../map_images/Patriarchs.jpg",
                 "../map_images/Exodus_from_Egypt.jpeg",
+                "../map_images/ReaSeaDepths.png",
+                "../map_images/Depth-1.png",
                 "../map_images/Assyrian_Empire.jpg",
                 "../map_images/Faithful_ones.jpg",
                 "../map_images/World_powers_fortold_by_Daniel.jpg",
@@ -378,7 +340,7 @@ input[type="radio"]:checked~span:after {
                 "../map_images/Pauls_3rd_Missionary_tour.jpg",
                 "../map_images/Pauls_trip_to_Rome.jpg",
                 "../map_images/Pauls_journeys_after_61CE.jpg",
-                "../map_images/Maps_and_the_Bible_intro.png",
+
                 "../map_images/Maps_and_the_Bible_end.png"
                 
             ];
@@ -398,37 +360,6 @@ input[type="radio"]:checked~span:after {
         <div id="rightPanel">
             <div class="arrow right vertical-center" onclick="switchSlides(1)" style="margin-left: 4px;"></div>
         </div>
-        <!-- <div id="2Powers" class="mapBox hidden" style="z-index: 9997">
-            <iframe class="mapBox" src="../3d/Empires/2Powers.html" ></iframe>
-        </div>
-        <div id="5Powers" class="mapBox hidden" style="z-index: 9998">
-            <iframe class="mapBox" src="../3d/Empires/5Powers.html" ></iframe>
-        </div>
-        <div id="Acts" class="mapBox hidden" style="z-index: 9999">
-            <iframe class="mapBox" src="../3d/Acts/acts.html"></iframe>
-        </div> -->
-        <!-- <div id="bottomPanel"> -->
-
-            <!-- <div id="mapChoice">
-                <label for="map0" class="container">Slides
-                    <input type="radio" id="map0" name="map" value="0" onclick="switchMaps(0)" checked="checked" />
-                    <span class="checkmark"></span>
-                </label> 
-                <label for="map1" class="container">Map 1
-                    <input type="radio" id="map1" name="map" value="1" onclick="switchMaps(1)" />
-                    <span class="checkmark"></span>
-                </label>
-                <label for="map2" class="container">Map 2
-                    <input type="radio" id="map2" name="map" value="2" onclick="switchMaps(2)" />
-                    <span class="checkmark"></span>
-                </label> 
-                <label for="map3" class="container">Map 3
-                    <input type="radio" id="map3" name="map" value="3" onclick="switchMaps(3)" />
-                    <span class="checkmark"></span>
-                </label> 
-            </div> -->
-
-        <!-- </div> -->
 
         <script>
             var viewer = document.getElementById("slideBox");
