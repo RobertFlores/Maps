@@ -35,6 +35,8 @@
         var features;
         var watercolorLayer;
         var watercolor2Layer;
+        var terrainLayer;
+        var reliefLayer
         var dataListOn = false;
         var theEgyptLayer;
         var theExodusLabelsLayer;
@@ -72,8 +74,20 @@
         }
 
         function changeBasemap (name) {
-            if (name=="watercolor") name = watercolorLayer;
-            if (name=="watercolor2") name = watercolor2Layer;
+            switch (name) {
+                case "watercolor" :
+                    name = watercolorLayer;
+                    break;
+                case "watercolor2": 
+                    name = watercolor2Layer;
+                    break;
+                case "terrain": 
+                    name = terrainLayer;
+                    break;
+                case "relief":
+                    name = reliefLayer;
+                    break;
+            }
             theMap.basemap = name;
         }
 
@@ -133,9 +147,10 @@
         "esri/config",
         "esri/Basemap",
         "esri/layers/WebTileLayer",
-        "esri/layers/VectorTileLayer"
+        "esri/layers/VectorTileLayer",
+        "esri/layers/TileLayer"
         ], 
-        (Map, GeoJSONLayer, SceneView, MapView, UI, esriConfig, Basemap, WebTileLayer, VectorTileLayer) => {
+        (Map, GeoJSONLayer, SceneView, MapView, UI, esriConfig, Basemap, WebTileLayer, VectorTileLayer, TileLayer) => {
 
         // popup template
         const puTemplate = {
@@ -438,6 +453,37 @@
         });
         watercolor2Layer = watercolor2;
 
+        const terrainBaseLayer = new WebTileLayer({
+            urlTemplate: "https://stamen-tiles-{subDomain}.a.ssl.fastly.net/terrain-background/{level}/{col}/{row}.png",
+            subDomains: ["a", "b", "c", "d"],
+            copyright:
+                'Map tiles by <a href="http://stamen.com/">Stamen Design</a>, ' +
+                'under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. ' +
+                'Data by <a href="http://openstreetmap.org/">OpenStreetMap</a>, ' +
+                'under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.'
+        });
+
+            // Create a Basemap with the WebTileLayer. The thumbnailUrl will be used for
+            // the image in the BasemapToggle widget.
+            const stamenTerrain = new Basemap({
+            baseLayers: [terrainBaseLayer],
+            title: "stamenTerrain",
+            id: "stamenTerrain",
+            thumbnailUrl: "https://stamen-tiles.a.ssl.fastly.net/terrain-background/10/177/409.png"
+        });
+        terrainLayer = stamenTerrain;
+
+        const reliefBase = new Basemap({
+          baseLayers: [
+            new TileLayer({
+              url: "https://tiles.arcgis.com/tiles/nGt4QxSblgDfeJn9/arcgis/rest/services/terrain_with_heavy_bathymetry/MapServer",
+              copyright:
+                'Bathymetry, topography and satellite imagery from <a href="https://visibleearth.nasa.gov/view_cat.php?categoryID=1484" target="_blank">NASA Visible Earth</a> | <a href="http://www.aag.org/global_ecosystems" target="_blank">World Ecological Land Units, AAG</a> | Oceans, glaciers and water bodies from <a href="https://www.naturalearthdata.com/" target="_blank">Natural Earth</a>'
+            })
+          ]
+        });
+        reliefLayer = reliefBase;
+
         esriConfig.apiKey = "AAPKe5fcea6dfd22406bb18190ba0b202ce8GojQ3I4PUpCZPEtliruqUxWVSBBCUeuCTlnUv8td5pAhtznoxe5gQckABM6xac_q";
 
         var swapButton = document.getElementById("switchButton");
@@ -549,12 +595,35 @@
 
   <body>
     <div id="mainBox" ><div id="viewDiv"></div></div>
-    <button id="showGallery" onclick="toggleMapGallery()" >Map Style</button>
-    <button id="showData" onclick="toggleFeatures()" >Layers</button>
+    <!-- <button id="showGallery" onclick="toggleMapGallery()" >Map Style</button>
+    <button id="showData" onclick="toggleFeatures()" >Layers</button> -->
     <div id="galleryList" >
+        <hr width="90%"/>
+        <div id="galleryTitle">Map Style</div>
         <ul>
             <li onclick="changeBasemap('satellite')" title="Imagery">
                 <img alt="Imagery" class="esri-basemap-gallery__item-thumbnail" src="https://www.arcgis.com/sharing/rest/content/items/86de95d4e0244cba80f0fa2c9403a7b2/info/thumbnail/thumbnail1591224931210.jpeg?f=json">
+            </li>
+            <li onclick="changeBasemap('arcgis-charted-territory')" title="Charted Territory Map">
+                <img alt="Charted Territory Map" class="esri-basemap-gallery__item-thumbnail" src="https://www.arcgis.com/sharing/rest/content/items/d582a9e953c44c09bb998c7d9b66f8d4/info/thumbnail/ChartedTerritory_T2_600x400_thumb.jpg?f=json">
+            </li>
+            <li onclick="changeBasemap('watercolor')" title="Watercolor">
+                <img alt="" class="esri-basemap-gallery__item-thumbnail" src="https://stamen-tiles.a.ssl.fastly.net/watercolor/10/177/409.png">
+            </li>
+            <li onclick="changeBasemap('watercolor2')" title="Watercolor 2">
+                <img alt="" class="esri-basemap-gallery__item-thumbnail" src="../../map_images/watercolor2.png">
+            </li>
+            <li onclick="changeBasemap('arcgis-light-gray')" title="Light Gray Map">
+                <img alt="" class="esri-basemap-gallery__item-thumbnail" src="https://www.arcgis.com/sharing/rest/content/items/de45b9cad20141ebb82fae0da8b3e2c6/info/thumbnail/lightgray_thumb_b2wm.jpg?f=json">
+            </li>
+            <li onclick="changeBasemap('arcgis-nova')" title="Nova Map">
+                <img alt="" class="esri-basemap-gallery__item-thumbnail" src="https://www.arcgis.com/sharing/rest/content/items/8d91bd39e873417ea21673e0fee87604/info/thumbnail/thumbnail1580490916023.jpeg?f=json">
+            </li>
+            <li onclick="changeBasemap('terrain')" title="Stamen Terrain">
+                <img alt="tamen Terrain" class="esri-basemap-gallery__item-thumbnail" src="https://stamen-tiles.a.ssl.fastly.net/terrain-background/10/177/409.png">   
+            </li>
+            <li onclick="changeBasemap('relief')" title="Streets">
+                <img alt="Streets" class="esri-basemap-gallery__item-thumbnail" src="../../map_images/ReliefBaseMap.png">
             </li>
             <li onclick="changeBasemap('arcgis-streets-relief')" title="Streets">
                 <img alt="Streets" class="esri-basemap-gallery__item-thumbnail" src="https://www.arcgis.com/sharing/rest/content/items/f81bc478e12c4f1691d0d7ab6361f5a6/info/thumbnail/street_thumb_b2wm.jpg?f=json">
@@ -563,26 +632,10 @@
                 <img alt="OpenStreetMap" class="esri-basemap-gallery__item-thumbnail" src="https://www.arcgis.com/sharing/rest/content/items/c29cfb7875fc4b97b58ba6987c460862/info/thumbnail/thumbnail1547740877120.jpeg?f=json">   
             </li>
 
-            <li onclick="changeBasemap('arcgis-charted-territory')" title="Charted Territory Map">
-                <img alt="Charted Territory Map" class="esri-basemap-gallery__item-thumbnail" src="https://www.arcgis.com/sharing/rest/content/items/d582a9e953c44c09bb998c7d9b66f8d4/info/thumbnail/ChartedTerritory_T2_600x400_thumb.jpg?f=json">
-
-            </li>
-            <li onclick="changeBasemap('arcgis-nova')" title="Nova Map">
-                <img alt="" class="esri-basemap-gallery__item-thumbnail" src="https://www.arcgis.com/sharing/rest/content/items/8d91bd39e873417ea21673e0fee87604/info/thumbnail/thumbnail1580490916023.jpeg?f=json">
-            </li>
-            <li onclick="changeBasemap('arcgis-light-gray')" title="Light Gray Map">
-                <img alt="" class="esri-basemap-gallery__item-thumbnail" src="https://www.arcgis.com/sharing/rest/content/items/de45b9cad20141ebb82fae0da8b3e2c6/info/thumbnail/lightgray_thumb_b2wm.jpg?f=json">
-            </li>
-            <li onclick="changeBasemap('watercolor')" title="Watercolor">
-                <img alt="" class="esri-basemap-gallery__item-thumbnail" src="https://stamen-tiles.a.ssl.fastly.net/watercolor/10/177/409.png">
-            </li>
-            <li onclick="changeBasemap('watercolor2')" title="Watercolor 2">
-                <img alt="" class="esri-basemap-gallery__item-thumbnail" src="../../map_images/watercolor2.png">
-            </li>
-
         </ul>
     </div>
     <div id="dataList">
+        <div id="dataListTitle">Layers</div>
         <ul>
             <li title="Highlight Egypt" >
                 <input id="spreadCheck" type="checkbox" onchange="toggleLayer(event, 0)" >Highlight Egypt
@@ -618,10 +671,11 @@
     <style>
         /* esri overrides */
         .esri-basemap-gallery__item-thumbnail {
-            height: 64px;
-            width: 64px;
+            height: 100px;
+            width: 100px;
             object-fit: cover;
-            margin: 2px 5px;
+            margin: 5px;
+            border: 1px solid black;
         }
         .esri-popup__main-container {
             max-height: 500px!important;
