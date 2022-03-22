@@ -1,0 +1,766 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <title>
+      World Powers Foretold by Daniel
+    </title>
+
+
+    <link
+      rel="stylesheet"
+      href="https://js.arcgis.com/4.22/esri/themes/light/main.css"
+    />
+    <!-- <link
+    rel="stylesheet"
+    href="esri.css"
+  /> -->
+
+    <script src="https://js.arcgis.com/4.22/"></script>
+    <style>
+        html,
+        body,
+        #viewDiv {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            width: 100%;
+            background-color: black;
+            overflow: hidden;
+        }
+
+        #mainBox {
+            width: calc(100% - 404px);
+            height: 100%;
+            position: absolute;
+            left: 404px;
+            top: 0;
+        }
+        #leftTopPannel {
+            position:absolute;
+            left: 0;
+            top: 0;
+            width: 404px;
+            height: 240px;
+            background-image: url(images/WorldPowers-top.png);
+        }
+        #leftBottomPannel {
+            position:absolute;
+            left: 0;
+            top: 240;
+            width: 485px;
+            height: calc(100% - 240px);
+            background-image: url(images/WorldPowers-bottom.png);
+        }
+        #babylonClick {
+            position: absolute;
+            left: 10px;
+            top: 270px;
+            width: 120px;
+            height: 90px;
+        }
+        #medoClick {
+            position: absolute;
+            left: 10px;
+            top: 415px;
+            width: 130px;
+            height: 80px;
+        }
+        #greeceClick {
+            position: absolute;
+            left: 10px;
+            top: 565px;
+            width: 120px;
+            height: 100px;
+        }
+        #romeClick {
+            position: absolute;
+            left: 10px;
+            top: 735px;
+            width: 115px;
+            height: 93px;
+        }
+        #angloAmerClick {
+            position: absolute;
+            left: 10px;
+            top: 900px;
+            width: 170px;
+            height: 60px;
+        }
+        .buttonColors {
+          background-color: rgba(255,255,255,0.1);
+          cursor: pointer;
+          border: 3px solid transparent;
+          background-image: none;
+
+        }
+        #showGallery {
+            color: black; 
+            background-color: white; 
+            border: 1px solid grey; 
+            position: absolute; 
+            right: 5px; 
+            top: 5px;
+            z-index: 1;
+            width: 100px;
+            cursor: pointer;
+        }
+        #galleryList {
+            color: black; 
+            background-color: white; 
+            border: 1px solid grey; 
+            position: absolute; 
+            right: 5px; 
+            top: 25px;
+            visibility: hidden;
+            width: 100px;
+            text-align: center;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }        
+        #galleryList ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            margin-top: 2px;
+        }
+        #galleryList ul li{
+            cursor: pointer;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 13px;
+        }
+        #showData {
+            color: black; 
+            background-color: white; 
+            border: 1px solid grey; 
+            position: absolute; 
+            right: 5px; 
+            top: 25px;
+
+            width: 100px;
+            cursor: pointer;
+        }
+        #dataList {
+            color: black; 
+            background-color: white; 
+            border: 1px solid grey; 
+            position: absolute; 
+            right: 5px; 
+            top: 45px;
+            visibility: hidden;
+            width: 250px;
+            padding: 0 0 5px 5px
+        }
+        #dataList ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            margin-top: 2px;
+        }
+        #dataList ul li {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 13px;
+            cursor: pointer;
+        }
+        #infoDiv {
+            position: absolute;
+            top: 15px;
+            left: 460px;
+        }
+
+        #infoDiv input {
+            border: none;
+            box-shadow: none;
+            width: 40px;
+            height: 40px;
+            background-color: white;
+            vertical-align: middle;
+            text-align: center;
+            border-radius: 20px;
+
+        }
+        #generals {
+            border: 2px solid grey;
+            box-shadow: none;
+            width: 273px;
+            height: 154px;
+            background-color: white;
+            position: absolute;
+            left: 425px;
+            bottom: 45px;
+            display: none;
+            background-image: url(images/Generals.jpeg);
+        }
+
+        #assyriaGreeceInfo {
+            border: 2px solid grey;
+            box-shadow: none;
+            width: 400x;
+            height: 400x;
+            background-color: white;
+            position: absolute;
+            right: 5px;
+            bottom: 40px;
+            display: none;
+            padding: 15px;
+        }
+        .smallTitle {
+            font-size: 10px;
+            font-weight: bold;
+        }
+        .largeTitle {
+            font-size: 25px;
+            font-weight: bold;
+        }
+        .scriptureHeading {
+            color: blue;
+            font-weight: bold;
+        }
+        .infoContent {
+            max-width: 550px;
+        }
+
+    </style>
+
+    <script>
+        var layers = [];
+        var labels = [];
+        var buttons = [];
+        var imageHighlight = [];
+        var theView;
+        var basemaps;
+        var mapGalleryOn = false;
+        var theMap;
+        var theConfig;
+        var gallery;
+        var features;
+        var watercolorLayer;
+        var watercolor2Layer;
+        var dataListOn = false;
+        var theBreakupLayer;
+        var theGeneralsLegend;
+        var thePentecostLayer;
+        var thePentecostLines;
+        var infoContent = [];
+        
+        function showLayer (index) {
+            var is3D = theConfig.activeView.type === "3d";
+      
+            for (i=0; i<5;i++) {
+                if (index==i) {
+                    layers[i].visible = true;
+                    buttons[i].style.borderColor = "darkgrey";
+                    buttons[i].style.backgroundImage = "radial-gradient(transparent 80%, darkgrey)";
+                    if (is3D) {
+                        theConfig.sceneView.goTo(layers[i].fullExtent);
+                    } else {
+                        theConfig.mapView.goTo(layers[i].fullExtent);
+                    }
+
+                } else {
+                    layers[i].visible = false;
+                    buttons[i].style.borderColor = "transparent";
+                    buttons[i].style.backgroundImage ="none";
+                }
+            }
+            layers[5].visible = (index==4);
+        }
+
+        function toggleMapGallery() {
+            mapGalleryOn = !mapGalleryOn;
+            if (mapGalleryOn) {
+                gallery.style.visibility = "visible";
+                features.style.visibility = "hidden";
+            } else {
+                gallery.style.visibility = "hidden";
+            }
+        }
+
+        function changeBasemap (name) {
+            if (name=="watercolor") name = watercolorLayer;
+            if (name=="watercolor2") name = watercolor2Layer;
+            theMap.basemap = name;
+        }
+
+        function toggleTrek (e) {
+            var checkbox = e.target;
+            trekToBabylonLayer.visible = checkbox.checked;
+        }
+
+        function toggleBreakup (e) {
+            var checkbox = e.target;
+            theBreakupLayer.visible = checkbox.checked;
+            theGeneralsLegend.style.display = checkbox.checked ? "block" : "none";
+        }
+
+        function toggleAssyriaGreeceInfo (e) {
+            // theAssyriaGreeceInfo.innerHTML = infoContent[0];
+            var checkbox = e.target;
+            theAssyriaGreeceInfo.style.display = checkbox.checked ? "block" : "none";
+        }
+
+        function toggleFeatures() {
+            dataListOn = !dataListOn;
+            if (dataListOn) {
+                features.style.visibility = "visible";
+                gallery.style.visibility = "hidden";
+            } else {
+                features.style.visibility = "hidden";
+            }
+        }
+
+        function toggleSpread(e) {
+            var checkbox = e.target;
+            theSpreadLabels.visible = checkbox.checked;
+            theSpreadLayer.visible = checkbox.checked;
+        }
+
+        function togglePentecost(e) {
+            var checkbox = e.target;
+            thePentecostLayer.visible = checkbox.checked;
+            thePentecostLines.visible = checkbox.checked;
+        }
+
+
+      require(["esri/Map", 
+        "esri/layers/GeoJSONLayer", 
+        "esri/views/SceneView", 
+        "esri/views/MapView",
+        "esri/views/ui/UI", 
+        "esri/config",
+        "esri/Basemap",
+        "esri/layers/WebTileLayer",
+        "esri/layers/VectorTileLayer"
+        ], 
+        (Map, GeoJSONLayer, SceneView, MapView, UI, esriConfig, Basemap, WebTileLayer, VectorTileLayer) => {
+
+        // Empire layers
+
+        const babylonUrl = "data/BabylonianEmpire.geojson";
+        const babylonRenderer = {
+            type: "simple",
+
+            symbol: {
+                type: "simple-fill",
+                // color: "orange",
+                outline: {
+                  color: [255,127,0, 1],
+                  width: "5px"
+                }                
+            }
+        };
+        const babylonLayer = new GeoJSONLayer({
+            url: babylonUrl,
+            copyright: "",
+            renderer: babylonRenderer,
+            opacity: 0.6,
+            visible: false
+        });
+        layers.push(babylonLayer); // #0
+
+        const medoUrl = "data/Medo-PersianEmpire.geojson";
+        const medoRenderer = {
+            type: "simple",
+
+            symbol: {
+                type: "simple-fill",
+                // color: "lightblue",
+                outline: {
+                  color: [64,64,255, 1],
+                  width: "5px"
+                }                
+            }
+        };
+        const medoLayer = new GeoJSONLayer({
+            url: medoUrl,
+            copyright: "",
+            renderer: medoRenderer,
+            opacity: 0.6,
+            visible: false
+        });
+        layers.push(medoLayer); // #1
+
+        const greecianUrl = "data/GreecianEmpire.geojson";
+        const greecianRenderer = {
+            type: "simple",
+
+            symbol: {
+                type: "simple-fill",
+                // color: "red",
+                outline: {
+                  color: [161, 61, 45 , 1],
+                  width: "5px"
+                }                
+            }
+        };
+        const greecianLayer = new GeoJSONLayer({
+            url: greecianUrl,
+            copyright: "",
+            renderer: greecianRenderer,
+            opacity: 0.6,
+            visible: false
+        });
+        layers.push(greecianLayer); // #2
+
+        const romanUrl = "data/RomanEmpire.geojson";
+        const romanRenderer = {
+            type: "simple",
+
+            symbol: {
+                type: "simple-fill",
+                // color: "darkblue",
+                outline: {
+                  color: [0,0,0, 1],
+                  width: "5px"
+                }                
+            }
+        };
+        const romanLayer = new GeoJSONLayer({
+            url: romanUrl,
+            copyright: "",
+            renderer: romanRenderer,
+            opacity: 0.6,
+            visible: false
+        });
+        layers.push(romanLayer); // #3
+
+        // Feature layers
+
+        const trekUrl = "data/TrekToBabylon.geojson";
+        const trekRenderer = {
+            type: "simple",
+
+            symbol: {
+                type: "simple-line",
+
+
+                  color: "red",
+                  width: "5px",
+                  style: "short-dash"
+             
+            }
+        };
+        const trekLayer = new GeoJSONLayer({
+            url: trekUrl,
+            copyright: "",
+            renderer: trekRenderer,
+            opacity: 0.75,
+            visible: false
+        });
+        trekToBabylonLayer = trekLayer;
+
+        const britUrl = "data/BritishEmpire.geojson";
+        const britRenderer = {
+            type: "simple",
+
+            symbol: {
+                type: "simple-fill",
+                color: [255,0,204, 0.75],
+                outline: {
+                  color: [255,0,204, 1],
+                  width: "5px"
+                }                
+            }
+        };
+        const britLayer = new GeoJSONLayer({
+            url: britUrl,
+            copyright: "",
+            renderer: britRenderer,
+            opacity: 0.6,
+            visible: false
+        });
+        layers.push(britLayer); // #2
+
+        const usaUrl = "data/USA.geojson";
+        const usaRenderer = {
+            type: "simple",
+
+            symbol: {
+                type: "simple-fill",
+                color: [255,102,0 , 0.65],
+                outline: {
+                  color: [255,102,0 , 1],
+                  width: "5px"
+                }                
+            }
+        };
+        const usaLayer = new GeoJSONLayer({
+            url: usaUrl,
+            copyright: "",
+            renderer: usaRenderer,
+            opacity: 0.6,
+            visible: false
+        });
+        layers.push(usaLayer); // #2
+
+        const breakupUrl = "data/GreecianEmpireBreakup.geojson";
+        const breakupRenderer = {
+            type: "unique-value",
+            field: "General",
+            uniqueValueInfos: [
+                {value: "Cassander", symbol: {type: "simple-fill", color: [248,147,31,1]}},
+                {value: "Lysimachus", symbol: {type: "simple-fill",color: [0,167,108,1]}},
+                {value: "Ptolemy I", symbol: {type: "simple-fill",color: [155,116,179,1]}},
+                {value: "Seleucus I", symbol: {type: "simple-fill",color: [244,114,101,1]}}
+            ]
+        };
+        const breakupLayer = new GeoJSONLayer({
+            url: breakupUrl,
+            copyright: "",
+            renderer: breakupRenderer,
+            opacity: 0.6,
+            visible: false
+        });
+        theBreakupLayer = breakupLayer;
+
+        const watercolorBaseLayer = new WebTileLayer({
+            urlTemplate: "https://stamen-tiles-{subDomain}.a.ssl.fastly.net/watercolor/{level}/{col}/{row}.png",
+            subDomains: ["a", "b", "c", "d"],
+            copyright:
+                'Map tiles by <a href="http://stamen.com/">Stamen Design</a>, ' +
+                'under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. ' +
+                'Data by <a href="http://openstreetmap.org/">OpenStreetMap</a>, ' +
+                'under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.'
+        });
+
+            // Create a Basemap with the WebTileLayer. The thumbnailUrl will be used for
+            // the image in the BasemapToggle widget.
+            const watercolor = new Basemap({
+            baseLayers: [watercolorBaseLayer],
+            title: "Watercolor",
+            id: "watercolor",
+            thumbnailUrl: "https://stamen-tiles.a.ssl.fastly.net/watercolor/10/177/409.png"
+        });
+        watercolorLayer = watercolor;
+
+        const watercolorLayer2 = new VectorTileLayer({
+            portalItem: {
+                id: "fdf540eef40344b79ead3c0c49be76a9"
+            },
+            opacity: 1
+        });
+        const watercolor2 = new Basemap({
+            baseLayers: [watercolorLayer2],
+            title: "Watercolor 2",
+            id: "watercolor2",
+            thumbnailUrl: "../../map_images/watercolor2.png"
+        });
+        watercolor2Layer = watercolor2;
+
+        esriConfig.apiKey = "AAPKe5fcea6dfd22406bb18190ba0b202ce8GojQ3I4PUpCZPEtliruqUxWVSBBCUeuCTlnUv8td5pAhtznoxe5gQckABM6xac_q";
+
+        var swapButton = document.getElementById("switchButton");
+
+        var appConfig = {
+            mapView: null,
+            sceneView: null,
+            activeView: null,
+            container: "viewDiv" // use same container for views
+        };
+        theConfig = appConfig;
+        var map = new Map({
+            basemap: watercolorLayer,
+            ground: "world-elevation",
+            layers: [babylonLayer, medoLayer, greecianLayer, romanLayer, britLayer, usaLayer, trekLayer, breakupLayer]
+        });
+        theMap = map;
+
+        var initialViewParams = {
+            map: map,
+            zoom: 5,
+            center: [27, 30],
+            container: appConfig.container
+        };
+
+        // create 2D view and and set active
+        appConfig.mapView = createView(initialViewParams, "2d");
+        appConfig.activeView = appConfig.mapView;
+
+        // create 3D view, won't initialize until container is set
+        initialViewParams.container = null;
+        appConfig.sceneView = createView(initialViewParams, "3d");
+
+        // swap the view between 2D and 3D each time the button is clicked
+        swapButton.addEventListener("click", function() {
+        swapView();
+        });
+
+        var coordsWidget = document.createElement("div");
+        coordsWidget.id = "coordsWidget";
+        coordsWidget.className = "esri-widget esri-component";
+        coordsWidget.style.padding = "2px 5px";
+        coordsWidget.style.margin = "0 0 -12px 0";
+        coordsWidget.style.opacity = 0.8;
+        coordsWidget.style.fontSize = "12px";
+
+        appConfig.mapView.ui.add(coordsWidget, "bottom-left");
+
+        // Swaps the view from 2D to 3D and vice versa
+        function swapView() {
+            var is3D = appConfig.activeView.type === "3d";
+            const activeViewpoint = appConfig.activeView.viewpoint.clone();
+            
+            // remove the reference to the container for the previous view
+            appConfig.activeView.container = null;
+
+            if (is3D) {
+                // if the input view is a SceneView, set the viewpoint on the
+                // mapView instance. Set the container on the mapView and flag
+                // it as the active view
+                appConfig.mapView.viewpoint = activeViewpoint;
+                appConfig.mapView.container = appConfig.container;
+                appConfig.activeView = appConfig.mapView;
+                switchButton.value = "3D";
+          } else {
+                appConfig.sceneView.viewpoint = activeViewpoint;
+                appConfig.sceneView.container = appConfig.container;
+                appConfig.activeView = appConfig.sceneView;
+                switchButton.value = "2D";
+          }
+        }
+
+        // convenience function for creating a 2D or 3D view
+        function createView(params, type) {
+            var view;
+            var is2D = type === "2d";
+            if (is2D) {
+                view = new MapView(params);
+                return view;
+            } else {
+                view = new SceneView(params);
+            }
+
+            return view;
+        }
+
+
+      function showCoordinates(pt) {
+        var coords =
+            "Lat/Lon: " +
+            pt.latitude.toFixed(3) +
+            ", " +
+            pt.longitude.toFixed(3) +
+            "  |  Scale: 1:" +
+            Math.round(appConfig.mapView.scale * 1) / 1 +
+            "  |  Zoom: " +
+            appConfig.mapView.zoom;
+            coordsWidget.innerHTML = coords;
+        }
+
+        appConfig.mapView.on("pointer-move", function (evt) {
+            showCoordinates(appConfig.mapView.toMap({ x: evt.x, y: evt.y }));
+        });
+
+      });
+     </script>
+
+
+  </head>
+
+  <body>
+    <div id="mainBox" ><div id="viewDiv"></div></div>
+    <div id="leftBottomPannel"></div>   
+    <div id="leftTopPannel"></div>
+    <div id="babylonClick" class="buttonColors" onclick="showLayer(0)"></div>
+    <div id="medoClick" class="buttonColors" onclick="showLayer(1)"></div>
+    <div id="greeceClick" class="buttonColors" onclick="showLayer(2)"></div>
+    <div id="romeClick" class="buttonColors" onclick="showLayer(3)"></div>
+    <div id="angloAmerClick" class="buttonColors" onclick="showLayer(4)"></div>
+
+    <button id="showGallery" onclick="toggleMapGallery()" >Map Style</button>
+    <button id="showData" onclick="toggleFeatures()" >Layers</button>
+    <div id="galleryList" >
+        <div id="gallerTitle">Map Style</div>
+        <ul>
+            <li onclick="changeBasemap('satellite')" title="Imagery">
+                <img alt="Imagery" class="esri-basemap-gallery__item-thumbnail" src="https://www.arcgis.com/sharing/rest/content/items/86de95d4e0244cba80f0fa2c9403a7b2/info/thumbnail/thumbnail1591224931210.jpeg?f=json">
+            </li>
+            <li onclick="changeBasemap('arcgis-streets-relief')" title="Streets">
+                <img alt="Streets" class="esri-basemap-gallery__item-thumbnail" src="https://www.arcgis.com/sharing/rest/content/items/f81bc478e12c4f1691d0d7ab6361f5a6/info/thumbnail/street_thumb_b2wm.jpg?f=json">
+            </li>
+            <li onclick="changeBasemap('osm-standard-relief')" title="OpenStreetMap">
+                <img alt="OpenStreetMap" class="esri-basemap-gallery__item-thumbnail" src="https://www.arcgis.com/sharing/rest/content/items/c29cfb7875fc4b97b58ba6987c460862/info/thumbnail/thumbnail1547740877120.jpeg?f=json">   
+            </li>
+
+            <li onclick="changeBasemap('arcgis-charted-territory')" title="Charted Territory Map">
+                <img alt="Charted Territory Map" class="esri-basemap-gallery__item-thumbnail" src="https://www.arcgis.com/sharing/rest/content/items/d582a9e953c44c09bb998c7d9b66f8d4/info/thumbnail/ChartedTerritory_T2_600x400_thumb.jpg?f=json">
+
+            </li>
+            <li onclick="changeBasemap('arcgis-nova')" title="Nova Map">
+                <img alt="" class="esri-basemap-gallery__item-thumbnail" src="https://www.arcgis.com/sharing/rest/content/items/8d91bd39e873417ea21673e0fee87604/info/thumbnail/thumbnail1580490916023.jpeg?f=json">
+            </li>
+            <li onclick="changeBasemap('arcgis-light-gray')" title="Light Gray Map">
+                <img alt="" class="esri-basemap-gallery__item-thumbnail" src="https://www.arcgis.com/sharing/rest/content/items/de45b9cad20141ebb82fae0da8b3e2c6/info/thumbnail/lightgray_thumb_b2wm.jpg?f=json">
+            </li>
+            <li onclick="changeBasemap('watercolor')" title="Watercolor">
+                <img alt="" class="esri-basemap-gallery__item-thumbnail" src="https://stamen-tiles.a.ssl.fastly.net/watercolor/10/177/409.png">
+            </li>
+            <li onclick="changeBasemap('watercolor2')" title="Watercolor 2">
+                <img alt="" class="esri-basemap-gallery__item-thumbnail" src="../../map_images/watercolor2.png">
+            </li>
+
+        </ul>
+    </div>
+    <div id="dataList">
+        <ul>
+            <li title="Long trek to Babylon" >
+                <input id="trekCheck" type="checkbox" onchange="toggleTrek(event)">Long trek to Babylon
+            </li>
+            <li title="Jehovah Foresaw the Future of Kings" >
+                <input id="trekCheck" type="checkbox" onchange="toggleAssyriaGreeceInfo(event)">Jehovah Foresaw the Future of Kings
+            </li>
+            <li title="Breakup of Alexander's kingdom" >
+                <input id="trekCheck" type="checkbox" onchange="toggleBreakup(event)">Breakup of Alexander's kingdom
+            </li>
+        </ul>
+    </div>
+<!-- </div> -->
+    <div id="infoDiv">
+        <input class="esri-component esri-widget-button esri-widget esri-interactive" type="button"
+          id="switchButton" value="3D">
+    </div>
+    <div id="generals"></div>
+    <div id="assyriaGreeceInfo"></div>
+
+    <script>
+        gallery = document.getElementById("galleryList");
+        features = document.getElementById("dataList");
+    </script>
+
+    <style>
+        /* esri overrides */
+        .esri-basemap-gallery__item-thumbnail {
+            height: 64px;
+            width: 64px;
+            object-fit: cover;
+            margin: 2px 5px;
+        }
+        .esri-popup__main-container {
+            max-height: 500px!important;
+        }
+        .esri-popup__footer  {
+            display: none;
+        }
+    </style>
+    <script>
+        buttons.push(document.getElementById("babylonClick"));
+        buttons.push(document.getElementById("medoClick"));
+        buttons.push(document.getElementById("greeceClick"));
+        buttons.push(document.getElementById("romeClick"));
+        buttons.push(document.getElementById("angloAmerClick"));
+        gallery = document.getElementById("galleryList");
+        features = document.getElementById("dataList");
+        theGeneralsLegend = document.getElementById("generals");
+        theAssyriaGreeceInfo = document.getElementById("assyriaGreeceInfo");
+
+        infoContent[0] = "<div class='smallTitle'>TREASURES FROM GOD’S WORD | DANIEL 10-12</div><div class='largeTitle'>Jehovah Foresaw the Future of Kings</div><br/><div class='scriptureHeading'>11:2</div><div class='infoContent'>Four kings would stand up for Persia. The fourth would 'rouse up everything against the kingdom of Greece.'<ol><li>Cyrus the Great</li><li>Cambyses II</li><li>Darius I</li><li>Xerxes I (believed to be King Ahasuerus, who married Esther)</li></ol><div class='scriptureHeading'>11:3</div>A powerful king of Greece would arise and rule an extensive empire.<ul><li>Alexander the Great</li></ul><div class='scriptureHeading'>11:4</div>The Greek Empire would be divided among four of Alexander’s generals.<ol><li>Cassander</li><li>Lysimachus</li><li>Seleucus I</li><li>Ptolemy I</li></ol></div>";
+        theAssyriaGreeceInfo.innerHTML = infoContent[0];
+    </script>
+    
+    
+
+  </body>
+</html>
