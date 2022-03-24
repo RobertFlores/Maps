@@ -39,6 +39,7 @@
         var reliefLayer
         var dataListOn = false;
         var theEgyptLayer;
+        var theRedSeaLayer;
         var theExodusLabelsLayer;
         var theJacobLabelLayer;
         var theJonahLabelLayer;
@@ -107,10 +108,10 @@
                 case 1: 
                     theJacobLabelLayer.visible = visible;
                     break;
-                case 2:
+                case 3:
                     theExodusLabelsLayer.visible = visible;
                     break;
-                case 4:
+                case 5:
                     theJonahLabelLayer.visible = visible;
                     break;
             }
@@ -132,10 +133,9 @@
             theSpreadLayer.visible = checkbox.checked;
         }
 
-        function togglePentecost(e) {
+        function toggleRedSea(e) {
             var checkbox = e.target;
-            thePentecostLayer.visible = checkbox.checked;
-            theJonahLayer.visible = checkbox.checked;
+            theRedSeaLayer.visible = checkbox.checked;
         }
 
 
@@ -145,12 +145,13 @@
         "esri/views/MapView",
         "esri/views/ui/UI", 
         "esri/config",
+        "esri/renderers/ClassBreaksRenderer",
         "esri/Basemap",
         "esri/layers/WebTileLayer",
         "esri/layers/VectorTileLayer",
         "esri/layers/TileLayer"
         ], 
-        (Map, GeoJSONLayer, SceneView, MapView, UI, esriConfig, Basemap, WebTileLayer, VectorTileLayer, TileLayer) => {
+        (Map, GeoJSONLayer, SceneView, MapView, UI, esriConfig, ClassBreaksRenderer, Basemap, WebTileLayer, VectorTileLayer, TileLayer) => {
 
         // popup template
         const puTemplate = {
@@ -213,6 +214,57 @@
         })
         layers.push(jacobLayer); // #1
         theJacobLayer = jacobLayer;
+
+        // Red Sea depths
+        function createSymbol(color){
+          return {
+            type: "simple-fill",
+            color,
+            style: "solid"//,
+            // outline: {
+            //   width: 0.2,
+            //   color: [255, 255, 255, 0.2]
+            // }
+          };
+        }        
+        const redSeaUrl = "data/RedSeaDepths.geojson";
+        const redSeaRenderer = new ClassBreaksRenderer ({
+            field: "Depth",
+            classBreakInfos: [
+                {
+                    minValue: 0,
+                    maxValue: 8,
+                    symbol: createSymbol("#bff1ff")
+                },
+                {
+                    minValue: 9,
+                    maxValue: 17,
+                    symbol: createSymbol("#00c9ff")
+                },
+                {
+                    minValue: 18,
+                    maxValue: 35,
+                    symbol: createSymbol("#0096bf")
+                },
+                {
+                    minValue: 36,
+                    maxValue: 99,
+                    symbol: createSymbol("#00647f")
+                }
+
+            ]
+        })
+
+        const redSeaLayer = new GeoJSONLayer({
+            url: redSeaUrl,
+            copyright: "",
+            renderer: redSeaRenderer,
+            opacity: 0.6,
+            visible: false
+        })
+        layers.push(redSeaLayer); // #0
+        theRedSeaLayer = redSeaLayer;
+
 
         // Exodus from Egypt
         const exodusUrl = "data/Exodus1.geojson";
@@ -498,7 +550,15 @@
         var map = new Map({
             basemap: watercolor,
             ground: "world-elevation",
-            layers: [egyptLayer, jacobLayer, exodusLayer, assyrianLayer, jonahLayer, jacobLabelsLayer, exodusLabelsLayer, jonahLabelsLayer]
+            layers: [egyptLayer, 
+                        jacobLayer, 
+                        assyrianLayer, 
+                        jonahLayer, 
+                        jacobLabelsLayer, 
+                        redSeaLayer,
+                        exodusLayer, 
+                        exodusLabelsLayer, 
+                        jonahLabelsLayer]
         });
         theMap = map;
 
@@ -644,13 +704,16 @@
                 <input id="spreadCheck" type="checkbox" onchange="toggleLayer(event, 1)" >Jacob to Egypt
             </li>
             <li title="Exodus from Egypt" >
-                <input id="spreadCheck" type="checkbox" onchange="toggleLayer(event, 2)" >Exodus from Egypt
+                <input id="spreadCheck" type="checkbox" onchange="toggleLayer(event, 3)" >Exodus from Egypt
+            </li>
+            <li title="Red Sea depths" >
+                <input id="spreadCheck" type="checkbox" onchange="toggleRedSea(event)" >Red Sea depths
             </li>
             <li title="Assyrian Empire" >
-                <input id="spreadCheck" type="checkbox" onchange="toggleLayer(event, 3)" >Assyrian Empire
+                <input id="spreadCheck" type="checkbox" onchange="toggleLayer(event, 4)" >Assyrian Empire
             </li>
             <li title="Jonah's travels" >
-                <input id="spreadCheck" type="checkbox" onchange="toggleLayer(event, 4)">Jonah's travels
+                <input id="spreadCheck" type="checkbox" onchange="toggleLayer(event, 5)">Jonah's travels
             </li>
             <!-- <li title="Spread of Good News" >
                 <input id="spreadCheck" type="checkbox" onchange="togglePentecost(event)">Paul
