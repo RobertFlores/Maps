@@ -1,0 +1,34 @@
+{
+	"type" : "FeatureCollection",
+	"name" : "Jonah_cities",
+	"features" : [
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 35.2491800704, 31.7782080106 ]
+			},
+			"properties" : {
+				"FID" : 9,
+				"Id" : 0,
+				"Name" : "Jerusalem",
+				"Image" : "images/Walls_of_Jerusalem.jpg",
+				"Caption" : "Nehemiah, a servant of King Artaxerxes, was allowed to go to Jerusalem to help rebuild the city walls. The king also made Nehemiah governor of Judah and gave him wood for the city gates."
+			}
+		},
+        {
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 35.2491800704, 31.775 ]
+			},
+			"properties" : {
+				"FID" : 8,
+				"Id" : 0,
+				"Name" : "Jerusalem",
+				"Image" : "images/Reconstruction_of_temple.jpeg",
+				"Caption" : "c. 537 B.C.E. - Cyrus decreed that the temple be rebuilt"
+			}
+		}
+    ]
+}

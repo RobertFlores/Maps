@@ -46,6 +46,8 @@
         var theJonahLayer;
         var theJacobLayer;
         var theExodusLayer;
+        var theDividedLayer;
+        var redSeaInfo;
         
         function showLayer (index) {
       
@@ -138,6 +140,19 @@
             theRedSeaLayer.visible = checkbox.checked;
         }
 
+        function toggleJerusalem(e) {
+            var checkbox = e.target;
+            theJerusalemLayer.visible = checkbox.checked;
+        }
+        
+        function toggleRedSeaInfo(e) {
+            var checkbox = e.target;
+            theRedSeaInfo.style.display = checkbox.checked ? "block" : "none";
+        }
+
+        
+
+
 
       require(["esri/Map", 
         "esri/layers/GeoJSONLayer", 
@@ -163,7 +178,7 @@
                 type: "image",
                 value: {sourceURL: '{Image}'}
             }]
-          }]
+          },{type: "text", text: "{Event}"}]
         };
 
 
@@ -471,6 +486,25 @@
         // labels.push(exodusLabelsLayer); // #0
         theExodusLabelsLayer = exodusLabelsLayer;
 
+        const dividedUrl = "data/DividedKingdom.geojson";
+        const dividedRenderer = {
+            type: "unique-value",
+            field: "Name",
+            uniqueValueInfos: [
+                {value: "Judah", symbol: {type: "simple-fill", color: [248,147,31,1]}},
+                {value: "Israel", symbol: {type: "simple-fill",color: [155,116,179,1]}}
+            ]
+        };
+        const dividedLayer = new GeoJSONLayer({
+            url: dividedUrl,
+            copyright: "",
+            renderer: dividedRenderer,
+            opacity: 0.6,
+            visible: true
+        });
+        theDividedLayer = dividedLayer;
+        layers.push(dividedLayer);
+
         const watercolorBaseLayer = new WebTileLayer({
             urlTemplate: "https://stamen-tiles-{subDomain}.a.ssl.fastly.net/watercolor/{level}/{col}/{row}.png",
             subDomains: ["a", "b", "c", "d"],
@@ -550,6 +584,14 @@
         var map = new Map({
             basemap: watercolor,
             ground: "world-elevation",
+            popup: {
+                dockEnabled: true,
+                dockOptions: {
+                    buttonEnabled: true,
+                    breakpoint: false
+                }
+            },
+
             layers: [egyptLayer, 
                         jacobLayer, 
                         assyrianLayer, 
@@ -558,7 +600,9 @@
                         redSeaLayer,
                         exodusLayer, 
                         exodusLabelsLayer, 
-                        jonahLabelsLayer]
+                        jonahLabelsLayer,
+                        dividedLayer
+                    ]
         });
         theMap = map;
 
@@ -654,9 +698,10 @@
   </head>
 
   <body>
-    <div id="mainBox" ><div id="viewDiv"></div></div>
-    <!-- <button id="showGallery" onclick="toggleMapGallery()" >Map Style</button>
-    <button id="showData" onclick="toggleFeatures()" >Layers</button> -->
+    <div id="mainBox" >
+        <div id="viewDiv"></div>
+    </div>
+
     <div id="galleryList" >
         <hr width="90%"/>
         <div id="galleryTitle">Map Style</div>
@@ -709,26 +754,33 @@
             <li title="Red Sea depths" >
                 <input id="spreadCheck" type="checkbox" onchange="toggleRedSea(event)" >Red Sea depths
             </li>
+            <li title="Red Sea Depth Chart" >
+                <input id="spreadCheck" type="checkbox" onchange="toggleRedSeaInfo(event)" >Red Sea Depth Chart
+            </li>
             <li title="Assyrian Empire" >
                 <input id="spreadCheck" type="checkbox" onchange="toggleLayer(event, 4)" >Assyrian Empire
             </li>
             <li title="Jonah's travels" >
                 <input id="spreadCheck" type="checkbox" onchange="toggleLayer(event, 5)">Jonah's travels
             </li>
-            <!-- <li title="Spread of Good News" >
-                <input id="spreadCheck" type="checkbox" onchange="togglePentecost(event)">Paul
-            </li> -->
+            <li title="The Divided Kingdom" >
+                <input id="spreadCheck" type="checkbox" onchange="toggleLayer(event, 6)">The Divided Kingdom
+            </li>
         </ul>
     </div>
-</div>
-<div id="infoDiv">
+
+    <div id="infoDiv">
         <input class="esri-component esri-widget-button esri-widget esri-interactive" type="button"
           id="switchButton" value="3D">
-      </div>
+    </div>
+    <div id="redSeaInfo">
+
+    </div>
 
     <script>
         gallery = document.getElementById("galleryList");
         features = document.getElementById("dataList");
+        theRedSeaInfo = document.getElementById("redSeaInfo")
     </script>
 
     <style>
