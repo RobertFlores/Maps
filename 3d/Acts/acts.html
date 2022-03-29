@@ -50,6 +50,7 @@
         var thePauls2ndLabels;
         var thePauls3rdLayer;
         var thePauls3rdLabels;
+        var thePaul61Layer
         var theRomeLayer;
         var theRomeLabels
         var thePauls61Layer;
@@ -194,6 +195,20 @@
                     theConfig.mapView.goTo(tour.fullExtent);
                 }
             }
+        }
+
+        function togglePaul_61 (e) {
+            var checkbox = e.target;
+            thePaul61Layer.visible = checkbox.checked;
+            var is3D = theConfig.activeView.type === "3d";
+            if (checkbox.checked) {
+                if (is3D) {
+                    theConfig.sceneView.goTo(thePaul61Layer.fullExtent);
+                } else {
+                    theConfig.mapView.goTo(thePaul61Layer.fullExtent);
+                }
+            }
+
         }
 
       require(["esri/Map", 
@@ -500,6 +515,42 @@
         tourLabels.push(pauls1stLabelsLayer); // #0
         thePauls1stLabels = pauls1stLabelsLayer;
 
+        // Psul'd journeys after 61 CE
+        const pauls61LabelslabelClass = {
+          // autocasts as new LabelClass()
+          symbol: {
+            type: "text", // autocasts as new TextSymbol()
+            color: [255, 255, 255, 255],  // white
+            font: { family: "Arial Unicode MS", size: 16, weight: "bold" },
+            haloColor: [0, 0, 0, 255],  // black
+            haloSize: 2
+          },
+          labelPlacement: "above-center",
+          labelExpressionInfo: {
+            expression: "$feature.Name"
+          }
+        };        
+        const paul61Url = "data/Paul_61.geojson";
+        const paul61Renderer = {
+            type: "unique-value",
+            field: "Color",
+            uniqueValueInfos: [
+                {value: "grey", symbol: {type: "simple-marker", color: [127,127,127,0.75], size: 12}},
+                {value: "blue", symbol: {type: "simple-marker", color: [0,64,255,0.75], size: 12}},
+                {value: "green", symbol: {type: "simple-marker", color: [0,192,0,0.75], size: 12}}
+            ]
+        };
+        const paul61Layer = new GeoJSONLayer({
+            url: paul61Url,
+            copyright: "",
+            renderer: paul61Renderer,
+            opacity: 1,
+            labelingInfo: [pauls61LabelslabelClass],
+            popupTemplate: puTemplate,
+            visible: false
+        });
+        thePaul61Layer = paul61Layer;
+
 
 
         const watercolorBaseLayer = new WebTileLayer({
@@ -582,7 +633,17 @@
         var map = new Map({
             basemap: watercolorLayer,
             ground: "world-elevation",
-            layers: [romanLayer, pentecostLayer, pentecostLabelsLayer, spreadLayer, spreadLabelsLayer, philipLayer, philipLabelsLayer, pauls1stLayer, pauls1stLabelsLayer]
+            layers: [romanLayer, 
+                        pentecostLayer, 
+                        pentecostLabelsLayer, 
+                        spreadLayer, 
+                        spreadLabelsLayer, 
+                        philipLayer, 
+                        philipLabelsLayer, 
+                        pauls1stLayer, 
+                        pauls1stLabelsLayer,
+                        paul61Layer
+                    ]
         });
         theMap = map;
 
@@ -732,10 +793,13 @@
                 <input id="spreadCheck" type="checkbox" onchange="toggleSpread(event)">Spread of Good News
             </li>
             <li title="Philip's Journeys" >
-                <input id="spreadCheck" type="checkbox" onchange="togglePhilip(event)">Philip's Journeys
+                <input id="spreadCheck" type="checkbox" onchange="togglePhilip(event)">Philip's journeys
             </li>
             <li title="Paul's 1st Missionary tour" >
-                <input id="spreadCheck" type="checkbox" onchange="togglePauls1st(event,0)">Paul's 1st Missionary tour
+                <input id="spreadCheck" type="checkbox" onchange="togglePauls1st(event,0)">Paul's 1st missionary tour
+            </li>
+            <li title="Paul's Journeys After 61 C.E." >
+                <input id="spreadCheck" type="checkbox" onchange="togglePaul_61(event)">Paul's journeys after 61 C.E.
             </li>
         </ul>
     </div>

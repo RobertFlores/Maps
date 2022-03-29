@@ -1,0 +1,146 @@
+{
+	"type" : "FeatureCollection",
+	"name" : "Paul_61",
+	"features" : [
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -4.6346584412, 40.1593250623 ]
+			},
+			"properties" : {
+				"FID" : 0,
+				"Id" : 0,
+				"Name" : "Spain",
+				"Color" : "grey",
+				"Event" : "Rom. 15:24 (after c. 61 C.E.)"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 24.9136852961, 35.2120643809 ]
+			},
+			"properties" : {
+				"FID" : 1,
+				"Id" : 0,
+				"Name" : "Crete",
+				"Color" : "blue",
+				"Event" : "Tit. 1:5 (c. 61-64 C.E.)"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 27.2976129641, 37.5538348845 ]
+			},
+			"properties" : {
+				"FID" : 2,
+				"Id" : 0,
+				"Name" : "Miletus",
+				"Color" : "blue",
+				"Event" : "2 Tim. 4:20 (before c. 65 C.E.)"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 29.3083834597, 37.7345060798 ]
+			},
+			"properties" : {
+				"FID" : 3,
+				"Id" : 0,
+				"Name" : "Colossae",
+				"Color" : "grey",
+				"Event" : "Phm. 22 (Compare Col. 4:9 with Phm. 10-12.) (after 61 C.E.)"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 26.2090398116, 39.7749674903 ]
+			},
+			"properties" : {
+				"FID" : 4,
+				"Id" : 0,
+				"Name" : "Troas",
+				"Color" : "green",
+				"Event" : "2 Tim 4:13 (before c. 65 C.E.)"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 24.336123558, 41.0453475729 ]
+			},
+			"properties" : {
+				"FID" : 5,
+				"Id" : 0,
+				"Name" : "Philippi",
+				"Color" : "grey",
+				"Event" : "Php. 2:24 (after 61 C.E.)"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 22.1542236585, 40.386004855 ]
+			},
+			"properties" : {
+				"FID" : 6,
+				"Id" : 0,
+				"Name" : "Macedonia",
+				"Color" : "green",
+				"Event" : "1 Tim. 1:3 (c. 61-64 C.E.)"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 20.7424060764, 39.0699387015 ]
+			},
+			"properties" : {
+				"FID" : 7,
+				"Id" : 0,
+				"Name" : "Nicopolis",
+				"Color" : "green",
+				"Event" : "Tit. 3:12 (Paul was possibly arrested in Nicopolis c. 64 or 65 C.E.)"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 12.52819469, 41.9001424035 ]
+			},
+			"properties" : {
+				"FID" : 8,
+				"Id" : 0,
+				"Name" : "Rome",
+				"Color" : "#1353a0",
+				"Event" : "2 Tim. 1:17 (Paul’s second imprisonment, likely 65 C.E.)"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 27.3617864905, 37.9316115967 ]
+			},
+			"properties" : {
+				"FID" : 9,
+				"Id" : 0,
+				"Name" : "Ephesus",
+				"Color" : "green",
+				"Event" : "1 Tim. 1:3 (c. 61-64 C.E.)"
+			}
+		}
+	]
+}

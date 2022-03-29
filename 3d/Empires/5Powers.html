@@ -254,6 +254,7 @@
         var theGeneralsLegend;
         var thePentecostLayer;
         var thePentecostLines;
+        var theJerusalemLayer;
         var infoContent = [];
         
         function showLayer (index) {
@@ -346,6 +347,11 @@
             thePentecostLines.visible = checkbox.checked;
         }
 
+        function toggleJerusalem(e) {
+            var checkbox = e.target;
+            theJerusalemLayer.visible = checkbox.checked;
+        }
+
 
       require(["esri/Map", 
         "esri/layers/GeoJSONLayer", 
@@ -359,6 +365,18 @@
         "esri/layers/TileLayer"
         ], 
         (Map, GeoJSONLayer, SceneView, MapView, UI, esriConfig, Basemap, WebTileLayer, VectorTileLayer, TileLayer) => {
+        
+        const puTemplate = {
+          title: "{Name}",
+          content: [{
+            type: "media",
+            mediaInfos: [{
+                title: '{Caption}',
+                type: "image",
+                value: {sourceURL: '{Image}'}
+            }]
+          }]
+        };
 
         // Empire layers
 
@@ -539,6 +557,50 @@
         });
         theBreakupLayer = breakupLayer;
 
+        const jerusalemUrl = "data/KeyCities.geojson";
+        const jerusalemRenderer = {
+            type: "simple",
+
+            symbol: {
+                type: "simple-marker",
+                style: "circle",
+                color: "rgba(255,0,0,0.75)",
+                size: "6px",
+                outline: {
+                    color: [255,0,0,192],
+                    width: 4
+                }
+                
+            }
+        };
+
+        const jerusalemlabelClass = {
+          // autocasts as new LabelClass()
+          symbol: {
+            type: "text", // autocasts as new TextSymbol()
+            color: [255, 255, 255, 128],  // white
+            font: { family: "Arial Unicode MS", size: 12, weight: "bold" },
+            haloColor: [0,0,0, 128],  // black
+            haloSize: 1
+          },
+          labelPlacement: "above-center",
+          labelExpressionInfo: {
+            expression: "$feature.Name"
+          }
+        };
+
+        const jerusalemLayer = new GeoJSONLayer({
+            url: jerusalemUrl,
+            copyright: "",
+            renderer: jerusalemRenderer,
+            opacity: 0.6,
+            labelingInfo: [jerusalemlabelClass],
+            popupTemplate: puTemplate,
+            visible: false
+        })
+        // labels.push(exodusLabelsLayer); // #0
+        theJerusalemLayer = jerusalemLayer;
+
         const watercolorBaseLayer = new WebTileLayer({
             urlTemplate: "https://stamen-tiles-{subDomain}.a.ssl.fastly.net/watercolor/{level}/{col}/{row}.png",
             subDomains: ["a", "b", "c", "d"],
@@ -618,7 +680,16 @@
         var map = new Map({
             basemap: watercolorLayer,
             ground: "world-elevation",
-            layers: [babylonLayer, medoLayer, greecianLayer, romanLayer, britLayer, usaLayer, trekLayer, breakupLayer]
+            layers: [babylonLayer, 
+                    medoLayer, 
+                    greecianLayer, 
+                    romanLayer, 
+                    britLayer, 
+                    usaLayer, 
+                    trekLayer, 
+                    breakupLayer,
+                    jerusalemLayer
+                ]
         });
         theMap = map;
 
@@ -774,6 +845,9 @@
             </li>
             <li title="Breakup of Alexander's kingdom" >
                 <input id="trekCheck" type="checkbox" onchange="toggleBreakup(event)">Breakup of Alexander's kingdom
+            </li>
+            <li title="Key Cities" >
+                <input id="spreadCheck" type="checkbox" onchange="toggleJerusalem(event)">Key Cities
             </li>
         </ul>
     </div>

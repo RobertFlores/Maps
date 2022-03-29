@@ -1,0 +1,96 @@
+{
+	"type" : "FeatureCollection",
+	"name" : "KeyCities",
+	"features" : [
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 52.9498844207, 29.8743277368 ]
+			},
+			"properties" : {
+				"FID" : 0,
+				"Id" : 0,
+				"Name" : "Persepolis",
+				"Image" : " ",
+				"Caption" : " ",
+				"Event" : "A royal city built by Emperors Darius I, Xerxes I, and Artaxerxes Longimanus"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 48.2557098003, 32.1907084945 ]
+			},
+			"properties" : {
+				"FID" : 1,
+				"Id" : 0,
+				"Name" : "Shushan",
+				"Image" : "images/Esther and Haman.jpg",
+				"Caption" : "Xerxes (Ahasuerus) takes Esther as his queen. She plays a key role in the preservation of the Jews. \n(455 B.C.E.) Artaxerxes grants Nehemiah's request to be sent back to rebuild Jerusalem and its walls. Marks the start of the “seventy weeks” of years of Daniel's prophecy, pointing to Jesus' appearance as “Messiah the Leader” precisely on time - 29 C.E.",
+				"Event" : " "
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 44.4825441244, 32.4668599501 ]
+			},
+			"properties" : {
+				"FID" : 2,
+				"Id" : 0,
+				"Name" : "Babylon",
+				"Image" : "images/Babylon_invaded.jpg",
+				"Caption" : "On the very night a mystrious wrote on a wall words of judgment, the Medes and the Persians attacked. The Persian King Cyrus diverted the river so that his soldiers could march right up to the gates of the city. When they got there, the gates were open! The army stormed in, conquered the city, and killed the king. ",
+				"Event" : " "
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 48.5825194257, 34.7674939366 ]
+			},
+			"properties" : {
+				"FID" : 3,
+				"Id" : 0,
+				"Name" : "Ecbatana",
+				"Image" : "images/Return_to_Jerusalem.jpg",
+				"Caption" : "At Cyrus' summer residence in Ecbatana, a scroll was found with a memorandum establishing the legality of the temple work in Jerusalem. Ezra receives permission from King Artaxerxes to return to Jerusalem to advance worship of Jehovah there. That work was completed in the sixth year of Persian king Darius I",
+				"Event" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 35.2491800704, 31.7782080106 ]
+			},
+			"properties" : {
+				"FID" : 5,
+				"Id" : 0,
+				"Name" : "Jerusalem",
+				"Image" : "images/Walls_of_Jerusalem.jpg",
+				"Caption" : "Nehemiah, a servant of King Artaxerxes, was allowed to go to Jerusalem to help rebuild the city walls. The king also made Nehemiah governor of Judah and gave him wood for the city gates.",
+				"Event" : " "
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 35.2724546792, 31.7767378919 ]
+			},
+			"properties" : {
+				"FID" : 4,
+				"Id" : 0,
+				"Name" : "Jerusalem",
+				"Image" : "images/Reconstruction_of_temple.jpeg",
+				"Caption" : "c. 537 B.C.E. - Cyrus decreed that the temple be rebuilt",
+				"Event" : " "
+			}
+		}
+	]
+}
