@@ -58,6 +58,11 @@
         var tours = [];
         var tourLabels = [];
         var theRomanEmpire;
+        var magGlass;
+        var magOn = false;
+        var drawTool;
+        var drawOn = false;
+        var theSketch;
 
         
         function showLayer (index) {
@@ -211,6 +216,17 @@
 
         }
 
+        function toggleMagnifier(e) {
+            magOn = !magOn;
+            theConfig.mapView.magnifier.visible = magOn;
+
+        }
+
+        function toggleSketch(e) {
+            drawOn = !drawOn;
+            theSketch.visible = drawOn;
+        }
+
       require(["esri/Map", 
         "esri/layers/GeoJSONLayer", 
         "esri/views/SceneView", 
@@ -220,9 +236,12 @@
         "esri/Basemap",
         "esri/layers/WebTileLayer",
         "esri/layers/VectorTileLayer",
-        "esri/layers/TileLayer"
+        "esri/layers/TileLayer",
+        "esri/widgets/Sketch",
+        "esri/views/Magnifier",
+        "esri/layers/GraphicsLayer"
         ], 
-        (Map, GeoJSONLayer, SceneView, MapView, UI, esriConfig, Basemap, WebTileLayer, VectorTileLayer, TileLayer) => {
+        (Map, GeoJSONLayer, SceneView, MapView, UI, esriConfig, Basemap, WebTileLayer, VectorTileLayer, TileLayer, Sketch, Magnifier, GraphicsLayer) => {
 
         // popup template
         const puTemplate = {
@@ -630,6 +649,7 @@
         };
         theConfig = appConfig;
 
+        const graphicsLayer = new GraphicsLayer();
         var map = new Map({
             basemap: watercolorLayer,
             ground: "world-elevation",
@@ -642,7 +662,8 @@
                         philipLabelsLayer, 
                         pauls1stLayer, 
                         pauls1stLabelsLayer,
-                        paul61Layer
+                        paul61Layer,
+                        graphicsLayer
                     ]
         });
         theMap = map;
@@ -657,6 +678,42 @@
         // create 2D view and and set active
         appConfig.mapView = createView(initialViewParams, "2d");
         appConfig.activeView = appConfig.mapView;
+
+        // add sketch - 2D only here 
+        appConfig.mapView.when(() => {
+            const sketch = new Sketch({
+                layer: graphicsLayer,
+                view: appConfig.mapView,
+                // graphic will be selected as soon as it is created
+                 availableCreateTools: ["circle", "rectangle", "polygon"],
+                 defaultCreateOptions: "freehand",
+                creationMode: "update"
+            });
+            theSketch = sketch;
+            // const offset = appConfig.mapView.magnifier.size / 2;
+            appConfig.mapView.magnifier.visible = false;
+            appConfig.mapView.magnifier.offset = { x: 75, y: 75};
+            appConfig.mapView.magnifier.factor = 2;
+            appConfig.mapView.magnifier.size = 200;
+
+
+            appConfig.mapView.on("pointer-move", function (event) {
+                appConfig.mapView.magnifier.position = {x: event.x, y: event.y};
+            });
+
+
+            appConfig.mapView.ui.add(sketch, "top-right");
+            sketch.visible = false;
+            sketch.visibleElements = {
+                createTools: {
+                    point: false
+                },
+                selectionTools:{
+                    "lasso-selection": false
+                },
+                settingsMenu: false
+            }        
+        });
 
         // create 3D view, won't initialize until container is set
         initialViewParams.container = null;
@@ -693,11 +750,15 @@
                 appConfig.mapView.container = appConfig.container;
                 appConfig.activeView = appConfig.mapView;
                 switchButton.value = "3D";
+                magGlass.style.display = "block";
+                drawTool.style.display = "block";
           } else {
                 appConfig.sceneView.viewpoint = activeViewpoint;
                 appConfig.sceneView.container = appConfig.container;
                 appConfig.activeView = appConfig.sceneView;
                 switchButton.value = "2D";
+                magGlass.style.display = "none";
+                drawTool.style.display = "none";
           }
         }
 
@@ -808,10 +869,14 @@
         <input class="esri-component esri-widget-button esri-widget esri-interactive" type="button"
           id="switchButton" value="3D">
       </div>
-
+      <div id="magGlass" onclick="toggleMagnifier(event)" title="Magnifier"></div>
+      <div id="drawIcon" onclick="toggleSketch(event)" title="Draw Tools"></div>
+  
     <script>
         gallery = document.getElementById("galleryList");
         features = document.getElementById("dataList");
+        magGlass = document.getElementById("magGlass");
+        drawTool = document.getElementById("drawIcon");
     </script>
 
     <style>
