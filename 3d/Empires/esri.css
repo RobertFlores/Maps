@@ -133,3 +133,36 @@ body,
     display: none;
 }
 
+#magGlass {
+    position: absolute;
+    top: 90px;
+    left: 15px;
+    width: 32px;
+    height: 32px;
+    border: 1px solid lightgrey;
+    background-color: white;
+    background-image: url(images/white-magnifying-glass.png);
+    background-size: 75%;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    display: block;
+
+}
+#drawIcon {
+    position: absolute;
+    top: 124px;
+    left: 15px;
+    width: 32px;
+    height: 32px;
+    border: 1px solid lightgrey;
+    background-color: white;
+    background-image: url(images/drawIcon.png);
+    background-size: 75%;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    display: block;
+
+}
+

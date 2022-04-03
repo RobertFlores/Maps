@@ -197,8 +197,8 @@
             height: 154px;
             background-color: white;
             position: absolute;
-            left: 315px;
-            bottom: 45px;
+            left: 310px;
+            bottom: 40px;
             display: none;
             background-image: url(images/Generals.jpeg);
         }
@@ -226,10 +226,69 @@
         .scriptureHeading {
             color: blue;
             font-weight: bold;
+            cursor: pointer;
         }
         .infoContent {
             max-width: 550px;
         }
+        #magGlass {
+            position: absolute;
+            top: 90px;
+            left: 320px;
+            width: 32px;
+            height: 32px;
+            border: 1px solid lightgrey;
+            background-color: white;
+            background-image: url(images/white-magnifying-glass.png);
+            background-size: 75%;
+            background-repeat: no-repeat;
+            background-position: center;
+            cursor: pointer;
+            display: block;
+
+        }
+        #drawIcon {
+            position: absolute;
+            top: 124px;
+            left: 320px;
+            width: 32px;
+            height: 32px;
+            border: 1px solid lightgrey;
+            background-color: white;
+            background-image: url(images/drawIcon.png);
+            background-size: 75%;
+            background-repeat: no-repeat;
+            background-position: center;
+            cursor: pointer;
+            display: block;
+
+        }
+        #scripturesBox {
+            position: absolute;
+            left: 325px;
+            bottom: 250px;
+            min-width: 200px;
+            max-width: 700px;
+            min-height: 50px;           
+            border: 2px solid black;
+            padding: 0 0 10px 10px;
+            display: none;
+            background-color: white;
+        }
+        #closeScriptures {
+            padding: 0;
+            margin: 2px;
+            border: 1px solid grey;
+            float: right;
+            cursor: pointer;
+            font-family: "Comic Sans MS Bold","Comic Sans MS","Gill Sans", sans-serif!important;
+        }
+        #scriptures {
+            float: left;
+            margin: -10px 20px 0 0;
+            font-size: 20px!important;
+        }
+
 
     </style>
 
@@ -255,7 +314,15 @@
         var thePentecostLayer;
         var thePentecostLines;
         var theJerusalemLayer;
+        var theScriptures;
+        var theScripturesBox;
         var infoContent = [];
+        var scriptureText = [];
+        var magGlass;
+        var magOn = false;
+        var drawTool;
+        var drawOn = false;
+        var theSketch;
         
         function showLayer (index) {
             var is3D = theConfig.activeView.type === "3d";
@@ -352,6 +419,25 @@
             theJerusalemLayer.visible = checkbox.checked;
         }
 
+        function toggleMagnifier(e) {
+            magOn = !magOn;
+            theConfig.mapView.magnifier.visible = magOn;
+
+        }
+
+        function toggleSketch(e) {
+            drawOn = !drawOn;
+            theSketch.visible = drawOn;
+        }
+
+        function showScriptures (index) {
+            theScriptures.innerHTML = scriptureText[index];
+            theScripturesBox.style.display = "block";
+        }
+
+        function hideScriptures () {
+            theScripturesBox.style.display = "none";
+        }
 
       require(["esri/Map", 
         "esri/layers/GeoJSONLayer", 
@@ -362,9 +448,13 @@
         "esri/Basemap",
         "esri/layers/WebTileLayer",
         "esri/layers/VectorTileLayer",
-        "esri/layers/TileLayer"
+        "esri/layers/TileLayer",        
+        "esri/widgets/Sketch",
+        "esri/views/Magnifier",
+        "esri/layers/GraphicsLayer"
+
         ], 
-        (Map, GeoJSONLayer, SceneView, MapView, UI, esriConfig, Basemap, WebTileLayer, VectorTileLayer, TileLayer) => {
+        (Map, GeoJSONLayer, SceneView, MapView, UI, esriConfig, Basemap, WebTileLayer, VectorTileLayer, TileLayer, Sketch, Magnifier, GraphicsLayer) => {
         
         const puTemplate = {
           title: "{Name}",
@@ -677,6 +767,8 @@
             container: "viewDiv" // use same container for views
         };
         theConfig = appConfig;
+        const graphicsLayer = new GraphicsLayer();
+
         var map = new Map({
             basemap: watercolorLayer,
             ground: "world-elevation",
@@ -688,7 +780,8 @@
                     usaLayer, 
                     trekLayer, 
                     breakupLayer,
-                    jerusalemLayer
+                    jerusalemLayer,
+                    graphicsLayer
                 ]
         });
         theMap = map;
@@ -703,6 +796,42 @@
         // create 2D view and and set active
         appConfig.mapView = createView(initialViewParams, "2d");
         appConfig.activeView = appConfig.mapView;
+
+        // add sketch - 2D only here 
+        appConfig.mapView.when(() => {
+            const sketch = new Sketch({
+                layer: graphicsLayer,
+                view: appConfig.mapView,
+                // graphic will be selected as soon as it is created
+                 availableCreateTools: ["circle", "rectangle", "polygon"],
+                 defaultCreateOptions: "freehand",
+                creationMode: "update"
+            });
+            theSketch = sketch;
+            // const offset = appConfig.mapView.magnifier.size / 2;
+            appConfig.mapView.magnifier.visible = false;
+            appConfig.mapView.magnifier.offset = { x: 75, y: 75};
+            appConfig.mapView.magnifier.factor = 2;
+            appConfig.mapView.magnifier.size = 200;
+
+
+            appConfig.mapView.on("pointer-move", function (event) {
+                appConfig.mapView.magnifier.position = {x: event.x, y: event.y};
+            });
+
+
+            appConfig.mapView.ui.add(sketch, "top-right");
+            sketch.visible = false;
+            sketch.visibleElements = {
+                createTools: {
+                    point: false
+                },
+                selectionTools:{
+                    "lasso-selection": false
+                },
+                settingsMenu: false
+            }        
+        });
 
         // create 3D view, won't initialize until container is set
         initialViewParams.container = null;
@@ -739,11 +868,17 @@
                 appConfig.mapView.container = appConfig.container;
                 appConfig.activeView = appConfig.mapView;
                 switchButton.value = "3D";
+                magGlass.style.display = "block";
+                drawTool.style.display = "block";
+
           } else {
                 appConfig.sceneView.viewpoint = activeViewpoint;
                 appConfig.sceneView.container = appConfig.container;
                 appConfig.activeView = appConfig.sceneView;
                 switchButton.value = "2D";
+                magGlass.style.display = "none";
+                drawTool.style.display = "none";
+
           }
         }
 
@@ -858,6 +993,12 @@
     </div>
     <div id="generals"></div>
     <div id="assyriaGreeceInfo"></div>
+    <div id="scripturesBox">
+        <div id="closeScriptures" onclick="hideScriptures()">X</div>
+        <div id="scriptures"></div>
+    </div>
+    <div id="magGlass" onclick="toggleMagnifier(event)" title="Magnifier"></div>
+    <div id="drawIcon" onclick="toggleSketch(event)" title="Draw Tools"></div>
 
     <script>
         gallery = document.getElementById("galleryList");
@@ -890,9 +1031,18 @@
         features = document.getElementById("dataList");
         theGeneralsLegend = document.getElementById("generals");
         theAssyriaGreeceInfo = document.getElementById("assyriaGreeceInfo");
+        theScriptures = document.getElementById("scriptures");
+        theScripturesBox = document.getElementById("scripturesBox")
+        magGlass = document.getElementById("magGlass");
+        drawTool = document.getElementById("drawIcon");
 
-        infoContent[0] = "<div class='smallTitle'>TREASURES FROM GOD’S WORD | DANIEL 10-12</div><div class='largeTitle'>Jehovah Foresaw the Future of Kings</div><br/><div class='scriptureHeading'>11:2</div><div class='infoContent'>Four kings would stand up for Persia. The fourth would 'rouse up everything against the kingdom of Greece.'<ol><li>Cyrus the Great</li><li>Cambyses II</li><li>Darius I</li><li>Xerxes I (believed to be King Ahasuerus, who married Esther)</li></ol><div class='scriptureHeading'>11:3</div>A powerful king of Greece would arise and rule an extensive empire.<ul><li>Alexander the Great</li></ul><div class='scriptureHeading'>11:4</div>The Greek Empire would be divided among four of Alexander’s generals.<ol><li>Cassander</li><li>Lysimachus</li><li>Seleucus I</li><li>Ptolemy I</li></ol></div>";
+        infoContent[0] = "<div class='smallTitle'>TREASURES FROM GOD’S WORD | DANIEL 10-12</div><div class='largeTitle'>Jehovah Foresaw the Future of Kings</div><br/><div class='scriptureHeading' onclick='showScriptures(0)'>11:2</div><div class='infoContent'>Four kings would stand up for Persia. The fourth would 'rouse up everything against the kingdom of Greece.'<ol><li>Cyrus the Great</li><li>Cambyses II</li><li>Darius I</li><li>Xerxes I (believed to be King Ahasuerus, who married Esther)</li></ol><div class='scriptureHeading' onclick='showScriptures(1)'>11:3</div>A powerful king of Greece would arise and rule an extensive empire.<ul><li>Alexander the Great</li></ul><div class='scriptureHeading' onclick='showScriptures(2)'>11:4</div>The Greek Empire would be divided among four of Alexander’s generals.<ol><li>Cassander</li><li>Lysimachus</li><li>Seleucus I</li><li>Ptolemy I</li></ol></div>";
         theAssyriaGreeceInfo.innerHTML = infoContent[0];
+        scriptureText.push("<b>Daniel 11:2:</b> Look! Three more kings will stand up for Persia, and the fourth one will amass greater riches than all others. And when he becomes strong by means of his riches, he will rouse up everything against the kingdom of Greece.");
+        scriptureText.push("<b>Daniel 11:3:</b> And a mighty king will stand up and rule with extensive dominion and do as he pleases.");
+        scriptureText.push("<b>Daniel 11:4:</b> But when he has stood up, his kingdom will be broken and be divided toward the four winds of the heavens, but not to his descendants and not like the dominion with which he ruled; for his kingdom will be uprooted and go to others besides these.<br/><b>Daniel 11:5:</b> And the king of the south will become strong, that is, one of his princes; but one will prevail against him and will rule with extensive dominion, greater than that one’s ruling power.");
+        theScriptures.innerHTML = scriptureText[0];
+
     </script>
     
     
