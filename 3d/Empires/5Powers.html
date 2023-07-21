@@ -692,7 +692,7 @@
         theJerusalemLayer = jerusalemLayer;
 
         const watercolorBaseLayer = new WebTileLayer({
-            urlTemplate: "https://stamen-tiles-{subDomain}.a.ssl.fastly.net/watercolor/{level}/{col}/{row}.png",
+            urlTemplate: "https://stamen-tiles-{subDomain}.a.ssl.fastly.net/watercolor/{level}/{col}/{row}.jpg",
             subDomains: ["a", "b", "c", "d"],
             copyright:
                 'Map tiles by <a href="http://stamen.com/">Stamen Design</a>, ' +
@@ -707,7 +707,7 @@
             baseLayers: [watercolorBaseLayer],
             title: "Watercolor",
             id: "watercolor",
-            thumbnailUrl: "https://stamen-tiles.a.ssl.fastly.net/watercolor/10/177/409.png"
+            thumbnailUrl: "../../map_images/watercolor.png"
         });
         watercolorLayer = watercolor;
 
@@ -943,7 +943,7 @@
                 <img alt="Charted Territory Map" class="esri-basemap-gallery__item-thumbnail" src="https://www.arcgis.com/sharing/rest/content/items/d582a9e953c44c09bb998c7d9b66f8d4/info/thumbnail/ChartedTerritory_T2_600x400_thumb.jpg?f=json">
             </li>
             <li onclick="changeBasemap('watercolor')" title="Watercolor">
-                <img alt="" class="esri-basemap-gallery__item-thumbnail" src="https://stamen-tiles.a.ssl.fastly.net/watercolor/10/177/409.png">
+                <img alt="" class="esri-basemap-gallery__item-thumbnail" src="../../map_images/watercolor.png">
             </li>
             <li onclick="changeBasemap('watercolor2')" title="Watercolor 2">
                 <img alt="" class="esri-basemap-gallery__item-thumbnail" src="../../map_images/watercolor2.png">
