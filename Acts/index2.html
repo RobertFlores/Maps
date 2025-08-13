@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Acts of the Apostles</title>
+    <link
+      rel="stylesheet"
+      href="https://js.arcgis.com/4.23/esri/themes/light/main.css"/>
+    <link rel="stylesheet" href="acts.css"  />
+
+    <script src="https://js.arcgis.com/4.23/"></script>
+
+    <script>
+
+
+        require(["esri/Map", 
+        "esri/layers/GeoJSONLayer", 
+        "esri/views/SceneView", 
+        "esri/views/MapView",
+        "esri/views/ui/UI", 
+        "esri/config",
+        "esri/Basemap",
+        "esri/layers/WebTileLayer",
+        "esri/layers/VectorTileLayer",
+        "esri/layers/TileLayer",
+        "esri/widgets/Sketch",
+        "esri/views/Magnifier",
+        "esri/layers/GraphicsLayer"
+        ], 
+        (Map, GeoJSONLayer, SceneView, MapView, UI, esriConfig, Basemap, WebTileLayer, VectorTileLayer, TileLayer, Sketch, Magnifier, GraphicsLayer) => {
+
+
+            esriConfig.apiKey = "AAPKe5fcea6dfd22406bb18190ba0b202ce8GojQ3I4PUpCZPEtliruqUxWVSBBCUeuCTlnUv8td5pAhtznoxe5gQckABM6xac_q";
+            
+            const watercolorBaseLayer = new WebTileLayer({
+            urlTemplate: "https://tiles.stadiamaps.com/tiles/stamen_watercolor/{z}/{x}/{y}.jpg?api_key=a1d3467e-680e-443c-8f7a-5e53392bcb8f",
+            subDomains: ["a", "b", "c", "d"],
+            apikey: "a1d3467e-680e-443c-8f7a-5e53392bcb8f",
+            copyright:
+                'Map tiles by <a href="http://stamen.com/">Stamen Design</a>, ' +
+                'under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. ' +
+                'Data by <a href="http://openstreetmap.org/">OpenStreetMap</a>, ' +
+                'under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.'
+            });
+
+                // Create a Basemap with the WebTileLayer. The thumbnailUrl will be used for
+                // the image in the BasemapToggle widget.
+                const watercolor = new Basemap({
+                baseLayers: [watercolorBaseLayer],
+                title: "Watercolor",
+                id: "watercolor",
+                thumbnailUrl: "../map_images/watercolor.png"
+            });
+            const watercolorLayer = watercolor;
+
+
+            const graphicsLayer = new GraphicsLayer();
+            var map = new Map({
+                basemap: "arcgis-streets",
+                layers: [
+                            graphicsLayer
+                        ]
+            });
+            theMap = map;
+            const view = new MapView({
+                container: "viewDiv", // Reference to the HTML div
+                map: map,
+                center: [-118.805, 34.027], // Longitude, latitude
+                zoom: 13
+            });            // map.container = "viewDiv";
+
+            // var initialViewParams = {
+            //     map: map,
+            //     zoom: 5,
+            //     center: [27, 30],
+            //     container: appConfig.container
+            // };
+
+
+        });
+
+
+    </script>
+</head>
+<body>
+<div id="mainBox" ><div id="viewDiv"></div></div>  
+<div id="menuBar"></div>  
+</body>
+</html>

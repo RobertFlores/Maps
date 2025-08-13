@@ -19,7 +19,7 @@
     href="esri.css"
   />
 
-    <script src="https://js.arcgis.com/4.22/"></script>
+    <script src="https://js.arcgis.com/4.23/"></script>
 
     <script>
         var layers = [];
@@ -573,8 +573,9 @@
 
 
         const watercolorBaseLayer = new WebTileLayer({
-            urlTemplate: "https://stamen-tiles-{subDomain}.a.ssl.fastly.net/watercolor/{level}/{col}/{row}.jpg",
+            urlTemplate: "https://tiles.stadiamaps.com/tiles/stamen_watercolor/{z}/{x}/{y}.jpg?api_key=a1d3467e-680e-443c-8f7a-5e53392bcb8f",
             subDomains: ["a", "b", "c", "d"],
+            apikey: "a1d3467e-680e-443c-8f7a-5e53392bcb8f",
             copyright:
                 'Map tiles by <a href="http://stamen.com/">Stamen Design</a>, ' +
                 'under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. ' +
@@ -607,7 +608,7 @@
         watercolor2Layer = watercolor2;
 
         const terrainBaseLayer = new WebTileLayer({
-            urlTemplate: "https://stamen-tiles-{subDomain}.a.ssl.fastly.net/terrain-background/{level}/{col}/{row}.png",
+            urlTemplate: "https://tiles.stadiamaps.com/tiles/stamen_terrain/{z}/{x}/{y}{r}.png",
             subDomains: ["a", "b", "c", "d"],
             copyright:
                 'Map tiles by <a href="http://stamen.com/">Stamen Design</a>, ' +
@@ -637,6 +638,7 @@
         });
         reliefLayer = reliefBase;
 
+
         esriConfig.apiKey = "AAPKe5fcea6dfd22406bb18190ba0b202ce8GojQ3I4PUpCZPEtliruqUxWVSBBCUeuCTlnUv8td5pAhtznoxe5gQckABM6xac_q";
 
         var swapButton = document.getElementById("switchButton");
@@ -651,7 +653,7 @@
 
         const graphicsLayer = new GraphicsLayer();
         var map = new Map({
-            basemap: watercolorLayer2,
+            basemap: reliefLayer,
             ground: "world-elevation",
             layers: [romanLayer, 
                         pentecostLayer, 
@@ -827,7 +829,7 @@
                 <img alt="" class="esri-basemap-gallery__item-thumbnail" src="https://www.arcgis.com/sharing/rest/content/items/8d91bd39e873417ea21673e0fee87604/info/thumbnail/thumbnail1580490916023.jpeg?f=json">
             </li>
             <li onclick="changeBasemap('terrain')" title="Stamen Terrain">
-                <img alt="tamen Terrain" class="esri-basemap-gallery__item-thumbnail" src="https://stamen-tiles.a.ssl.fastly.net/terrain-background/10/177/409.png">   
+                <img alt="tamen Terrain" class="esri-basemap-gallery__item-thumbnail" src="https://tiles.stadiamaps.com/tiles/stamen_terrain/10/177/409.png">   
             </li>
             <li onclick="changeBasemap('relief')" title="Streets">
                 <img alt="Streets" class="esri-basemap-gallery__item-thumbnail" src="../../map_images/ReliefBaseMap.png">

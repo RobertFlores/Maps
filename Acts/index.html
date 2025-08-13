@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>Simple Map</title>
+    <link rel="stylesheet" href="https://js.arcgis.com/4.33/esri/themes/light/main.css" />
+    <link rel="stylesheet" href="style.css"  />
+
+    <script src="https://js.arcgis.com/4.33/"></script>
+    <script>
+        var layers = [];
+        var labels = [];
+        var buttons = [];
+        var theMap;
+        var theView;
+        var basemaps = [];
+        var watercolorLayer;
+        var watercolor2Layer;
+        var openCycleLayer;
+        var neighborhoodLayer;
+        var landscapeLayer;
+        var mapGalleryOn = false;
+        var gallery;
+        var originalPath;
+        var theLegend;
+
+    </script>
+    <script type="module">
+
+
+
+        const [Map, MapView, GeoJSONLayer, Basemap, WebTileLayer, VectorTileLayer, TileLayer, Legend] = await $arcgis.import([
+            "@arcgis/core/Map.js",
+            "@arcgis/core/views/MapView.js",
+            "@arcgis/core/layers/GeoJSONLayer",
+            "@arcgis/core/Basemap",
+            "@arcgis/core/layers/WebTileLayer",
+            "@arcgis/core/layers/VectorTileLayer",
+            "@arcgis/core/layers/TileLayer",
+            "@arcgis/core/widgets/Legend"
+        ]);
+
+
+        // Area for files and creating layer files
+        // Begin
+
+        const fvUrl = "data/FrenchValleyBoundary.geojson";
+        var frenchValley;
+        
+        const fvRenderer = {
+            type: "simple",
+
+            symbol: {
+                type: "simple-fill",
+                color: [255,0,127, 0.05],
+                outline: {
+                  color: [255,0,127, .65],
+                  width: "6px"
+                }                
+            }
+        };
+        const fvLayer = new GeoJSONLayer({
+            url: fvUrl,
+            copyright: "",
+            renderer: fvRenderer,
+            title: "French Valley Boundary",
+            // popupTemplate: congTemplate,
+            opacity: 0.5,
+            visible: true
+        });
+        frenchValley = fvLayer;
+        layers.push(fvLayer);
+        const labelClass = {
+            labelExpressionInfo: { expression: "$feature.Name" },
+            symbol: {
+                type: "text",  // autocasts as new TextSymbol()
+                color: [255, 255, 255, 128],  // white
+                font: { family: "Arial Unicode MS", size: 12, weight: "bold" },
+                haloColor: [128,0,0, 128],  // black
+                haloSize: 1
+            }
+        };
+        fvLayer.labelingInfo = [ labelClass ];
+
+
+        // End layer area
+
+
+        // create alternate basemaps
+        const watercolorBaseLayer = new WebTileLayer({
+            urlTemplate: "https://tiles.stadiamaps.com/tiles/stamen_watercolor/{z}/{x}/{y}.jpg?api_key=a1d3467e-680e-443c-8f7a-5e53392bcb8f",
+            subDomains: ["a", "b", "c", "d"],
+            apikey: "a1d3467e-680e-443c-8f7a-5e53392bcb8f",
+            copyright:
+                'Map tiles by <a href="http://stamen.com/">Stamen Design</a>, ' +
+                'under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. ' +
+                'Data by <a href="http://openstreetmap.org/">OpenStreetMap</a>, ' +
+                'under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.'
+        });
+
+            // Create a Basemap with the WebTileLayer. The thumbnailUrl will be used for
+            // the image in the BasemapToggle widget.
+            const watercolor = new Basemap({
+            baseLayers: [watercolorBaseLayer],
+            title: "Watercolor",
+            id: "watercolor",
+            thumbnailUrl: "../../map_images/watercolor.png"
+        });
+        watercolorLayer = watercolor;
+
+        const watercolorLayer2 = new VectorTileLayer({
+            portalItem: {
+                id: "fdf540eef40344b79ead3c0c49be76a9"
+            },
+            opacity: 1
+        });
+        const watercolor2 = new Basemap({
+            baseLayers: [watercolorLayer2],
+            title: "Watercolor 2",
+            id: "watercolor2",
+            thumbnailUrl: "../../map_images/watercolor2.png"
+        });
+        watercolor2Layer = watercolor2;
+
+        const cycleMapBaseLayer = new WebTileLayer({
+            urlTemplate: "https://tile.thunderforest.com/cycle/{z}/{x}/{y}.png?apikey=b0c68cba245842aaa4cb6064900cea6a",
+            subDomains: ["a", "b", "c", "d"],
+            apiKey: 'b0c68cba245842aaa4cb6064900cea6a',
+            copyright:
+                'Map tiles by <a href="thunderforest.com/">OpenCycleMap</a>, ' 
+        });
+
+        const openCycleMap = new Basemap({
+            baseLayers: [cycleMapBaseLayer],
+            title: "cycleOpenMap",
+            id: "cycleOpenMap"
+        });
+        openCycleLayer = openCycleMap;
+
+        const neighborhoodBaseLayer = new WebTileLayer({
+            urlTemplate: "https://tile.thunderforest.com/neighbourhood/{z}/{x}/{y}.png?apikey=b0c68cba245842aaa4cb6064900cea6a",
+            subDomains: ["a", "b", "c", "d"],
+            apiKey: 'b0c68cba245842aaa4cb6064900cea6a',
+            copyright:
+                'Map tiles by <a href="thunderforest.com/">Thunderforest Neighbourhood Map</a>, ' 
+        });
+
+        const neighborhoodMap = new Basemap({
+            baseLayers: [neighborhoodBaseLayer],
+            title: "neighborhoodMap",
+            id: "neighborhoodMap"
+        });
+        neighborhoodLayer = neighborhoodMap;
+
+        const landscapeBaseLayer = new WebTileLayer({
+            urlTemplate: "https://tile.thunderforest.com/landscape/{z}/{x}/{y}.png?apikey=b0c68cba245842aaa4cb6064900cea6a",
+            subDomains: ["a", "b", "c", "d"],
+            apiKey: 'b0c68cba245842aaa4cb6064900cea6a',
+            copyright:
+                'Map tiles by <a href="thunderforest.com/">Thunderforest Landscape Map</a>, ' 
+        });
+
+        const landscapeMap = new Basemap({
+            baseLayers: [landscapeBaseLayer],
+            title: "landscapeMap",
+            id: "landscapeMap"
+        });
+        landscapeLayer = landscapeMap;
+
+
+
+
+        // create MapView and Map
+        const map = new Map({
+            basemap: "topo-vector",
+            layers: [fvLayer]
+        });
+        theMap = map;
+
+        const view = new MapView({
+            container: "viewDiv",
+            map: map,
+            zoom: 12,
+            center: [-117.079, 33.579] // longitude, latitude
+        });
+        theView = view;
+
+
+
+
+        var esriConfig = {
+            apiKey: "AAPKe5fcea6dfd22406bb18190ba0b202ce8GojQ3I4PUpCZPEtliruqUxWVSBBCUeuCTlnUv8td5pAhtznoxe5gQckABM6xac_q",
+        };
+
+
+
+        // set up coords widget
+        var coordsWidget = document.createElement("div");
+        coordsWidget.id = "coordsWidget";
+        coordsWidget.className = "esri-widget esri-component";
+        coordsWidget.style.padding = "2px 5px";
+        coordsWidget.style.margin = "0 0 -12px -12px";
+        coordsWidget.style.opacity = 0.8;
+        coordsWidget.style.fontSize = "12px";
+
+        theView.ui.add(coordsWidget, "bottom-right");
+
+        function showCoordinates(pt) {
+            var coords =
+                "Lat/Lon: " +
+            pt.latitude.toFixed(3) +
+                ", " +
+            pt.longitude.toFixed(3) +
+                "  |  Scale: 1:" +
+            Math.round(theView.scale * 1) / 1 +
+                "  |  Zoom: " +
+                theView.zoom;
+            coordsWidget.innerHTML = coords;
+        }
+
+        theView.on("pointer-move", function (evt) {
+            showCoordinates(theView.toMap({ x: evt.x, y: evt.y }));
+         });
+
+         theLegend = new Legend ({
+            view: theView
+         });
+         theView.ui.add(theLegend, "bottom-left");
+
+        // theMap.on("load", theMap.basemap = "streets-relief-vector");
+
+
+
+
+    </script>
+    
+  </head>
+
+  <body>
+
+    <div id="mainBox" ><div id="viewDiv"></div></div>  
+
+    <div id="galleryBox" class="galleryList">
+
+        <ul id="galleryUL">
+            <li onclick="changeBasemap('satellite',0)" title="Imagery">
+                <img alt="Imagery" class="esri-basemap-gallery__item-thumbnail" src="https://www.arcgis.com/sharing/rest/content/items/86de95d4e0244cba80f0fa2c9403a7b2/info/thumbnail/thumbnail1591224931210.jpeg?f=json">
+            </li>
+            <li onclick="changeBasemap('gray-vector',1)" title="Light Gray Map">
+                <img alt="" class="esri-basemap-gallery__item-thumbnail" src="https://www.arcgis.com/sharing/rest/content/items/de45b9cad20141ebb82fae0da8b3e2c6/info/thumbnail/lightgray_thumb_b2wm.jpg?f=json">
+            </li>
+            <li onclick="changeBasemap('watercolor',2)" title="Watercolor">
+                <img alt="" class="esri-basemap-gallery__item-thumbnail" src="images/watercolor.png">
+            </li>
+            <li onclick="changeBasemap('watercolor2',3)" title="Watercolor 2">
+                <img alt="" class="esri-basemap-gallery__item-thumbnail" src="images/watercolor2.png">
+            </li>
+            <li onclick="changeBasemap('streets-relief-vector',4)" title="Streets">
+                <img alt="Streets" class="esri-basemap-gallery__item-thumbnail" src="https://www.arcgis.com/sharing/rest/content/items/f81bc478e12c4f1691d0d7ab6361f5a6/info/thumbnail/street_thumb_b2wm.jpg?f=json">
+            </li>
+            <li onclick="changeBasemap('landscape',5)" title="Thunderforest Landscape Map">
+                    <img alt="Landscape Map" class="esri-basemap-gallery__item-thumbnail" src="images/LandscapeMap.png">
+            </li>
+            <li onclick="changeBasemap('osm',6)" title="OpenStreetMap">
+                <img alt="OpenStreetMap" class="esri-basemap-gallery__item-thumbnail" src="https://www.arcgis.com/sharing/rest/content/items/c29cfb7875fc4b97b58ba6987c460862/info/thumbnail/thumbnail1547740877120.jpeg?f=json">   
+            </li>
+            <li onclick="changeBasemap('neighbourhood',7)" title="Thunderforest Neighbourhood Map">
+                <img alt="Neighbourhood Map" class="esri-basemap-gallery__item-thumbnail" src="images/Neighborhood.png">
+            </li>
+            <li onclick="changeBasemap('openCycleMap',8)" title="OpenCycleMap">
+                <img alt="OpenCycleMap" class="esri-basemap-gallery__item-thumbnail" src="images/openCycleMap.png">
+            </li>
+            <li onclick="changeBasemap('topo-vector',9)" title="Topo">
+                <img alt="" class="esri-basemap-gallery__item-thumbnail" src="images/usgsTopoMap.jpeg" style="border-color: red" >
+            </li>
+        </ul>
+    </div>
+    <div id="menuBar"></div> 
+    <div id="showGallery" onclick="toggleMapGallery()">Map Style <image id="galleryButton" /></div> 
+
+
+    <style>
+        .esri-basemap-gallery__item-thumbnail {
+            height: 100px;
+            width: 100px;
+            object-fit: cover;
+            margin: 5px;
+            border: 2px solid black;
+            border-radius: 10px;
+        }
+        .esri-popup__main-container {
+            max-height: 500px!important;
+        }
+        .esri-popup__footer  {
+            display: none;
+        }
+        .esri-ui-bottom-left .esri-component.esri-legend.esri-widget--panel  {
+            width: 200px!important;
+        }
+        #showGallery {
+            color: black; 
+            background-color: white; 
+            border: 1px solid white; 
+            position: absolute; 
+            right: 0; 
+            top: 0;
+            z-index: 1;
+            width: 100px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        #galleryTitle {
+            font-weight: bold;
+            float: left;
+            margin-left: 15px;
+        }
+        #galleryBox, .galleryList {
+            color: black; 
+            background-color: white; 
+            position: absolute; 
+            right: 10px; 
+            top: 40px;
+            width: 300px;
+            text-align: center;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            border: solid gray 2px;
+            display: none;
+            border-radius: 15px;
+
+        }        
+        #galleryBox ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            margin-top: 2px;
+            display: inline-block;
+        }
+        #galleryBox ul li{
+            cursor: pointer;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 13px;
+            display: inline-flex;
+        }
+        #galleryButton {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            float: right;
+            width: 16px;
+            height: 16px;
+            border: none;
+            background-color: white;
+            background-image: url(images/angle-double-down_1.png);
+            background-size: 75%;
+            background-repeat: no-repeat;
+            background-position: center;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        gallery = document.getElementById("galleryBox");
+        galleryUL = document.getElementById("galleryUL");
+        galleryButton = document.getElementById("galleryButton");
+        var locRef = window.location.href;
+        var lastIndex = locRef.lastIndexOf("/");
+        originalPath = locRef.substring(0,lastIndex);
+
+
+        function toggleMapGallery() {
+            mapGalleryOn = !mapGalleryOn;
+            if (mapGalleryOn) {
+                gallery.style.display = "block";
+                galleryButton.style.backgroundImage = "url(" + originalPath + "/images/angle-double-up_1.png)";
+            } else {
+                gallery.style.display = "none";
+                galleryButton.style.backgroundImage = "url(" + originalPath + "/images/angle-double-down_1.png)";
+            }
+        }
+
+        function changeBasemap (name, index) {
+            switch (name) {
+                case "watercolor" :
+                    name = watercolorLayer;
+                    break;
+                case "watercolor2": 
+                    name = watercolor2Layer;
+                    break;
+                case "openCycleMap":
+                    name = openCycleLayer;
+                    break;
+                case "landscape": 
+                    name = landscapeLayer;
+                    break;
+                case "neighbourhood": 
+                    name = neighborhoodLayer;
+                    break;
+            }
+
+            theMap.basemap = name;
+            var list = galleryUL.children;
+            for (i=0;i<list.length;i++) {
+                var image = list[i].children[0];
+                if (i == index) {
+                    image.style.borderColor = "#ff0099";
+                } else {
+                    image.style.borderColor = "#888888";
+                }
+            }
+
+        }
+
+    </script>
+
+
+  </body>
+</html>
