@@ -277,7 +277,7 @@
         </ul>
     </div>
     <div id="menuBar"></div> 
-    <div id="showGallery" onclick="toggleMapGallery()">Map Style <image id="galleryButton" /></div> 
+    <div id="showGallery" onclick="toggleMapGallery()"><div id="galleryMemu">Map Style</div><image id="galleryButton" /></div> 
 
 
     <style>
@@ -308,7 +308,7 @@
             right: 0; 
             top: 0;
             z-index: 1;
-            width: 100px;
+            width: 150px;
             cursor: pointer;
             font-weight: bold;
         }
@@ -348,8 +348,8 @@
         #galleryButton {
             position: absolute;
             top: 5px;
-            right: 5px;
-            float: right;
+            left: 5px;
+            float: left;
             width: 16px;
             height: 16px;
             border: none;
@@ -359,6 +359,11 @@
             background-repeat: no-repeat;
             background-position: center;
             cursor: pointer;
+        }
+        #galleryMemu {
+            position: absolute;
+            left: 25px;
+            top: 0px;
         }
     </style>
     <script>
