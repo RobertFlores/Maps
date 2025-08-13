@@ -24,6 +24,7 @@
         var gallery;
         var originalPath;
         var theLegend;
+        var legOn = true;
 
     </script>
     <script type="module">
@@ -278,7 +279,7 @@
     </div>
     <div id="menuBar"></div> 
     <div id="showGallery" onclick="toggleMapGallery()"><div id="galleryMemu">Map Style</div><image id="galleryButton" /></div> 
-
+    <div id="legendButton" onclick="toggleLegend(event)" title="Legend"></div>
 
     <style>
         .esri-basemap-gallery__item-thumbnail {
@@ -365,6 +366,22 @@
             left: 25px;
             top: 0px;
         }
+        #legendButton {
+            position: absolute;
+            top: 115px;
+            left: 15px;
+            width: 32px;
+            height: 32px;
+            border: 1px solid lightgrey;
+            background-color: white;
+            background-image: url(images/list.jpeg);
+            background-size: 75%;
+            background-repeat: no-repeat;
+            background-position: center;
+            cursor: pointer;
+            display: block;
+        }
+
     </style>
     <script>
         gallery = document.getElementById("galleryBox");
@@ -417,6 +434,13 @@
             }
 
         }
+
+        function toggleLegend(e) {
+            legOn = !legOn;
+            theLegend.visible = legOn;
+
+        }
+
 
     </script>
 
