@@ -300,6 +300,7 @@
     <div id="menuBar"></div> 
     <div id="showGallery" onclick="toggleMapGallery()"><div id="galleryMemu">Map Style</div><image id="galleryButton" /></div> 
     <div id="legendButton" onclick="toggleLegend(event)" title="Legend"></div>
+    <div id="menuButton" title="Menu"></div>
 
     <style>
         .esri-basemap-gallery__item-thumbnail {
@@ -353,7 +354,6 @@
             border-radius: 15px;
             overflow-y: auto;
             max-height: calc(100% - 90px);
-
         }        
         #galleryBox ul {
             list-style-type: none;
@@ -402,6 +402,20 @@
             background-position: center;
             cursor: pointer;
             display: block;
+        }
+        #menuButton {
+            position: absolute;
+            top: 0;
+            left: 10px;
+            width: 32px;
+            height: 28px;            
+            border: none;
+            background-color: white;
+            background-image: url(images/menu_icon.png);
+            background-size: 75%;
+            background-repeat: no-repeat;
+            background-position: center;
+            cursor: pointer;
         }
 
     </style>
