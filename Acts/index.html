@@ -230,7 +230,12 @@
          });
          theView.ui.add(theLegend, "bottom-left");
 
-        // theMap.on("load", theMap.basemap = "streets-relief-vector");
+        // To change starting base map, set name/object (Esri basemmaps in quotes, defined basemaps as unquoted object) 
+        // then uncomment the following line
+
+        // theMap.on("load", changeBasemap (name));
+
+        // Basemap change end
 
         
         function hideLegend() {
@@ -260,34 +265,34 @@
     <div id="galleryBox" class="galleryList">
 
         <ul id="galleryUL">
-            <li onclick="changeBasemap('satellite',0)" title="Imagery">
+            <li id="satellite" onclick="changeBasemap('satellite')" title="Imagery">
                 <img alt="Imagery" class="esri-basemap-gallery__item-thumbnail" src="https://www.arcgis.com/sharing/rest/content/items/86de95d4e0244cba80f0fa2c9403a7b2/info/thumbnail/thumbnail1591224931210.jpeg?f=json">
             </li>
-            <li onclick="changeBasemap('gray-vector',1)" title="Light Gray Map">
+            <li id="gray-vector" onclick="changeBasemap('gray-vector')" title="Light Gray Map">
                 <img alt="" class="esri-basemap-gallery__item-thumbnail" src="https://www.arcgis.com/sharing/rest/content/items/de45b9cad20141ebb82fae0da8b3e2c6/info/thumbnail/lightgray_thumb_b2wm.jpg?f=json">
             </li>
-            <li onclick="changeBasemap('watercolor',2)" title="Watercolor">
+            <li id="watercolor" onclick="changeBasemap('watercolor')" title="Watercolor">
                 <img alt="" class="esri-basemap-gallery__item-thumbnail" src="images/watercolor.png">
             </li>
-            <li onclick="changeBasemap('watercolor2',3)" title="Watercolor 2">
+            <li id="watercolor2" onclick="changeBasemap('watercolor2')" title="Watercolor 2">
                 <img alt="" class="esri-basemap-gallery__item-thumbnail" src="images/watercolor2.png">
             </li>
-            <li onclick="changeBasemap('streets-relief-vector',4)" title="Streets">
+            <li id="streets-relief-vector" onclick="changeBasemap('streets-relief-vector')" title="Streets">
                 <img alt="Streets" class="esri-basemap-gallery__item-thumbnail" src="https://www.arcgis.com/sharing/rest/content/items/f81bc478e12c4f1691d0d7ab6361f5a6/info/thumbnail/street_thumb_b2wm.jpg?f=json">
             </li>
-            <li onclick="changeBasemap('landscape',5)" title="Thunderforest Landscape Map">
+            <li id="landscape" onclick="changeBasemap('landscape')" title="Thunderforest Landscape Map">
                     <img alt="Landscape Map" class="esri-basemap-gallery__item-thumbnail" src="images/LandscapeMap.png">
             </li>
-            <li onclick="changeBasemap('osm',6)" title="OpenStreetMap">
+            <li id="osm" onclick="changeBasemap('osm')" title="OpenStreetMap">
                 <img alt="OpenStreetMap" class="esri-basemap-gallery__item-thumbnail" src="https://www.arcgis.com/sharing/rest/content/items/c29cfb7875fc4b97b58ba6987c460862/info/thumbnail/thumbnail1547740877120.jpeg?f=json">   
             </li>
-            <li onclick="changeBasemap('neighbourhood',7)" title="Thunderforest Neighbourhood Map">
+            <li id="neighbourhood" onclick="changeBasemap('neighbourhood')" title="Thunderforest Neighbourhood Map">
                 <img alt="Neighbourhood Map" class="esri-basemap-gallery__item-thumbnail" src="images/Neighborhood.png">
             </li>
-            <li onclick="changeBasemap('openCycleMap',8)" title="OpenCycleMap">
+            <li id="openCycleMap" onclick="changeBasemap('openCycleMap')" title="OpenCycleMap">
                 <img alt="OpenCycleMap" class="esri-basemap-gallery__item-thumbnail" src="images/openCycleMap.png">
             </li>
-            <li onclick="changeBasemap('topo-vector',9)" title="Topo">
+            <li id="topo-vector" onclick="changeBasemap('topo-vector')" title="Topo">
                 <img alt="" class="esri-basemap-gallery__item-thumbnail" src="images/usgsTopoMap.jpeg" style="border-color: red" >
             </li>
         </ul>
@@ -419,7 +424,8 @@
             }
         }
 
-        function changeBasemap (name, index) {
+        function changeBasemap (name) {
+            //convert string to object if defined basemap (non-Esri)
             switch (name) {
                 case "watercolor" :
                     name = watercolorLayer;
@@ -437,12 +443,15 @@
                     name = neighborhoodLayer;
                     break;
             }
-
             theMap.basemap = name;
+
+            //highlight selected basemap image in gallery
             var list = galleryUL.children;
             for (i=0;i<list.length;i++) {
-                var image = list[i].children[0];
-                if (i == index) {
+                var item = list[i];
+                var image = litem.children[0];
+                var itemID = item.id;
+                if (itemID = name) {
                     image.style.borderColor = "#ff0099";
                 } else {
                     image.style.borderColor = "#888888";
