@@ -25,6 +25,7 @@
         var originalPath;
         var theLegend;
         var legOn = true;
+        var legButton;
 
     </script>
     <script type="module">
@@ -231,6 +232,20 @@
 
         // theMap.on("load", theMap.basemap = "streets-relief-vector");
 
+        
+        function hideLegend() {
+            legButton.style.display = "none";
+            legOn = false;
+            theLegend.visible = legOn;
+        }
+
+        // To hide legend and button (no layers), uncomment the following line
+
+        // theMap.on("load", hideLegend());
+
+        // hide legend and button end
+
+
 
 
 
@@ -387,6 +402,7 @@
         gallery = document.getElementById("galleryBox");
         galleryUL = document.getElementById("galleryUL");
         galleryButton = document.getElementById("galleryButton");
+        legButton = document.getElementById("legendButton")
         var locRef = window.location.href;
         var lastIndex = locRef.lastIndexOf("/");
         originalPath = locRef.substring(0,lastIndex);
@@ -440,6 +456,7 @@
             theLegend.visible = legOn;
 
         }
+
 
 
     </script>
