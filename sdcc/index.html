@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>San Diego Convention Center</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+
+      arcgis-map {
+        flex: 1;
+      }
+
+      .key {
+        display: inline-block;
+        padding: 0.3em 0.6em;
+        margin: 0 2px;
+        font-family: monospace;
+        color: var(--calcite-ui-text-2);
+        background-color: var(--calcite-ui-foreground-1);
+        border: 1px solid var(--calcite-ui-border-1);
+        border-radius: 3px;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+      }
+
+      #shortcuts table {
+        margin: 0.5em;
+      }
+
+      #shortcuts table td:first-child {
+        padding-right: 1em;
+        text-align: right;
+      }
+
+      #tool-type {
+        position: absolute;
+        bottom: 2em;
+        left: 20px;
+        right: 20px;
+        display: flex;
+        justify-self: center;
+      }
+    </style>
+    <!-- Load Calcite components from CDN -->
+    <script type="module" src="https://js.arcgis.com/calcite-components/3.3.3/calcite.esm.js"></script>
+
+    <!-- Load the ArcGIS Maps SDK for JavaScript from CDN -->
+    <script src="https://js.arcgis.com/4.34/"></script>
+
+    <!-- Load Map components from CDN-->
+    <script type="module" src="https://js.arcgis.com/4.34/map-components/"></script>
+  </head>
+  <body>
+    <calcite-shell content-behind>
+      <arcgis-map center="-117.163323, 32.707531" zoom="17">
+        <arcgis-layer-list slot="top-left"></arcgis-layer-list>
+      </arcgis-map>
+
+      <calcite-shell-panel slot="panel-end" display-mode="float">
+        <calcite-panel
+          id="shortcuts"
+          description="Available keyboard shortcuts"
+          heading="Click on the historic map to interactively place it">
+          <table>
+            <tbody>
+              <tr>
+                <td><span class="key" id="shift">Shift</span></td>
+                <td>Preserve aspect ratio</td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="key" id="z">z</span> /
+                  <span class="key" id="r">r</span>
+                </td>
+                <td>Undo / redo</td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="key" id="move">Shift</span> +
+                  <span class="key" id="move">← ↑ ↓ →</span>
+                </td>
+                <td>Move by 1px</td>
+              </tr>
+              <tr>
+                <td><span class="key" id="t">t</span></td>
+                <td>Toggle transparency</td>
+              </tr>
+            </tbody>
+          </table>
+        </calcite-panel>
+      </calcite-shell-panel>
+      <calcite-action-bar id="tool-type" expand-disabled layout="horizontal">
+        <calcite-action id="transform" text="Simple" title="Activate transform tool"
+          ><img
+            src="data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3C!-- Created with Inkscape (http://www.inkscape.org/) --%3E%3Csvg width='22' height='22' version='1.1' viewBox='0 0 22 22' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23000'%3E%3Crect x='2.5' y='2.5' width='17.005' height='17.005'/%3E%3Cg stroke-width='2.9898'%3E%3Cpath d='m2.4949 8v-5.5051h5.5051'/%3E%3Cpath d='m14 2.4949h5.5051v5.5051'/%3E%3Cpath d='m19.505 14v5.5051h-5.5051'/%3E%3Cpath d='m8 19.505h-5.5051v-5.5051'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E%0A" />
+        </calcite-action>
+        <calcite-action active id="reshape" text="Reshape" title="Activate reshape tool"
+          ><img
+            src="data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3C!-- Created with Inkscape (http://www.inkscape.org/) --%3E%3Csvg width='22' height='22' version='1.1' viewBox='0 0 22 22' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='3.5' y='3.5' width='15' height='15' fill='none' stroke='%23000' stroke-dasharray='1,1'/%3E%3Crect x='3.5' y='3.5' width='15' height='15' fill='none' stroke='%23fff' stroke-dasharray='1, 1' stroke-dashoffset='1'/%3E%3Cg%3E%3Ccircle cx='3.5' cy='3.5' r='2.5'/%3E%3Ccircle cx='18.5' cy='3.5' r='2.5'/%3E%3Ccircle cx='3.5' cy='18.5' r='2.5'/%3E%3Ccircle cx='18.5' cy='18.5' r='2.5'/%3E%3C/g%3E%3C/svg%3E%0A" />
+        </calcite-action>
+      </calcite-action-bar>
+    </calcite-shell>
+    <script type="module">
+      const [Map, Point, MediaLayer, ControlPointsGeoreference, ImageElement] =
+        await $arcgis.import([
+          "@arcgis/core/Map.js",
+          "@arcgis/core/geometry/Point.js",
+          "@arcgis/core/layers/MediaLayer.js",
+          "@arcgis/core/layers/support/ControlPointsGeoreference.js",
+          "@arcgis/core/layers/support/ImageElement.js",
+        ]);
+
+      // Get a reference to the map.
+      const viewElement = document.querySelector("arcgis-map");
+
+      // Get references to the interactive tool actions.
+      const transformAction = document.querySelector("#transform");
+      const reshapeAction = document.querySelector("#reshape");
+
+      // Define four points representing known map coordinates on the MediaLayer's ImageElement.
+      const mapPoint0 = new Point({
+        x: -117.16443,
+        y: 32.708101,
+        spatialReference: { wkid: 4326 },
+      });
+
+      const mapPoint1 = new Point({
+        x: -117.164068,
+        y: 32.706704,
+        spatialReference: { wkid: 4326 },
+      });
+
+      const mapPoint2 = new Point({
+        x: -117.159194,
+        y: 32.705729,
+        spatialReference: { wkid: 4326 },
+      });
+
+      const mapPoint3 = new Point({
+        x: -117.159261,
+        y: 32.704596,
+        spatialReference: { wkid: 4326 },
+      });
+
+      // Create an array of four control points composed of a sourcePoint, a point
+      // on the image element in pixels, and a mapPoint which is the location of the
+      // sourcePoint in map coordinates.
+      const controlPoint0 = {
+        sourcePoint: { x: 1900, y: 194 },
+        mapPoint: mapPoint0,
+      };
+
+      const controlPoint1 = {
+        sourcePoint: { x: 1557, y: 17 },
+        mapPoint: mapPoint1,
+      };
+
+      const controlPoint2 = {
+        sourcePoint: { x: 345, y: 391 },
+        mapPoint: mapPoint2,
+      };
+
+      const controlPoint3 = {
+        sourcePoint: { x: 176, y: 205 },
+        mapPoint: mapPoint3,
+      };
+
+      const controlPoints = [controlPoint0, controlPoint1, controlPoint2, controlPoint3];
+
+      // Create a georeference for the image element using the control points,
+      // image height, and image width.
+      const georeference = new ControlPointsGeoreference({
+        controlPoints,
+        height: 449,
+        width: 1996,
+      });
+
+      // Create a new image element with the image url and georeference.
+      const imageElement = new ImageElement({
+        image:
+          "GroundLevel.gif",
+        georeference,
+      });
+
+      // Create a new MediaLayer with the image element.
+      const mediaLayer = new MediaLayer({
+        source: imageElement,
+        title: "San Diego Convention Center"      
+    });
+
+      // Set the Map components map property to a new Map instance containing the MediaLayer.
+      viewElement.map = new Map({
+        basemap: "topo-vector",
+        layers: [mediaLayer],
+      });
+
+      // Wait for the map to be ready.
+      await viewElement.viewOnReady();
+
+      // Wait for the media layer view to be available.
+      const mediaLayerView = await viewElement.whenLayerView(mediaLayer);
+
+      // Set the interaction options tool to reshape.
+      mediaLayerView.interactionOptions.tool = "reshape";
+
+      // Set the media layer view's interactive property to true and when users
+      // click on the layer view the reshape tool will activate.
+      mediaLayerView.interactive = true;
+
+      // Add event listeners to the interactive tool actions
+      // to indicate which tool is active and set the media layer view's
+      // interaction options to the appropriate tool.
+      transformAction.addEventListener("click", () => {
+        transformAction.active = true;
+        reshapeAction.active = false;
+
+        mediaLayerView.interactionOptions.tool = "transform";
+      });
+
+      reshapeAction.addEventListener("click", () => {
+        transformAction.active = false;
+        reshapeAction.active = true;
+
+        mediaLayerView.interactionOptions.tool = "reshape";
+      });
+    </script>
+  </body>
+</html>
