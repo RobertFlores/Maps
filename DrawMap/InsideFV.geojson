@@ -1,0 +1,1043 @@
+{
+	"type" : "FeatureCollection",
+	"name" : "Families inside FV boudary",
+	"features" : [
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.10044, 33.60561 ]
+			},
+			"properties" : {
+				"OBJECTID" : 1,
+				"ID" : "0",
+				"Address" : "35489 Calendula Cir., Winchester, CA 92596",
+				"FamilyName" : "Acosta",
+				"Names" : "Zaida, Mathew",
+				"Members" : "2",
+				"Phone" : "(818) 581-5678, (951) 448-9349",
+				"Email" : "zacosta513@yahoo.com, stevenacosta513@gmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.09904, 33.61759 ]
+			},
+			"properties" : {
+				"OBJECTID" : 2,
+				"ID" : "1",
+				"Address" : "34643 Wintersweet Lane, Winchester, CA 92596",
+				"FamilyName" : "Agundez",
+				"Names" : "Carlos",
+				"Members" : "1",
+				"Phone" : "(760) 566-4781",
+				"Email" : "cagundez@lusardi.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.11296, 33.5636 ]
+			},
+			"properties" : {
+				"OBJECTID" : 3,
+				"ID" : "2",
+				"Address" : "31330 Hidden Lake Rd., Murrieta, CA 92563",
+				"FamilyName" : "Amaichig",
+				"Names" : "La Tasha",
+				"Members" : "1",
+				"Phone" : "(760) 450-8924",
+				"Email" : "tashilala1@gmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.098905, 33.614744 ]
+			},
+			"properties" : {
+				"OBJECTID" : 4,
+				"ID" : "3",
+				"Address" : "32135 Clear Springs Dr, Winchester, CA 92596",
+				"FamilyName" : "Anderson",
+				"Names" : "Shannon",
+				"Members" : "1",
+				"Phone" : "(619) 261-1133 ",
+				"Email" : "shannon@shannonanderson.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.09101, 33.60662 ]
+			},
+			"properties" : {
+				"OBJECTID" : 5,
+				"ID" : "4",
+				"Address" : "32628 Cherokee Rose St., Winchester, CA 92596",
+				"FamilyName" : "Blaha, Cabrera",
+				"Names" : "Fem Blaha, Matthew Cabrera",
+				"Members" : "2",
+				"Phone" : "(909) 215-7635, (951) 467-0350, (951) 223-3510",
+				"Email" : "ufemiablaha1@msn.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.099, 33.59702 ]
+			},
+			"properties" : {
+				"OBJECTID" : 6,
+				"ID" : "5",
+				"Address" : "36066 Harvard Ct., Winchester, CA 92596",
+				"FamilyName" : "Bonafede",
+				"Names" : "Daniele, Nicolina, Alessia, Gianluca, Lenonardo",
+				"Members" : "5",
+				"Phone" : "(708) 263-3821, (708) 738-1682",
+				"Email" : "dbonafede@hotmail.com, n.bonafede@hotmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.11205, 33.60632 ]
+			},
+			"properties" : {
+				"OBJECTID" : 7,
+				"ID" : "7",
+				"Address" : "35422 Date Palm St., Winchester, CA 95296",
+				"FamilyName" : "Briscoe",
+				"Names" : "John, Shauna, Janay, Mary",
+				"Members" : "4",
+				"Phone" : "(951) 750-2583, (619) 549-9550, (951) 756-3633",
+				"Email" : "jbinsures@gmail.com, sgeorge90@hotmail.com, janaybriscoe@gmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.108047, 33.607244 ]
+			},
+			"properties" : {
+				"OBJECTID" : 8,
+				"ID" : "8",
+				"Address" : "35302 Marabella Ct Winchester, CA 92596",
+				"FamilyName" : "Briscoe",
+				"Names" : "Jonathan",
+				"Members" : "1",
+				"Phone" : "(951) 756-3633 (951)867-8314",
+				"Email" : "jonathan112@gmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.09738, 33.60349 ]
+			},
+			"properties" : {
+				"OBJECTID" : 9,
+				"ID" : "9",
+				"Address" : "32200 Zion Way, Winchester, CA 92596",
+				"FamilyName" : "Broniola",
+				"Names" : "Ed, Ivette",
+				"Members" : "2",
+				"Phone" : "(951) 867-8314, (951) 813-5610",
+				"Email" : "edbron58@qmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.1076, 33.59473 ]
+			},
+			"properties" : {
+				"OBJECTID" : 10,
+				"ID" : "10",
+				"Address" : "36274 Joltair Way, Winchester, CA 92596",
+				"FamilyName" : "Brown",
+				"Names" : "Robin",
+				"Members" : "1",
+				"Phone" : "(951) 816-7641",
+				"Email" : "robingriffin46@yahoo.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.124784338, 33.565953122 ]
+			},
+			"properties" : {
+				"OBJECTID" : 11,
+				"ID" : "88",
+				"Address" : "38130 Old Creek Ct, Murrieta, CA 92563",
+				"FamilyName" : "Brown",
+				"Names" : "Terri",
+				"Members" : "1",
+				"Phone" : "(951) 473-6783",
+				"Email" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.114304, 33.592794 ]
+			},
+			"properties" : {
+				"OBJECTID" : 12,
+				"ID" : "89",
+				"Address" : "",
+				"FamilyName" : "Burris",
+				"Names" : "Mourence, Jillian, Julius, Marquis",
+				"Members" : "4",
+				"Phone" : "(619) 254-5184, (619) 721-8285",
+				"Email" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.0948, 33.60267 ]
+			},
+			"properties" : {
+				"OBJECTID" : 13,
+				"ID" : "14",
+				"Address" : "35682 Denali Way, Winchester, CA 92596",
+				"FamilyName" : "Carroll",
+				"Names" : "Kap Sun",
+				"Members" : "1",
+				"Phone" : "(951) 208-9657",
+				"Email" : "kaiaalyah@outlook.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.10654, 33.59887 ]
+			},
+			"properties" : {
+				"OBJECTID" : 14,
+				"ID" : "15",
+				"Address" : "31670 Fille Dr., Winchester, CA 92696",
+				"FamilyName" : "Caruso",
+				"Names" : "Angela, Angeliq, Angelo, Jonte",
+				"Members" : "4",
+				"Phone" : "(951) 926-8971",
+				"Email" : "macdame44@qmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.10261, 33.61031 ]
+			},
+			"properties" : {
+				"OBJECTID" : 15,
+				"ID" : "18",
+				"Address" : "31971 Corte De Pinos, Winchester, CA 92596",
+				"FamilyName" : "Chatterjee, Samarejeeva",
+				"Names" : "Marsha Chatterjee, Selvi Samarejeeva",
+				"Members" : "2",
+				"Phone" : "(951) 500-0732",
+				"Email" : "msamarajeewa@gmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.11365, 33.58322 ]
+			},
+			"properties" : {
+				"OBJECTID" : 16,
+				"ID" : "20",
+				"Address" : "37100 Van Gaale Ln., Murrieta, CA 92563",
+				"FamilyName" : "Denton",
+				"Names" : "Dale, Sheena",
+				"Members" : "2",
+				"Phone" : "(951) 256-0652, (951) 244-0362",
+				"Email" : "tenobear@hotmail.com, pantojaspi@gmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.10353, 33.60233 ]
+			},
+			"properties" : {
+				"OBJECTID" : 17,
+				"ID" : "22",
+				"Address" : "31873 Odyssey Dr., Winchester, CA 92596",
+				"FamilyName" : "Flores",
+				"Names" : "Robert, Kaylene",
+				"Members" : "2",
+				"Phone" : "(951) 775-8930, (951) 775-8931",
+				"Email" : "rflores99z@outlook.com, kaylene_f@yahoo.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.09797, 33.59262 ]
+			},
+			"properties" : {
+				"OBJECTID" : 18,
+				"ID" : "23",
+				"Address" : "36397 Gambrel Gate Ct., Winchester, CA 92596",
+				"FamilyName" : "Folden",
+				"Names" : "Greg, Jolene, Bailey, Allexys, Shelby",
+				"Members" : "5",
+				"Phone" : "(408) 398-6769, (650) 533-7719, (408) 384-1141, (408) 515-8293, (408) 515-8359",
+				"Email" : "gfolden30@qmail.com, bfolden163@gmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.10338, 33.61041 ]
+			},
+			"properties" : {
+				"OBJECTID" : 19,
+				"ID" : "24",
+				"Address" : "31968 Corte De Pinos, Winchester, CA 92563",
+				"FamilyName" : "Garcia",
+				"Names" : "Alejandro, Maria",
+				"Members" : "2",
+				"Phone" : "(951) 219-8134, (951) 219-8159",
+				"Email" : "shdag60@gmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.09649, 33.59267 ]
+			},
+			"properties" : {
+				"OBJECTID" : 20,
+				"ID" : "26",
+				"Address" : "36402 Wishing Well Ct., Winchester, CA 92596",
+				"FamilyName" : "Garibay",
+				"Names" : "Elisa, Isaac",
+				"Members" : "2",
+				"Phone" : "(760) 576-9205, (760) 576-6829",
+				"Email" : "garibay.elisa1@gmail.com, districtscootisaac@gmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.092135, 33.618616 ]
+			},
+			"properties" : {
+				"OBJECTID" : 21,
+				"ID" : "93",
+				"Address" : "32534 Olea Rd, Winchester, CA 92596",
+				"FamilyName" : "Giannola",
+				"Names" : "Giuseppe, Maria",
+				"Members" : "2",
+				"Phone" : "(847) 351-3026, (847) 351-3026",
+				"Email" : "giuseppe.giannola10@gmail.com, mgiannola@hotmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.09416, 33.59174 ]
+			},
+			"properties" : {
+				"OBJECTID" : 22,
+				"ID" : "28",
+				"Address" : "32562 Spun Cotton Dr., Winchester, CA 92596",
+				"FamilyName" : "Goldkamp",
+				"Names" : "John, Bonnie",
+				"Members" : "2",
+				"Phone" : "(804) 512-7387, (804) 516-0204",
+				"Email" : "jcgoldkamp@comcast.net, bdgoldkamp@earthlink.net"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.10247, 33.59882 ]
+			},
+			"properties" : {
+				"OBJECTID" : 23,
+				"ID" : "32",
+				"Address" : "35938 Nord Ct., Winchester, CA 92596",
+				"FamilyName" : "Good",
+				"Names" : "Isaac, Alyse, Aiden, Elijah",
+				"Members" : "4",
+				"Phone" : "(714) 351-6226, (714) 272-0273",
+				"Email" : "eyezekgood@gmail.com, dancingalyse@gmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.09412, 33.60815 ]
+			},
+			"properties" : {
+				"OBJECTID" : 24,
+				"ID" : "33",
+				"Address" : "32405 Blazing Star St., Winchester, CA 92596",
+				"FamilyName" : "Good",
+				"Names" : "Jonathan, Gloria, Asia, Naomi, Malachi, Jonathan Jr.",
+				"Members" : "6",
+				"Phone" : "(951) 775-6005",
+				"Email" : "j.good.jw@gmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.11125, 33.59052 ]
+			},
+			"properties" : {
+				"OBJECTID" : 25,
+				"ID" : "34",
+				"Address" : "31402 Gironde Ct., Winchester, CA 92596",
+				"FamilyName" : "Guevara",
+				"Names" : "John, Minora, Andrew, Natalie",
+				"Members" : "4",
+				"Phone" : "(951) 205-4272, (951) 349-6632",
+				"Email" : "jmquevara06@yahoo.com, minoraguevara@yahoo.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.10382211, 33.579545508 ]
+			},
+			"properties" : {
+				"OBJECTID" : 26,
+				"ID" : "94",
+				"Address" : "37244 Avocet Wy Murrieta, CA 92563",
+				"FamilyName" : "Hagen",
+				"Names" : "Lesley, Andrew Lee, Garrett",
+				"Members" : "3",
+				"Phone" : "(214) 663-3328, (951) 473-3556, (619) 857-9142",
+				"Email" : "elle_enayche@hotmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.107158, 33.586025 ]
+			},
+			"properties" : {
+				"OBJECTID" : 27,
+				"ID" : "98",
+				"Address" : "36790 Cottonwood St Winchester, CA 92596",
+				"FamilyName" : "Jiles",
+				"Names" : "Matthew",
+				"Members" : "1",
+				"Phone" : "(858) 883-1289",
+				"Email" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.11169, 33.591718 ]
+			},
+			"properties" : {
+				"OBJECTID" : 28,
+				"ID" : "99",
+				"Address" : "31416 Rivera St Winchester, CA 92596",
+				"FamilyName" : "Jones",
+				"Names" : "Jennifer",
+				"Members" : "1",
+				"Phone" : "(951) 526-6607",
+				"Email" : "ca92596@roadrunner.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.114813, 33.609627 ]
+			},
+			"properties" : {
+				"OBJECTID" : 29,
+				"ID" : "100",
+				"Address" : "35206 Flamingo Wy, Winchester, CA 92596",
+				"FamilyName" : "Kamara",
+				"Names" : "Taqi, Anthoinette",
+				"Members" : "2",
+				"Phone" : "(925) 301-7419, (925) 550-0915",
+				"Email" : "akamara@sbcglobal.net, akamara@sbcglobal.net"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.107279, 33.56648 ]
+			},
+			"properties" : {
+				"OBJECTID" : 30,
+				"ID" : "41",
+				"Address" : "38169 Talavera Ct., Murrieta, CA 92563",
+				"FamilyName" : "Ketelhut",
+				"Names" : "Darla, Nicolaus",
+				"Members" : "2",
+				"Phone" : "(760) 481-5945",
+				"Email" : "darlaketelhut@gmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.1155, 33.59535 ]
+			},
+			"properties" : {
+				"OBJECTID" : 31,
+				"ID" : "45",
+				"Address" : "36228 Leeds St., Winchester, CA 92596",
+				"FamilyName" : "Litteral",
+				"Names" : "Becky",
+				"Members" : "1",
+				"Phone" : "(951) 514-9079",
+				"Email" : "litteralbecky@gmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.107930307, 33.58190153 ]
+			},
+			"properties" : {
+				"OBJECTID" : 32,
+				"ID" : "101",
+				"Address" : "37136 Almond Cir. Murrieta, CA 92563",
+				"FamilyName" : "Logan",
+				"Names" : "Keren",
+				"Members" : "1",
+				"Phone" : "(951) 551-9444",
+				"Email" : "kerenlogan@yahoo.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.10762, 33.58155 ]
+			},
+			"properties" : {
+				"OBJECTID" : 33,
+				"ID" : "46",
+				"Address" : "37136 Almond Cir., Murrieta, CA 92563",
+				"FamilyName" : "Lopez",
+				"Names" : "Victor, Alba, Natalia",
+				"Members" : "3",
+				"Phone" : "(951) 323-9959, (951) 385-0186",
+				"Email" : "victorlopezir112@qmail.com, ynezz95@gmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.11309, 33.60179 ]
+			},
+			"properties" : {
+				"OBJECTID" : 34,
+				"ID" : "47",
+				"Address" : "31310 Gabriel Metsu, Winchester, CA 92596",
+				"FamilyName" : "McDonald",
+				"Names" : "Shannon",
+				"Members" : "1",
+				"Phone" : "(951) 852-0424",
+				"Email" : "shannon_mcdonald13@yahoo.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.11499, 33.5578 ]
+			},
+			"properties" : {
+				"OBJECTID" : 35,
+				"ID" : "201",
+				"Address" : "31258 Red Bridge Rd, Murrieta, CA 92563",
+				"FamilyName" : "Mendez",
+				"Names" : "Daniel, Elizabeth",
+				"Members" : "2",
+				"Phone" : "(909) 446-6470, (559) 284-3805",
+				"Email" : "dmendez2013@yahoo.com, ebrambila75@gmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.11365, 33.58322 ]
+			},
+			"properties" : {
+				"OBJECTID" : 36,
+				"ID" : "52",
+				"Address" : "37100 Van Gale Lane, Murrieta, CA 92563",
+				"FamilyName" : "Pantoja",
+				"Names" : "Javier, Sue",
+				"Members" : "2",
+				"Phone" : "(951) 445-1881, (951) 326-4452",
+				"Email" : "ggwildturkey@qmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.09687, 33.58399 ]
+			},
+			"properties" : {
+				"OBJECTID" : 37,
+				"ID" : "53",
+				"Address" : "32243 Perigord Rd., Winchester, CA 92596",
+				"FamilyName" : "Parsons",
+				"Names" : "Ron, Mary",
+				"Members" : "2",
+				"Phone" : "(951) 970-2340, (951) 970-1010",
+				"Email" : "bonsairtp@gmail.com, maryeparsons1947@gmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.11242, 33.59724 ]
+			},
+			"properties" : {
+				"OBJECTID" : 38,
+				"ID" : "54",
+				"Address" : "36059 Dresden Ct., Winchester, CA 92596",
+				"FamilyName" : "Pate",
+				"Names" : "Curtis, Britnee, Kingston, Hendrix, Monae",
+				"Members" : "5",
+				"Phone" : "(760) 963-7647, (951) 609-4753",
+				"Email" : "alexanderthepate@rocketmail.com, mrsladypate@gmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.10566, 33.59838 ]
+			},
+			"properties" : {
+				"OBJECTID" : 39,
+				"ID" : "55",
+				"Address" : "31723 Fille Dr., Winchester, CA 92596",
+				"FamilyName" : "Patenaude, Ramos",
+				"Names" : "David Patenaude, Lily Patenaude, Nathan Patenaude, Juana Ramos",
+				"Members" : "4",
+				"Phone" : "(951) 565-6997, (951) 553-9761, (951) 553-9760",
+				"Email" : "david.patenaude22@gmail.com, lily.patenaude@yahoo.com, npfvcong@outlook.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.09631, 33.60904 ]
+			},
+			"properties" : {
+				"OBJECTID" : 40,
+				"ID" : "57",
+				"Address" : "32274 Pink Carnation Ct., Winchester, CA 92596",
+				"FamilyName" : "Pennington",
+				"Names" : "Kari",
+				"Members" : "1",
+				"Phone" : "(818) 554-7586",
+				"Email" : "kari.pennington@yahoo.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.10074, 33.59231 ]
+			},
+			"properties" : {
+				"OBJECTID" : 41,
+				"ID" : "58",
+				"Address" : "32111 Spun Cotton Dr Winchester, CA 92596",
+				"FamilyName" : "Perez, Smeby, Jensen",
+				"Names" : "Elle Perez, Aaliya Smeby, Ava Perez, Eden Jensen, Elija Perez, Jude Perez",
+				"Members" : "6",
+				"Phone" : "(951) 427-7219",
+				"Email" : "ellerxn@gmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.10008, 33.5991 ]
+			},
+			"properties" : {
+				"OBJECTID" : 42,
+				"ID" : "60",
+				"Address" : "35928 Burgundy Ct., Winchester, CA 92596",
+				"FamilyName" : "Riley",
+				"Names" : "Janet",
+				"Members" : "1",
+				"Phone" : "(951) 956-0518",
+				"Email" : "gmajanriley@gmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.1034, 33.60037 ]
+			},
+			"properties" : {
+				"OBJECTID" : 43,
+				"ID" : "201",
+				"Address" : "31868 Granville Dr Winchester, CA 92596",
+				"FamilyName" : "Rivas",
+				"Names" : "Gabriel, Krissel, Liam",
+				"Members" : "3",
+				"Phone" : "(619) 932-8739, (619) 576-4746",
+				"Email" : "ygrivas85@gmail.com, "
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.11287, 33.59833 ]
+			},
+			"properties" : {
+				"OBJECTID" : 44,
+				"ID" : "63",
+				"Address" : "31319 Van Eyck Court, Winchester, CA 92596",
+				"FamilyName" : "Rook",
+				"Names" : "Yannick, Breanna",
+				"Members" : "2",
+				"Phone" : "(704) 860-9209, (919) 632-9717",
+				"Email" : "yannick.rook@gmail.com, breannarook@gmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.10071, 33.58457 ]
+			},
+			"properties" : {
+				"OBJECTID" : 45,
+				"ID" : "64",
+				"Address" : "36961 Pebley Ct., Winchester, CA 92596",
+				"FamilyName" : "Rowland",
+				"Names" : "David II, Daniela, Giselle, David III",
+				"Members" : "4",
+				"Phone" : "(619) 886-2541, (619) 886-2556",
+				"Email" : "brotherrowland@yahoo.com, danirowland@hotmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.11398, 33.61481 ]
+			},
+			"properties" : {
+				"OBJECTID" : 46,
+				"ID" : "66",
+				"Address" : "34750 Kooden Rd., Winchester, CA 92596",
+				"FamilyName" : "Salmon",
+				"Names" : "Jason, Hollie",
+				"Members" : "2",
+				"Phone" : "(619) 631-9888, m: (619) 647-7372",
+				"Email" : "jsalmons@qmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.09963, 33.59696 ]
+			},
+			"properties" : {
+				"OBJECTID" : 47,
+				"ID" : "67",
+				"Address" : "36081 Harvard Ct., Winchester, CA 92596",
+				"FamilyName" : "Schick",
+				"Names" : "Randy, Sherry, Carla",
+				"Members" : "3",
+				"Phone" : "(951) 466-6619",
+				"Email" : "schick4973@gmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.10244, 33.5855 ]
+			},
+			"properties" : {
+				"OBJECTID" : 48,
+				"ID" : "68",
+				"Address" : "31936 Golden Willow Court, Winchester, CA 92596",
+				"FamilyName" : "Simon",
+				"Names" : "Ginger",
+				"Members" : "1",
+				"Phone" : "(951) 399-8772",
+				"Email" : "slenderginger@yahoo.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.0966632, 33.5842048 ]
+			},
+			"properties" : {
+				"OBJECTID" : 49,
+				"ID" : "69",
+				"Address" : "32243 Perigord Rd., Winchester, CA 92596",
+				"FamilyName" : "Simon",
+				"Names" : "Jonathan",
+				"Members" : "1",
+				"Phone" : "(830) 822-8169",
+				"Email" : "jonedsimon@gmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.11488, 33.60919 ]
+			},
+			"properties" : {
+				"OBJECTID" : 50,
+				"ID" : "71",
+				"Address" : "31209 Peregrine Way, Winchester, CA 92596",
+				"FamilyName" : "Stancil",
+				"Names" : "Ron, Mary Ann",
+				"Members" : "2",
+				"Phone" : "(951) 240-0402",
+				"Email" : "tantee1@yahoo.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.11026, 33.61924 ]
+			},
+			"properties" : {
+				"OBJECTID" : 51,
+				"ID" : "72",
+				"Address" : "34548 Persian Lilac St., Winchester, CA 92596",
+				"FamilyName" : "Stewart",
+				"Names" : "Kevin, Angela, Brittany",
+				"Members" : "3",
+				"Phone" : "(951) 553-9008, (951) 760-8044, (951) 553-9010",
+				"Email" : "stewartps8318@yahoo.com, nursealws@aol.com, stewartbrittany94@yahoo.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.09893, 33.5936 ]
+			},
+			"properties" : {
+				"OBJECTID" : 52,
+				"ID" : "74",
+				"Address" : "32116 Bluebell Ln., Winchester, CA 92596",
+				"FamilyName" : "Tavenner",
+				"Names" : "Meredith",
+				"Members" : "1",
+				"Phone" : "(619) 871-9048",
+				"Email" : "mtavenner@roadrunner.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.10015, 33.60679 ]
+			},
+			"properties" : {
+				"OBJECTID" : 53,
+				"ID" : "76",
+				"Address" : "35398 Calendula Cir., Winchester, CA 92596",
+				"FamilyName" : "Torres",
+				"Names" : "Lisa, Victoria",
+				"Members" : "2",
+				"Phone" : "(951) 525-0198, (951) 926-0695",
+				"Email" : "lisadelpacific@gmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.1062, 33.60471 ]
+			},
+			"properties" : {
+				"OBJECTID" : 54,
+				"ID" : "77",
+				"Address" : "31814 McCartney Dr., Winchester, CA 92596",
+				"FamilyName" : "Torres",
+				"Names" : "Lorena, Keziah",
+				"Members" : "2",
+				"Phone" : "(951) 249-6587, (951) 249-6514",
+				"Email" : "lorenatatin@hotmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.08891, 33.61351 ]
+			},
+			"properties" : {
+				"OBJECTID" : 55,
+				"ID" : "79",
+				"Address" : "32714 Shadyview St., Winchester, CA 92596",
+				"FamilyName" : "Veasley",
+				"Names" : "John, Jomarian",
+				"Members" : "2",
+				"Phone" : "(310) 989-7591, (310) 989-3495",
+				"Email" : "1jveasley@gmail.com, jomarianveasley@gmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.12253, 33.55425 ]
+			},
+			"properties" : {
+				"OBJECTID" : 56,
+				"ID" : "80",
+				"Address" : "38956 Cherry Point Lane, Murrieta, CA 92563",
+				"FamilyName" : "Vega",
+				"Names" : "Brenda, Madison, Gavin",
+				"Members" : "3",
+				"Phone" : "(562) 229-6302",
+				"Email" : "1023bec@gmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.110527, 33.595897 ]
+			},
+			"properties" : {
+				"OBJECTID" : 57,
+				"ID" : "107",
+				"Address" : "36185 Corsica Cir, Winchester, CA 92596",
+				"FamilyName" : "Villegas",
+				"Names" : "Johnny, Anna",
+				"Members" : "2",
+				"Phone" : "(714) 726-0070, (714) 726-4356",
+				"Email" : "nismo243@gmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.10845, 33.56546 ]
+			},
+			"properties" : {
+				"OBJECTID" : 58,
+				"ID" : "81",
+				"Address" : "31576 Rosales Ave., Murrieta, CA 92563",
+				"FamilyName" : "Weatherly",
+				"Names" : "Nathan, Amanda",
+				"Members" : "2",
+				"Phone" : "(951) 704-4752, (951) 326-0716",
+				"Email" : "brne4x4@qmail.com, littleredoven@qmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.09141, 33.60321 ]
+			},
+			"properties" : {
+				"OBJECTID" : 59,
+				"ID" : "83",
+				"Address" : "32541 Zola Circle, Winchester, CA 92596",
+				"FamilyName" : "Williams",
+				"Names" : "Bryan, Gina, Ethan, Katalina, Kyle, Sydney, Randy, Yolie",
+				"Members" : "8",
+				"Phone" : "(858) 401-2528, (858) 401-2399",
+				"Email" : "bryanw.fvcong@gmail.com, smile4gp@hotmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.11223, 33.59662 ]
+			},
+			"properties" : {
+				"OBJECTID" : 60,
+				"ID" : "84",
+				"Address" : "31351 Bradford St., Winchester, CA 92596",
+				"FamilyName" : "Williams",
+				"Names" : "Mark, Cheryl",
+				"Members" : "2",
+				"Phone" : "951-852-9595, m: (951) 325-7141",
+				"Email" : "totheattentionofmark@gmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.1034, 33.60037 ]
+			},
+			"properties" : {
+				"OBJECTID" : 61,
+				"ID" : "61",
+				"Address" : "31868 Granville Dr., Winchester, CA 92596",
+				"FamilyName" : "Rivas",
+				"Names" : "Gabriel, Krissel, Liam, Luna, Alena",
+				"Members" : "5",
+				"Phone" : "(619) 932-8739, (619) 576-4746",
+				"Email" : "ygrivas89@gmail.com, Krissel.rivas@gmail.com"
+			}
+		}
+	]
+}

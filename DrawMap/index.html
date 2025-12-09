@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>Draw Map</title>
+    <link rel="stylesheet" href="https://js.arcgis.com/4.33/esri/themes/light/main.css" />
+    <link rel="stylesheet" href="style.css"  />
+
+    <script src="https://js.arcgis.com/4.33/"></script>
+    <script>
+        var layers = [];
+        var labels = [];
+        var buttons = [];
+        var theMap;
+        var theView;
+        var basemaps = [];
+        var watercolorLayer;
+        var watercolor2Layer;
+        var openCycleLayer;
+        var neighborhoodLayer;
+        var landscapeLayer;
+        var tonerLayer
+        var mapGalleryOn = false;
+        var gallery;
+        var originalPath;
+        var theLegend;
+        var legOn = true;
+        var legButton;
+        var frenchValley;
+        var terrLayer
+        var fvPubs;
+        var dataList;
+        var menuOn = false;
+        var sketchOn = false;
+        var theSketch;
+
+    </script>
+    <script type="module">
+
+
+
+        const [
+            Map, MapView, GeoJSONLayer, Basemap, WebTileLayer, VectorTileLayer, TileLayer, 
+            Point, Sketch, GraphicsLayer, Legend, LabelClass, webMercatorUtils, MediaLayer, 
+            ControlPointsGeoreference, ImageElement, SpatialReference
+        ] = await $arcgis.import([
+            "@arcgis/core/Map",
+            "@arcgis/core/views/MapView",
+            "@arcgis/core/layers/GeoJSONLayer",
+            "@arcgis/core/Basemap",
+            "@arcgis/core/layers/WebTileLayer",
+            "@arcgis/core/layers/VectorTileLayer",
+            "@arcgis/core/layers/TileLayer",
+            "@arcgis/core/geometry/Point.js",
+            "@arcgis/core/widgets/Sketch.js",
+            "@arcgis/core/layers/GraphicsLayer",
+            "@arcgis/core/widgets/Legend",
+            "@arcgis/core/layers/support/LabelClass",
+            "@arcgis/core/geometry/support/webMercatorUtils",
+            "@arcgis/core/layers/MediaLayer.js",
+            "@arcgis/core/layers/support/ControlPointsGeoreference.js",
+            "@arcgis/core/layers/support/ImageElement.js",
+            "@arcgis/core/geometry/SpatialReference"
+        ]);
+
+
+
+        // Area for files and creating layer files
+        // Begin
+
+        const fvUrl = "data/FrenchValleyBoundary.geojson";
+
+        
+        const fvRenderer = {
+            type: "simple",
+
+            symbol: {
+                type: "simple-fill",
+                color: [255,255,255, 0.1],
+                outline: {
+                  color: [255,0,127, .65],
+                  width: "6px"
+                }                
+            }
+        };
+        const fvLayer = new GeoJSONLayer({
+            url: fvUrl,
+            copyright: "",
+            renderer: fvRenderer,
+            title: "French Valley Boundary",
+            // popupTemplate: congTemplate,
+            opacity: 0.5,
+            visible: true
+        });
+        frenchValley = fvLayer;
+        layers.push(fvLayer);
+        const labelClass = {
+            labelExpressionInfo: { expression: "$feature.Name" },
+            symbol: {
+                type: "text",  // autocasts as new TextSymbol()
+                color: [255, 255, 255, 128],  // white
+                font: { family: "Arial Unicode MS", size: 12, weight: "bold" },
+                haloColor: [128,0,0, 128],  // black
+                haloSize: 1
+            }
+        };
+        fvLayer.labelingInfo = [ labelClass ];
+
+        const puTemplate = {
+          title: "{Name}",
+          content: [
+                {
+                    type: "fields",
+                    fieldInfos: [
+                    {
+                            fieldName: "FamilyName",
+                            label: "Family Name"
+                        },
+                        {
+                            fieldName: "Address",
+                            label: "Address"
+                        },
+                        {
+                            fieldName: "Names",
+                            label: "Persons"
+                        },
+                        {
+                            fieldName: "Phone",
+                            label: "Phone"
+                        },
+                        {
+                            fieldName: "Email",
+                            label: "Email"
+                        }
+                    ]
+                }
+            ]
+        };
+
+                const defaultPubSym = {
+          type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
+          color: [255,255,0,.75],
+          outline: {
+            // autocasts as new SimpleLineSymbol()
+            // color: "#71de6e",
+            color: "#ff0099",
+            width: 1
+          }
+        };
+
+        const pubRenderer1 = {
+            type: "simple",
+            symbol: {
+                type: "simple-marker",
+                size: 6,
+                color: [255,0,0],
+                outline: null
+            }
+        };
+
+                const pubRenderer = {
+          type: "simple", // autocasts as new SimpleRenderer()
+          symbol: defaultPubSym,
+          visualVariables: [
+            {
+              type: "size",
+              field: "Members",
+              legendOptions: {
+                title: "Persons at location"
+              },
+              stops: [
+                {
+                  value: 1,
+                  size: 6,
+                  label: "1"
+                },
+                {
+                  value: 2,
+                  size: 8,
+                  label: "2"
+                },
+                {
+                  value: 4,
+                  size: 10,
+                  label: "3-4"
+                },
+                {
+                  value: 9,
+                  size: 12,
+                  label: "5+"
+                }
+              ]
+            }
+          ]
+        };
+
+        var pubUrl = "FrenchValleyLocations.geojson";
+        const pubLayer = new GeoJSONLayer({
+            url: pubUrl,
+            copyright: "",
+            title: "French Valley members",
+            renderer: pubRenderer,
+            opacity: 1,
+            popupTemplate: puTemplate,
+            visible: true
+        });
+        fvPubs = pubLayer;
+
+        const terrTemplate = {
+            title: "French Valley Territory",
+            content: [
+                {
+                    type: "fields",
+                    fieldInfos: [
+                        {
+                            fieldName: "Name",
+                            label: "Territory Name"
+                        },
+                        {
+                            fieldName: "Category",
+                            label: "Category"
+                        },
+                        {
+                            fieldName: "CustomNotes1",
+                            label: "Notes"
+                        },
+                        {
+                            fieldName: "CustomNotes2",
+                            label: "Additional Notes"
+                        },
+                        {
+                            fieldName: "TerritoryID",
+                            label: "Territory ID"
+                        }
+                    ]
+                }
+            ]
+        }
+
+        const territoryUrl = "FV_Territories.geojson";
+        const territoryRenderer = {
+            type: "unique-value",
+            field: "Category",
+            uniqueValueInfos: [
+                {value: "Residential", symbol: {type: "simple-fill",color: [244,114,101,0.85], outline: {color: [0,0,0,1],width: "3px"}}},         
+                {value: "Business", symbol: {type: "simple-fill", color: [248,147,31,0.75],outline: {color: [20,0,0,1],width: "3px"}  }},
+                {value: "Rural", symbol: {type: "simple-fill",color: [0,167,108,0.85], outline: {color: [0,0,0,1],width: "3px"}}},
+                {value: "Letter Writing", symbol: {type: "simple-fill",color: [155,116,179,1]}},
+                {value: "Do Not Assign", symbol: {type: "simple-fill",color: [255,255,2558,0.85], outline: {color: [0,0,0,1],width: "3px"}}}
+            ]
+        };
+        const territoryLayer = new GeoJSONLayer({
+            url: territoryUrl,
+            copyright: "",
+            renderer: territoryRenderer,
+            title: "French Valley Territories",
+            popupTemplate: terrTemplate,
+            opacity: 0.25,
+            visible: false
+        });
+        terrLayer = territoryLayer;
+        const terrLabelClass = new LabelClass({
+            labelExpressionInfo: { expression: "$feature.Name"},
+            symbol: {
+                type: "text",  // autocasts as new TextSymbol()
+                color: [0,0,0, 128],  // white
+                font: { family: "Arial Unicode MS", size: 8, weight: "bold" },
+                haloColor: [255, 255, 255, 128],  // black
+                haloSize: 1
+            }
+        });
+        terrLayer.labelingInfo = terrLabelClass;
+
+        const khTemplate = {
+            title: "Kingdom Hall of Jehovah's Witnesses",
+            content: [
+                {
+                    type: "fields",
+                    fieldInfos: [
+                        {
+                            fieldName: "Address",
+                            label: "Address"
+                        }
+                    ]
+                }
+            ]
+        }
+
+
+        const graphicsLayer = new GraphicsLayer();
+        graphicsLayer.title = "Graphics Layer";
+
+      // Define four points representing known map coordinates on the MediaLayer's ImageElement.
+      const mapPoint0 = new Point({
+        x: -117.16443083,
+        y: 32.70810526,
+        spatialReference: { wkid: 4326 },
+      });
+
+      const mapPoint1 = new Point({
+        x: -117.16407847,
+        y: 32.70670985,
+        spatialReference: { wkid: 4326 },
+      });
+
+      const mapPoint2 = new Point({
+        x: -117.16146978,
+        y: 32.70709679,
+        spatialReference: { wkid: 4326 },
+      });
+
+      const mapPoint3 = new Point({
+        x: -117.16239379,
+        y: 32.70609830,
+        spatialReference: { wkid: 4326 },
+      });
+
+      const mapPoint4 = new Point({
+        x: -117.15918743,
+        y: 32.70572680,
+        spatialReference: { wkid: 4326 },
+      });
+      
+      const mapPoint5 = new Point({
+        x: -117.15925568,
+        y: 32.70459267,
+        spatialReference: { wkid: 4326 },
+      });
+
+            // Create an array of four control points composed of a sourcePoint, a point
+      // on the image element in pixels, and a mapPoint which is the location of the
+      // sourcePoint in map coordinates.
+      const controlPoint0 = {
+        sourcePoint: { x: 0, y: 36 },
+        mapPoint: mapPoint0,
+      };
+
+      const controlPoint1 = {
+        sourcePoint: { x: 68, y: 346 },
+        mapPoint: mapPoint1,
+      };
+
+      const controlPoint2 = {
+        sourcePoint: { x: 538, y: 260 },
+        mapPoint: mapPoint2,
+      };
+
+      const controlPoint3 = {
+        sourcePoint: { x: 383, y: 486 },
+        mapPoint: mapPoint3,
+      };
+
+    const controlPoint4 = {
+        sourcePoint: { x: 977, y: 548 },
+        mapPoint: mapPoint4,
+      };
+
+      const controlPoint5 = {
+        sourcePoint: { x: 964, y: 816 },
+        mapPoint: mapPoint5,
+      };
+
+
+     const controlPoints = [controlPoint0, controlPoint1, controlPoint2, controlPoint3, controlPoint4, controlPoint5];
+
+    const georeference = new ControlPointsGeoreference({
+        controlPoints,
+        height: 861,
+        width: 979,
+      });
+      // Create a new image element with the image url and georeference.
+      const imageElement = new ImageElement({
+        image:
+          "upper.png",
+        georeference,
+      });
+
+
+      // Create a new MediaLayer with the image element.
+    const mediaLayer = new MediaLayer({
+        source: imageElement,
+        title: "San Diego Convention Center"      
+    });
+
+    mediaLayer.opacity = 0.5;
+        // End layer area
+
+
+
+
+        // create alternate basemaps
+        const watercolorBaseLayer = new WebTileLayer({
+            urlTemplate: "https://tiles.stadiamaps.com/tiles/stamen_watercolor/{z}/{x}/{y}.jpg?api_key=a1d3467e-680e-443c-8f7a-5e53392bcb8f",
+            subDomains: ["a", "b", "c", "d"],
+            apikey: "a1d3467e-680e-443c-8f7a-5e53392bcb8f",
+            copyright:
+                'Map tiles by <a href="http://stamen.com/">Stamen Design</a>, ' +
+                'under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. ' +
+                'Data by <a href="http://openstreetmap.org/">OpenStreetMap</a>, ' +
+                'under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.'
+        });
+
+            // Create a Basemap with the WebTileLayer. The thumbnailUrl will be used for
+            // the image in the BasemapToggle widget.
+            const watercolor = new Basemap({
+            baseLayers: [watercolorBaseLayer],
+            title: "Watercolor",
+            id: "watercolor",
+            thumbnailUrl: "../../map_images/watercolor.png"
+        });
+        watercolorLayer = watercolor;
+
+        const watercolorLayer2 = new VectorTileLayer({
+            portalItem: {
+                id: "fdf540eef40344b79ead3c0c49be76a9"
+            },
+            opacity: 1
+        });
+        const watercolor2 = new Basemap({
+            baseLayers: [watercolorLayer2],
+            title: "Watercolor 2",
+            id: "watercolor2",
+            thumbnailUrl: "../../map_images/watercolor2.png"
+        });
+        watercolor2Layer = watercolor2;
+
+        const cycleMapBaseLayer = new WebTileLayer({
+            urlTemplate: "https://tile.thunderforest.com/cycle/{z}/{x}/{y}.png?apikey=b0c68cba245842aaa4cb6064900cea6a",
+            subDomains: ["a", "b", "c", "d"],
+            apiKey: 'b0c68cba245842aaa4cb6064900cea6a',
+            copyright:
+                'Map tiles by <a href="thunderforest.com/">OpenCycleMap</a>, ' 
+        });
+
+        const openCycleMap = new Basemap({
+            baseLayers: [cycleMapBaseLayer],
+            title: "cycleOpenMap",
+            id: "cycleOpenMap"
+        });
+        openCycleLayer = openCycleMap;
+
+        const neighborhoodBaseLayer = new WebTileLayer({
+            urlTemplate: "https://tile.thunderforest.com/neighbourhood/{z}/{x}/{y}.png?apikey=b0c68cba245842aaa4cb6064900cea6a",
+            subDomains: ["a", "b", "c", "d"],
+            apiKey: 'b0c68cba245842aaa4cb6064900cea6a',
+            copyright:
+                'Map tiles by <a href="thunderforest.com/">Thunderforest Neighbourhood Map</a>, ' 
+        });
+
+        const neighborhoodMap = new Basemap({
+            baseLayers: [neighborhoodBaseLayer],
+            title: "neighborhoodMap",
+            id: "neighborhoodMap"
+        });
+        neighborhoodLayer = neighborhoodMap;
+
+        const landscapeBaseLayer = new WebTileLayer({
+            urlTemplate: "https://tile.thunderforest.com/landscape/{z}/{x}/{y}.png?apikey=b0c68cba245842aaa4cb6064900cea6a",
+            subDomains: ["a", "b", "c", "d"],
+            apiKey: 'b0c68cba245842aaa4cb6064900cea6a',
+            copyright:
+                'Map tiles by <a href="thunderforest.com/">Thunderforest Landscape Map</a>, ' 
+        });
+
+        const landscapeMap = new Basemap({
+            baseLayers: [landscapeBaseLayer],
+            title: "landscapeMap",
+            id: "landscapeMap"
+        });
+        landscapeLayer = landscapeMap;
+
+        const tonerBaseLayer = new WebTileLayer({
+            urlTemplate: "https://tiles.stadiamaps.com/tiles/stamen_toner/{z}/{x}/{y}@2x.png?api_key=a1d3467e-680e-443c-8f7a-5e53392bcb8f",
+		    // urlTemplate: "https://tiles.stadiamaps.com/styles/stamen_toner.json?api_key=a1d3467e-680e-443c-8f7a-5e53392bcb8f",
+            subDomains: ["a", "b", "c", "d"],
+            apikey: "a1d3467e-680e-443c-8f7a-5e53392bcb8f",
+            copyright:
+                'Map tiles by <a href="http://stamen.com/">Stamen Design</a>, ' +
+                'under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. ' +
+                'Data by <a href="http://openstreetmap.org/">OpenStreetMap</a>, ' +
+                'under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.'
+        });
+
+            // Create a Basemap with the WebTileLayer. The thumbnailUrl will be used for
+            // the image in the BasemapToggle widget.
+            const tonerMap = new Basemap({
+            baseLayers: [tonerBaseLayer],
+            title: "Toner",
+            id: "toner",
+            thumbnailUrl: "images/tonerMap.png"
+        });
+        tonerLayer = tonerMap;
+
+        //basemaps end
+
+
+
+        // create MapView and Map
+        const map = new Map({
+            basemap: "topo-vector",
+            layers: [
+                // fvLayer,
+                // terrLayer,
+                // pubLayer,
+                mediaLayer,
+                graphicsLayer
+                
+            ]
+        });
+        theMap = map;
+
+        const view = new MapView({
+            container: "viewDiv",
+            map: map,
+            zoom: 18,
+            center: [-117.16185915, 32.70665865] // longitude, latitude
+        });
+        theView = view;
+
+
+
+
+        var esriConfig = {
+            apiKey: "AAPKe5fcea6dfd22406bb18190ba0b202ce8GojQ3I4PUpCZPEtliruqUxWVSBBCUeuCTlnUv8td5pAhtznoxe5gQckABM6xac_q",
+        };
+
+        // Add a graphics layer for drawing shapes on map
+
+        theView.when(() => {
+            const sketch = new Sketch({
+            layer: graphicsLayer,
+            view: view,
+            visibleElements: {
+                point: false,
+                polyline: false,
+                rectangle: false,
+                circle: false
+            },
+            selectionTools: {},
+            // graphic will be selected as soon as it is created
+            creationMode: "update",
+            });
+
+            theView.ui.add(sketch, "top-right");
+            theSketch = sketch;
+            theSketch.visible = false;
+        });
+
+
+ 
+
+        // set up coords widget
+        var coordsWidget = document.createElement("div");
+        coordsWidget.id = "coordsWidget";
+        coordsWidget.className = "esri-widget esri-component";
+        coordsWidget.style.padding = "2px 5px";
+        coordsWidget.style.margin = "0 0 -12px -12px";
+        coordsWidget.style.opacity = 0.8;
+        coordsWidget.style.fontSize = "14px";
+        coordsWidget.style.fontWeight = "Bold";
+
+        theView.ui.add(coordsWidget, "bottom-right");
+
+        function showCoordinates(pt) {
+            var coords =
+                "Lat/Lon: " +
+            pt.latitude.toFixed(8) +
+                ", " +
+            pt.longitude.toFixed(8) +
+                "  |  Scale: 1:" +
+            Math.round(theView.scale * 1) / 1 +
+                "  |  Zoom: " +
+                theView.zoom;
+            coordsWidget.innerHTML = coords;
+        }
+
+        theView.on("pointer-move", function (evt) {
+            showCoordinates(theView.toMap({ x: evt.x, y: evt.y }));
+         });
+
+         // Add a legend
+
+         theLegend = new Legend ({
+            view: theView
+         });
+         theView.ui.add(theLegend, "bottom-left");
+
+        // To change starting base map, set name/object (Esri basemmaps in quotes, defined basemaps as unquoted object) 
+        // then uncomment the following line
+
+        // theMap.on("load", changeBasemap (name));
+
+        // Basemap change end
+
+        
+        function hideLegend() {
+            legButton.style.display = "none";
+            legOn = false;
+            theLegend.visible = legOn;
+        }
+
+        // To hide legend and button (no layers), uncomment the following line
+
+        // theMap.on("load", hideLegend());
+
+        // hide legend and button end
+
+        // set up displaying coordinates of a selected feature drawn in graphic layer
+        // uncomment to have coords of a selected drawn graphic displayed
+        theView.on("click", function(event) {
+            theView.hitTest(event).then(function(response) {
+                const results = response.results;
+                // Filter results to find graphics from your specific GraphicsLayer
+                const graphicHit = results.find(function(result) {
+                    return result.graphic && result.graphic.layer === graphicsLayer;
+                });
+
+                if (graphicHit) {
+                    const selectedGraphic = graphicHit.graphic;
+                    // Now you have the selected graphic
+                    // For Polygon
+                    var coords = "Coords: ";
+                    var coordsCount = 0;
+                    const pGeometry = selectedGraphic.geometry;
+                    const polygonGeometry = webMercatorUtils.webMercatorToGeographic(pGeometry);
+                    if (polygonGeometry.type == "polygon") {
+                        polygonGeometry.rings.forEach(function(ring, ringIndex) {
+                            // console.log(`Ring ${ringIndex}:`);
+                            ring.forEach(function(point, pointIndex) {
+                                // console.log(`  Point ${pointIndex}: X=${point[0]}, Y=${point[1]}`);
+                                if (coordsCount > 0) coords += ",";
+                                coords += '[' + point[0] + ','+point[1]+']';
+                                coordsCount += 1;
+                            });
+                        }); 
+                        console.log(coords);
+
+                    } else if(polygonGeometry.type == "polyline") {
+                        var geo = polygonGeometry;
+                        //For each path...
+                        for ( var path = 0; path < geo.paths.length; path ++ ) {
+                            //For each point in the path...
+                            for ( var pt = 0; pt < geo.paths[path].length; pt++ ) {
+                                if (coordsCount > 0) coords += ",";
+                                coords += '[' + geo.paths[path][pt][0] + ','+ geo.paths[path][pt][1]+']';
+                                coordsCount += 1;
+                            }
+                        }
+                        console.log(coords);
+
+                    }  else {console.log('Geometry type is ' + polygonGeometry.type)}                
+                }
+            });
+        });
+
+        // End display of selected graphic coords
+
+        
+    </script>
+    
+  </head>
+
+  <body>
+    <div id="menuBar"><div id="pageTitle">French Valley Congregation</div></div> 
+    <div id="mainBox" ><div id="viewDiv"></div></div>  
+
+    <div id="galleryBox" class="galleryList">
+        <div id="galleryTitle">Map Style</div>
+        <ul id="galleryUL">
+            <!-- <li id="satellite" onclick="changeBasemap('satellite', 0)" title="Satellite Map">
+                <img alt="Imagery" class="esri-basemap-gallery__item-thumbnail" src="https://www.arcgis.com/sharing/rest/content/items/86de95d4e0244cba80f0fa2c9403a7b2/info/thumbnail/thumbnail1591224931210.jpeg?f=json">
+            </li> -->
+            <li id="hybrid" onclick="changeBasemap('hybrid', 0)" title="Satellite Map">
+                <img alt="Imagery" class="esri-basemap-gallery__item-thumbnail" src="https://www.arcgis.com/sharing/rest/content/items/86de95d4e0244cba80f0fa2c9403a7b2/info/thumbnail/thumbnail1591224931210.jpeg?f=json">
+            </li>
+            <li id="streets-relief-vector" onclick="changeBasemap('streets-relief-vector', 1)" title="Streets Map">
+                <img alt="Streets" class="esri-basemap-gallery__item-thumbnail" src="https://www.arcgis.com/sharing/rest/content/items/f81bc478e12c4f1691d0d7ab6361f5a6/info/thumbnail/street_thumb_b2wm.jpg?f=json">
+            </li>
+            <li id="hybrid" onclick="changeBasemap('tonerLayer', 2)" title="Toner Map">
+                <img alt="Toner" class="esri-basemap-gallery__item-thumbnail" src="images/tonerMap.png">
+            </li>
+            <li id="streets-night-vector" onclick="changeBasemap('streets-night-vector', 3)" title="Dark Streets Map">
+                <img alt="" class="esri-basemap-gallery__item-thumbnail" src="https://www.arcgis.com/sharing/rest/content/items/1c8ddaba2ee9498cb0025554351e5475/info/thumbnail/streetnight_thumb_b2.jpg?f=json">
+            </li>
+            <li id="watercolor2" onclick="changeBasemap('watercolor2', 4)" title="Esri Watercolor Map">
+                <img alt="" class="esri-basemap-gallery__item-thumbnail" src="images/watercolor2.png">
+            </li>
+            <li id="watercolor" onclick="changeBasemap('watercolor', 5)" title="Stamen Watercolor Map">
+                <img alt="" class="esri-basemap-gallery__item-thumbnail" src="images/watercolor.png">
+            </li>
+            <li id="openCycleMap" onclick="changeBasemap('openCycleMap', 6)" title="OpenCycleMap">
+                <img alt="OpenCycleMap" class="esri-basemap-gallery__item-thumbnail" src="images/openCycleMap.png">
+            </li>
+            <li id="landscape" onclick="changeBasemap('landscape', 7)" title="Thunderforest Landscape Map">
+                <img alt="Landscape Map" class="esri-basemap-gallery__item-thumbnail" src="images/LandscapeMap.png">
+            </li>
+            <li id="osm" onclick="changeBasemap('osm', 8)" title="OpenStreetMap">
+                <img alt="OpenStreetMap" class="esri-basemap-gallery__item-thumbnail" src="https://www.arcgis.com/sharing/rest/content/items/c29cfb7875fc4b97b58ba6987c460862/info/thumbnail/thumbnail1547740877120.jpeg?f=json">   
+            </li>
+            <li id="neighbourhood" onclick="changeBasemap('neighbourhood', 9)" title="Thunderforest Neighbourhood Map">
+                <img alt="Neighbourhood Map" class="esri-basemap-gallery__item-thumbnail" src="images/Neighborhood.png">
+            </li>
+            <li id="gray-vector" onclick="changeBasemap('gray-vector', 10)" title="Light Gray Map">
+                <img alt="" class="esri-basemap-gallery__item-thumbnail" src="https://www.arcgis.com/sharing/rest/content/items/de45b9cad20141ebb82fae0da8b3e2c6/info/thumbnail/lightgray_thumb_b2wm.jpg?f=json">
+            </li>
+            <li id="topo-vector" onclick="changeBasemap('topo-vector', 11)" title="Topo Map">
+                <img alt="" class="esri-basemap-gallery__item-thumbnail" src="images/usgsTopoMap.jpeg" style="border-color: red" >
+            </li>
+        </ul>
+    </div>
+        <div id="dataList">
+            <div id="dataListTitle">Layers</div>
+            <ul>
+                <li title="French Valley Boundary" >
+                    <input id="spreadCheck" type="checkbox" onchange="toggleFV(event)" checked="checked" >French Valley boundary
+                </li>
+                <li title="French Valley members" >
+                    <input id="spreadCheck" type="checkbox" onchange="togglePubs(event)" checked="checked" >French Valley members
+                </li>
+                <li title="French Valley territories" >
+                    <input id="spreadCheck" type="checkbox" onchange="toggleTerritories(event)" >French Valley territories
+                </li>
+                <!-- <li title="Kingdom Hall" >
+                    <input id="spreadCheck" type="checkbox" onchange="toggleKH(event)" checked="checked" >Kingdom Hall
+                </li> -->
+            </ul>
+        </div>        
+
+
+
+    <div id="layersButton" title="Toggle Layer List"  onclick="toggleDataList()"></div>
+    <div id="legendButton" onclick="toggleLegend(event)" title="Toggle Legend"></div>
+    <div id="basemapButton" title="Toggle Map Style"  onclick="toggleMapGallery()"></div>
+    
+    <div id="drawIcon" onclick="toggleSketch(event)" title="Draw Tools"></div> 
+
+
+    <style>
+        .esri-basemap-gallery__item-thumbnail {
+            height: 80px;
+            width: 80px;
+            object-fit: cover;
+            margin: 5px;
+            border: solid 2px #707070;
+            border-radius: 10px;
+        }
+        .esri-popup__main-container {
+            max-height: 500px!important;
+        }
+        .esri-popup__footer  {
+            display: none;
+        }
+        .esri-ui-bottom-left .esri-component.esri-legend.esri-widget--panel  {
+            width: 225px !important;
+            border-radius: 10px;
+            border: solid 1px #707070;
+        }
+        .esri-ui-corner .esri-component.esri-widget {
+            border: solid 1px #707070;
+        }
+
+        .esri-ui-bottom-right .esri-component.esri-widget {
+            border: none !important;
+        }
+        .esri-sketch-pad {
+            margin-top: -4px;
+            margin-right: 305px;
+            box-shadow: 2px 3px 2px #0000004d;
+            border: solid 1px #707070;
+        }
+
+        #showGallery {
+            color: white; 
+            background-color: black; 
+            border: 1px solid black; 
+            position: absolute; 
+            right: 0; 
+            top: 0;
+            z-index: 1;
+            width: 150px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        #galleryTitle {
+            font-weight: bold;
+            float: left;
+            margin-left: 15px;
+            margin-bottom: -5px;
+            margin-top: -3px;
+        }
+        #galleryBox, .galleryList {
+            color: black; 
+            background-color: white; 
+            position: absolute; 
+            right: 10px; 
+            top: 40px;
+            /* top: 75px; */
+            width: 300px;
+            text-align: center;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            border: solid 1px #707070;
+            display: none;
+            border-radius: 15px;
+            overflow-y: auto;
+            max-height: calc(100% - 90px);
+            box-shadow: 2px 3px 2px #0000004d;
+        }        
+        #galleryBox ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            margin-top: 2px;
+            display: inline-block;
+        }
+        #galleryBox ul li{
+            cursor: pointer;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 13px;
+            display: inline-flex;
+        }
+        #galleryButton {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            float: left;
+            width: 16px;
+            height: 16px;
+            border: none;
+            background-color: white;
+            background-image: url(images/angle-double-down_1.png);
+            background-size: 75%;
+            background-repeat: no-repeat;
+            background-position: center;
+            cursor: pointer;
+        }
+        #galleryMemu {
+            position: absolute;
+            right: 20px;
+            top: 0px;
+        }
+        #legendButton, #layersButton, #basemapButton, #drawIcon {
+            position: absolute;
+            left: 15px;
+            width: 32px;
+            height: 32px;
+            border: 1px solid #888888;
+            background-color: white;
+            background-size: 75%;
+            background-repeat: no-repeat;
+            background-position: center;
+            cursor: pointer;
+            display: block;
+            box-shadow: 2px 3px 2px #0000004d;
+        }
+
+        #layersButton {
+            top: 120px;
+            left: 15px;
+            background-image: url(images/layer_layers_icon.svg);
+        }
+        #legendButton {
+            top: 155px;
+            left: 15px;
+            background-image: url(images/list.jpeg);
+        }
+        #basemapButton {
+            top: 190px;
+            left: 15px;
+            background-image: url(images/layer-basemap.svg);
+        }
+        .esri-feature-table vaadin-grid::part(body-cell) {
+            font-size: 13px;
+        }
+        .esri-ui-corner .esri-component.esri-widget {
+            box-shadow: 2px 3px 2px #0000004d;
+        }
+        #menuButton {
+            position: absolute;
+            top: 2px;
+            left: 10px;
+            width: 32px;
+            height: 28px;            
+            border: none;
+            background-color: black;
+            background-image: url(images/menu_icon_white.png);
+            background-size: 75%;
+            background-repeat: no-repeat;
+            background-position: center;
+            cursor: pointer;
+        }
+        #dataList {
+            color: black; 
+            background-color: white; 
+            position: absolute; 
+            left: 55px; 
+            top: 40px;
+            width: 250px;
+            padding-bottom: 20px;
+            border: solid 1px #707070;
+            border-radius: 15px;
+            display: none;
+        }
+        #dataListTitle {
+            font-weight: bold;
+
+            margin-left: 15px;
+        }
+        #dataList ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            margin-top: 2px;
+        }
+        #dataList ul li {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 13px;
+            cursor: pointer;
+            padding-left: 20px;
+        }
+        #drawIcon {
+            position: absolute;
+            top: 225px;
+            left: 15px;
+            width: 32px;
+            height: 32px;
+            background-image: url(images/drawIcon.png);
+        }
+
+    </style>
+    <script>
+        gallery = document.getElementById("galleryBox");
+        galleryUL = document.getElementById("galleryUL");
+        galleryButton = document.getElementById("galleryButton");
+        legButton = document.getElementById("legendButton")
+        var locRef = window.location.href;
+        var lastIndex = locRef.lastIndexOf("/");
+        originalPath = locRef.substring(0,lastIndex);
+        dataList = document.getElementById("dataList");
+
+
+        function toggleMapGallery() {
+            mapGalleryOn = !mapGalleryOn;
+            if (mapGalleryOn) {
+                gallery.style.display = "block";
+            } else {
+                gallery.style.display = "none";
+            }
+        }
+
+        function changeBasemap (name, index) {
+            //convert string to object if defined basemap (non-Esri)
+            switch (name) {
+                case "watercolor" :
+                    name = watercolorLayer;
+                    break;
+                case "watercolor2": 
+                    name = watercolor2Layer;
+                    break;
+                case "openCycleMap":
+                    name = openCycleLayer;
+                    break;
+                case "landscape": 
+                    name = landscapeLayer;
+                    break;
+                case "neighbourhood": 
+                    name = neighborhoodLayer;
+                    break;
+                case "tonerLayer":
+                    name = tonerLayer;
+                    break;
+            }
+            theMap.basemap = name;
+
+            //highlight selected basemap image in gallery
+            var list = galleryUL.children;
+            for (i=0;i<list.length;i++) {
+                var image = list[i].children[0];
+                if (i == index) {
+                    image.style.borderColor = "#ff0099";
+                    image.style.borderWidth = "2px";
+                } else {
+                    image.style.borderColor = "#888888";
+                    image.style.borderWidth = "1px";
+                }
+            }
+
+        }
+
+        function toggleLegend(e) {
+            legOn = !legOn;
+            theLegend.visible = legOn;
+
+        }
+
+        function toggleDataList(e) {
+            menuOn = !menuOn;
+            dataList.style.display = menuOn ? "block" : "none";
+        }
+
+        function toggleSketch (e) {
+            sketchOn = !sketchOn;
+            theSketch.visible = sketchOn;
+        }
+
+        function toggleFV (e) {
+            var checkbox = e.target;
+            frenchValley.visible = checkbox.checked;
+        }
+
+       function togglePubs(e) {
+            var checkbox = e.target;
+            fvPubs.visible = checkbox.checked;
+        }
+
+       function toggleTerritories(e) {
+            var checkbox = e.target;
+            terrLayer.visible = checkbox.checked;
+        }
+
+        function toggleKH(e) {
+            var checkbox = e.target;
+            khLayer.visible = checkbox.checked;
+        }
+
+
+    </script>
+
+
+  </body>
+</html>

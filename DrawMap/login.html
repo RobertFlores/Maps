@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>French Valley Congregation Login</title>
+        <style>
+            html,
+            body {
+                width: 100%;
+                height: 100%;
+                padding: 0;
+                margin: 0;
+                background-color: black;
+                color: white;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                font-size: 12px;
+            }
+            .header {
+                font-size: 48px;
+                font-weight: bold;
+                text-align: center;
+                padding: 100px 0;
+                width: 100%;
+            }
+            .subHeader {
+                font-size: 24px;
+                font-weight: bold;
+                text-align: center;
+                padding: 0 0 100px 0;
+                width: 100%;
+            }
+            .loginBox {
+                font-size: 12px;
+                font-weight: normal;
+                padding: 25px;
+                text-align: center;
+                border: 1px solid white;
+                width: 240px;
+                margin:auto;
+            }
+        </style>
+    </head>
+    <body>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js" integrity="sha256-/H4YS+7aYb9kJ5OKhFYPUjSJdrtV6AeyJOtTkw6X72o=" crossorigin="anonymous"></script>
+        <!-- <script src="aes.js" integrity="sha256-uGNI2fIAnn80YOgEPbgGdLTi5uIsJF8bnEsgd0VU7gs=" crossorigin="anonymous"></script> -->
+        <div class="header">
+            French Valley Congregation
+        </div>
+        <div class="subHeader">
+            Login Page
+        </div>
+        <div class="subHeader">
+            <div class="loginBox">
+                <div class="loginItem">
+                    <table>
+                        <tr>
+                            <td>User ID:</td><td><input type="text" id="userId"/></td>
+                        </tr>
+                        <tr>
+                            <td>Passcode:</td><td><input type="text" id="passCode"/></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <button id="goButton" onclick="goLogin()">Login</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <script src="./fv.js"></script>
+    </body>
+</html>

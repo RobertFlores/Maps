@@ -1,0 +1,172 @@
+{
+    "name": "French Valley ministerial servants",
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -117.108047,
+                    33.607244                    
+                ]
+            },
+            "properties": {
+                "ID": 0,
+                "Address": "32200 Zion Wy Winchester, CA 92596",
+                "LastName": "Broniola",
+                "FirstName": "Ed",
+                "Assignment": "",
+                "Phone": "619-204-1748",
+                "Email": "edbron58@gmail.com"
+            }
+        },{
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -117.092135,
+                    33.618616                  
+                ]
+            },
+            "properties": {
+                "ID": 1,
+                "Address": "32534 Olea Rd, Winchester, CA 92596",
+                "LastName": "Giannola",
+                "FirstName": "Giuseppe",
+                "Assignment": "",
+                "Phone": "(847) 351-3026",
+                "Email": "giuseppe.giannola10@gmail.com"
+            }
+        },{
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -117.09416,
+                    33.59174                  
+                ]
+            },
+            "properties": {
+                "ID": 2,
+                "Address": "32562 Spun Cotton Dr., Winchester, CA 92596",
+                "LastName": "Goldkamp",
+                "FirstName": "John",
+                "Assignment": "",
+                "Phone": "(804) 512-7387",
+                "Email": "jcgoldkamp@comcast.net"
+            }
+        },{
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -117.08280,
+                    33.61181                  
+                ]
+            },
+            "properties": {
+                "ID": 3,
+                "Address": "35061 Gamay Way, Winchester, CA 92596",
+                "LastName": "Gonzalez",
+                "FirstName": "Frank",
+                "Assignment": "",
+                "Phone": "(714) 348-8166",
+                "Email": "ideasman3@aol.com"
+            }
+        },{
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -117.085222,
+                    33.611097        
+                ]
+            },
+            "properties": {
+                "ID": 4,
+                "Address": "35379 Mahogany Glen Dr., Winchester CA 92596",
+                "LastName": "Hundley",
+                "FirstName": "Eric",
+                "Assignment": "",
+                "Phone": "(95) 368-3577",
+                "Email": "richundley@rocketmail.com"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -117.09475,
+                    33.58531         
+                ]
+            },
+            "properties": {
+                "ID": 7,
+                "Address": "32360 St. Martin Street, Winchester, CA 92596",
+                "LastName": "Johnson",
+                "FirstName": "Kilo",
+                "Assignment": "",
+                "Phone": "",
+                "Email": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -117.10500,
+                    33.57679           
+                ]
+            },
+            "properties": {
+                "ID": 0,
+                "Address": "31762 Paseo Peonia, Murrieta, CA 92563",
+                "LastName": "Lopez",
+                "FirstName": "Victor",
+                "Assignment": "",
+                "Phone": "951-323-9959",
+                "Email": "victorlopezjr112@gmail.com"
+            }
+        },
+                {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -117.10071,
+                    33.58457                    
+                ]
+            },
+            "properties": {
+                "ID": 6,
+                "Address": "36961 Pebley Ct., Winchester, CA 92596",
+                "LastName": "Rowland",
+                "FirstName": "David II",
+                "Assignment": "",
+                "Phone": "(619) 886-2541",
+                "Email": "brotherrowland@yahoo.com"
+            }
+        },{
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -117.09141,
+                    33.60321                
+                ]
+            },
+            "properties": {
+                "ID": 8,
+                "Address": "32541 Zola Circle, Winchester, CA 92596",
+                "LastName": "Williams",
+                "FirstName": "Ethan",
+                "Assignment": "",
+                "Phone": "(951) 447-6417",
+                "Email": ""
+            }
+        }
+    ]
+}

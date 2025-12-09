@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no" />
+    <title>French Valley Locations</title>
+
+    <link rel="stylesheet" href="https://js.arcgis.com/4.31/esri/themes/light/main.css" />
+    <script src="https://js.arcgis.com/4.31/"></script>
+
+    <style>
+      html,
+      body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        font-size: 13px;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      #viewDiv {
+        position:absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width:calc(100% - 465px);;
+      }
+
+      .container {
+        position:absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 465px;
+        border-left: solid black;
+      }
+      #infoDiv {
+        position:absolute;
+        top: 0px;
+        left: 0;
+        height: 50px;
+        width: 465px;
+
+      }
+      /* #tableDiv {
+        position:absolute;
+        top: 50px;
+        left: 0;
+        height: calc(100%-50px) !important;
+        width: 465px;
+      }
+      .esri-feature-table {
+          --icon-size: 64px;
+          flex-direction: column;
+          width: 100%;
+          height: calc(100%-50px) !important;
+          display: flex
+      } */
+      .esri-ui-bottom-left .esri-component,
+      .esri-ui-top-left .esri-component  {
+            border: 1px solid #888888;
+        }
+
+        .esri-ui-bottom-left .esri-component.esri-legend.esri-widget--panel  {
+            width: 200px!important;
+        }
+
+        .esri-attribution {
+            opacity: 0.55;
+        }
+        #legendButton, #layersButton, #basemapButton {
+            position: absolute;
+            left: 15px;
+            width: 32px;
+            height: 32px;
+            border: 1px solid #888888;
+            background-color: white;
+            background-size: 75%;
+            background-repeat: no-repeat;
+            background-position: center;
+            cursor: pointer;
+            display: block;
+            box-shadow: 2px 3px 2px #0000004d;
+        }
+
+        #layersButton {
+            top: 124px;
+            left: 15px;
+            background-image: url(images/layer_layers_icon.svg);
+        }
+        #legendButton {
+            top: 90px;
+            left: 15px;
+            background-image: url(images/list.jpeg);
+        }
+        #basemapButton {
+            top: 168px;
+            left: 15px;
+            background-image: url(images/layer-basemap.svg);
+        }
+        .esri-feature-table vaadin-grid::part(body-cell) {
+            font-size: 13px;
+        }
+        .esri-ui-corner .esri-component.esri-widget {
+            box-shadow: 2px 3px 2px #0000004d;
+        }
+
+    </style>
+    <script>
+      require([
+        "esri/Map",
+        "esri/WebMap",
+        "esri/views/MapView",
+        "esri/Basemap",
+        "esri/core/reactiveUtils",
+        "esri/layers/GeoJSONLayer",
+        "esri/widgets/Legend",
+        "esri/widgets/FeatureTable"
+      ], (Map, WebMap, MapView, Basemap, reactiveUtils, GeoJSONLayer, Legend, FeatureTable) => {
+        let selectionIdCount = 0; // The filtered selection id count
+        let candidate; // The graphic accessed via the view.click event
+
+        const puTemplate = {
+          title: "{Name}",
+          content: [
+                {
+                    type: "fields",
+                    fieldInfos: [
+                    {
+                            fieldName: "FamilyName",
+                            label: "Family Name"
+                        },
+                        {
+                            fieldName: "Address",
+                            label: "Address"
+                        },
+                        {
+                            fieldName: "Names",
+                            label: "Persons"
+                        },
+                        {
+                            fieldName: "Phone",
+                            label: "Phone"
+                        },
+                        {
+                            fieldName: "Email",
+                            label: "Email"
+                        }
+                    ]
+                }
+            ]
+        };
+
+        const defaultPubSym = {
+          type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
+          color: [255,255,255,.25],
+          outline: {
+            // autocasts as new SimpleLineSymbol()
+            // color: "#71de6e",
+            color: "#0099ff",
+            width: 1
+          }
+        };
+
+        const pubRenderer = {
+          type: "simple", // autocasts as new SimpleRenderer()
+          symbol: defaultPubSym,
+          visualVariables: [
+            {
+              type: "size",
+              field: "Members",
+              legendOptions: {
+                title: "Persons at location"
+              },
+              stops: [
+                {
+                  value: 1,
+                  size: 6,
+                  label: "1"
+                },
+                {
+                  value: 2,
+                  size: 8,
+                  label: "2"
+                },
+                {
+                  value: 4,
+                  size: 10,
+                  label: "3-4"
+                },
+                {
+                  value: 9,
+                  size: 12,
+                  label: "5+"
+                }
+              ]
+            }
+          ]
+        };
+
+        var pubUrl = "FrenchValleyLocations.geojson";
+        const pubLayer = new GeoJSONLayer({
+            url: pubUrl,
+            copyright: "",
+            title: "French Valley members",
+            renderer: pubRenderer,
+            opacity: 1,
+            popupTemplate: puTemplate,
+            visible: true
+        });
+        fvPubs = pubLayer;
+
+        const fvUrl = "frenchValleyBoundary.geojson";
+        const fvRenderer = {
+            type: "simple",
+
+            symbol: {
+                type: "simple-fill",
+                color: [255,255,255, 0.01],
+                outline: {
+                  color: [255,127,0, 1],
+                  width: "5px"
+                }                
+            }
+        };
+        const fvLayer = new GeoJSONLayer({
+            url: fvUrl,
+            copyright: "",
+            renderer: fvRenderer,
+            title: "French Valley Boundary",
+            // popupTemplate: congTemplate,
+            opacity: 0.5,
+            visible: true
+        });
+        frenchValley = fvLayer;
+
+
+        // const webmap = new WebMap({
+        //   portalItem: {
+        //     id: "51c0a40624ad4489a2df30a9181a5b17"
+        //   }
+        // });
+
+        var map = new Map({
+            basemap: 'osm-standard-relief',
+            layers: [
+                    frenchValley,
+                    pubLayer
+                ]
+        });
+        theMap = map;
+
+        const view = new MapView({
+            container: "viewDiv",
+            map: map,
+            zoom: 12,
+            center: [-117.108, 33.596],
+            popupEnabled: false,
+            highlightOptions: {
+              color: "magenta",
+              fillOpacity: 0.4
+            }
+        });
+
+        var esriConfig = {
+            apiKey: "AAPKe5fcea6dfd22406bb18190ba0b202ce8GojQ3I4PUpCZPEtliruqUxWVSBBCUeuCTlnUv8td5pAhtznoxe5gQckABM6xac_q",
+        };
+
+
+        view.when(() => {
+          const featureLayer = fvPubs; // Grabs the first layer in the map
+          featureLayer.title = "French Valley Locations";
+
+          // Create the feature table
+          const featureTable = new FeatureTable({
+            view: view, // Required for feature highlight to work
+            layer: featureLayer,
+            visibleElements: {
+              // Autocast to VisibleElements
+              menuItems: {
+                clearSelection: true,
+                refreshData: true,
+                toggleColumns: true,
+                selectedRecordsShowAllToggle: true,
+                selectedRecordsShowSelectedToggle: true,
+                zoomToSelection: true
+              }
+            },
+            tableTemplate: {
+              // Autocast to TableTemplate
+              columnTemplates: [
+                // Takes an array of FieldColumnTemplate and GroupColumnTemplate
+                {
+                  // Autocast to FieldColumnTemplate.
+                  type: "field",
+                  fieldName: "FamilyName",
+                  label: "Family Name",
+                  direction: "asc"
+                },
+                {
+                  type: "field",
+                  fieldName: "Names",
+                  label: "Persons"
+                },
+                {
+                  type: "field",
+                  fieldName: "Address",
+                  label: "Address"
+                }
+              ]
+            },
+            container: document.getElementById("tableDiv")
+          });
+
+          // Listen for when the view is stationary.
+          // If true, set the table to display only the attributes
+          // for the features falling within this extent.
+
+          reactiveUtils.when(
+            () => view.stationary,
+            () => {
+              // Filter out and show only the visible features in the feature table.
+              featureTable.filterGeometry = view.extent;
+            },
+            {
+              initial: true
+            }
+          );
+
+          // Listen for the view's click event and access the associated graphic.
+
+          view.on("immediate-click", async (event) => {
+            const response = await view.hitTest(event);
+
+            candidate = response.results.find((result) => {
+              return result.graphic && result.graphic.layer && result.graphic.layer === featureLayer;
+            });
+
+            // Add the graphic's ObjectId into the collection of highlightIds.
+            // Check that the featureTable.highlightIds collection
+            // does not include an already highlighted feature.
+            if (candidate) {
+              const objectId = candidate.graphic.getObjectId();
+
+              if (featureTable.highlightIds.includes(objectId)) {
+                // Remove feature from current selection if feature
+                // is already added to highlightIds collection
+                featureTable.highlightIds.remove(objectId);
+              } else {
+                // Add this feature to the featureTable highlightIds collection
+                featureTable.highlightIds.add(objectId);
+              }
+              featureTable.scrollToRow(objectId);
+            }
+
+
+          // Watch the featureTable's highlightIds.length property,
+          // and get the count of highlighted features within
+          // the table.
+
+          reactiveUtils.watch(
+            () => featureTable.highlightIds.length,
+            (highlightIdsCount) => {
+              // Iterate through the filters within the table.
+              // If the active filter is "Show selection",
+              // changes made to highlightIds (adding/removing)
+              // are reflected.
+
+              featureTable.viewModel.activeFilters.forEach((filter) => {
+                if (filter.type === "selection") {
+                  selectionIdCount = filter.objectIds.length; // the filtered selection's id count
+                  // Check that the filter selection count is equal to the
+                  // highlightIds collection count. If not, update filter selection.
+                  if (selectionIdCount !== highlightIdsCount) {
+                    featureTable.filterBySelection();
+                  }
+                }
+              });
+            }
+          );
+        });
+        theLegend = new Legend({
+              view: view
+            });
+
+            view.ui.add(theLegend, "bottom-left");
+
+
+          });
+
+
+
+      });
+      var legOn = true;
+
+      function toggleLegend(e) {
+        legOn = !legOn;
+        theLegend.visible = legOn;
+      }
+
+    </script>
+  </head>
+
+  <body>
+    <div id="viewDiv"></div>
+    <div class="container">
+      <!-- <div id="infoDiv"></div> -->
+      <div id="tableDiv"></div>
+    </div>
+    <div id="legendButton" onclick="toggleLegend(event)" title="Legend"></div>
+  </body>
+</html>

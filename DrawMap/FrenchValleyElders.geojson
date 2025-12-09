@@ -1,0 +1,426 @@
+{
+    "name": "French Valley elders",
+    "type": "FeatureCollection",
+    "features": [
+                {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -117.09900,
+                    33.59702                    
+                ]
+            },
+            "properties": {
+                "ID": 0,
+                "Address": "36066 Harvard Ct., Winchester, CA 92596",
+                "LastName": "Bonafede",
+                "FirstName": "Daniele",
+                "Assignment": "Watchtower Conductor, FSGO",
+                "Phone": "(708) 263-3821",
+                "Email": "dbonafede@hotmail.com"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -117.11205,
+                    33.60632                    
+                ]
+            },
+            "properties": {
+                "ID": 1,
+                "Address": "35422 Date Palm St., Winchester, CA 95296",
+                "LastName": "Briscoe",
+                "FirstName": "John",
+                "Assignment": "FSGO",
+                "Phone": "(951) 750-2583",
+                "Email": "jbinsures@gmail.com"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -117.12652,
+                    33.55810        
+                ]
+            },
+            "properties": {
+                "ID": 20,
+                "Address": "30582 Lily Pond Ln., Murrieta, CA 92563",
+                "LastName": "Campos",
+                "FirstName": "Benigno",
+                "Assignment": "FSGO",
+                "Phone": "(951) 377-6846",
+                "Email": "bencampos@verizon.net"
+            }
+        },
+                {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -117.13386,
+                    33.54543
+                ]
+            },
+            "properties": {
+                "ID": 2,
+                "Address": "30320 Mondavi Cir., Murrieta, CA 92563",
+                "LastName": "Cardiel",
+                "FirstName": "Reggie",
+                "Assignment": "",
+                "Phone": "(951) 813-5627",
+                "Email": "unclebubbie@verizon.net"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -117.09738,
+                    33.60349          
+                ]
+            },
+            "properties": {
+                "ID": 0,
+                "Address": "32200 Zion Way, Winchester, CA 92596",
+                "LastName": "Catalano",
+                "FirstName": "Ryan",
+                "Assignment": "",
+                "Phone": "760-522-1040",
+                "Email": "rycatalano@yahoo.com"
+            }
+        },
+                {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -117.14412,
+                    33.55731                   
+                ]
+            },
+            "properties": {
+                "ID": 3,
+                "Address": "29590 Branwin St., Murrieta,CA 92563",
+                "LastName": "Cerda",
+                "FirstName": "Dan",
+                "Assignment": "FSGO",
+                "Phone": "(951) 691-7455",
+                "Email": "cerdadan@yahoo.com"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -117.14908688145367,
+                    33.71204717926851                  
+                ]
+            },
+            "properties": {
+                "ID": 19,
+                "Address": "28163 Lookout Point Ln, Menifee, CA 92585",
+                "LastName": "Eastin",
+                "FirstName": "Mike",
+                "Assignment": "",
+                "Phone": "(503) 910-2885",
+                "Email": "mikedeastin@gmail.com"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -117.10353,
+                    33.60233                   
+                ]
+            },
+            "properties": {
+                "ID": 4,
+                "Address": "31873 Odyssey Dr., Winchester, CA 92596",
+                "LastName": "Flores",
+                "FirstName": "Bob",
+                "Assignment": "",
+                "Phone": "(951) 775-8930",
+                "Email": "rflores99z@outlook.com"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -117.09797,
+                    33.59262                   
+                ]
+            },
+            "properties": {
+                "ID": 5,
+                "Address": "36397 Gambrel Gate Ct., Winchester, CA 92596",
+                "LastName": "Folden",
+                "FirstName": "Greg",
+                "Assignment": "Secretary, FSGO",
+                "Phone": "(408) 398-6769",
+                "Email": "gfolden30@qmail.com"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -117.08084,
+                    33.61174               
+                ]
+            },
+            "properties": {
+                "ID": 6,
+                "Address": "33186 Carignan Ct., Winchester, CA 92596",
+                "LastName": "Giannola",
+                "FirstName": "Daniele",
+                "Assignment": "CLMM Overseer, FSGO",
+                "Phone": "(951) 423-4989",
+                "Email": "dgiannola55@yahoo.com"
+            }
+        },
+       {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -117.10931,
+                    33.51505                    
+                ]
+            },
+            "properties": {
+                "ID": 8,
+                "Address": "42000 Delmonte St., Temecula, CA 92591",
+                "LastName": "Hazzard",
+                "FirstName": "Sam",
+                "Assignment": "",
+                "Phone": "(619) 244-4391",
+                "Email": "25shazzard@qmail.com"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -117.13353,
+                    33.54559                    
+                ]
+            },
+            "properties": {
+                "ID": 9,
+                "Address": "30336 Mondavi Cir., Murrieta, CA 92563",
+                "LastName": "McGhee",
+                "FirstName": "Glen",
+                "Assignment": "",
+                "Phone": "(951) 837-0494",
+                "Email": "gemcghee62@gmail.com"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -117.123909,
+                    33.690284                  
+                ]
+            },
+            "properties": {
+                "ID": 10,
+                "Address": "30738 Pony Express Dr, Winchester, CA 92596",
+                "LastName": "Messenger",
+                "FirstName": "Gary",
+                "Assignment": "",
+                "Phone": "(760) 219-6427",
+                "Email": "garan70@gmail.com"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -117.10562,
+                    33.59838               
+                ]
+            },
+            "properties": {
+                "ID": 11,
+                "Address": "31723 Fille Dr., Winchester, CA 92596",
+                "LastName": "Patenaude",
+                "FirstName": "David",
+                "Assignment": "FSGO",
+                "Phone": "(951) 565-6997",
+                "Email": "david.patenaude22@gmail.com"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -117.10573,
+                    33.59838                    
+                ]
+            },
+            "properties": {
+                "ID": 12,
+                "Address": "31723 Fille Dr., Winchester, CA 92596",
+                "LastName": "Patenaude",
+                "FirstName": "Nathan",
+                "Assignment": "",
+                "Phone": "(951) 553-9760",
+                "Email": "npfvcong@outlook.com"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -117.10008,
+                    33.59910                   
+                ]
+            },
+            "properties": {
+                "ID": 13,
+                "Address": "35928 Burgundy Ct., Winchester, CA 92596",
+                "LastName": "Rubio",
+                "FirstName": "Tom",
+                "Assignment": "FSGO",
+                "Phone": "(951) 663-0332",
+                "Email": "twrubio@yahoo.com"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -117.0966632,
+                    33.5842048                 
+                ]
+            },
+            "properties": {
+                "ID": 7,
+                "Address": "32243 Perigord Rd., Winchester, CA 92596",
+                "LastName": "Simon",
+                "FirstName": "Jonathan",
+                "Assignment": "",
+                "Phone": "(830) 822-8169",
+                "Email": "jonedsimon@gmail.com"
+            }
+        },        
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -117.11488,
+                    33.60919                    
+                ]
+            },
+            "properties": {
+                "ID": 14,
+                "Address": "31209 Peregrine Way, Winchester, CA 92596",
+                "LastName": "Stancil",
+                "FirstName": "Ron",
+                "Assignment": "FSGO",
+                "Phone": "(951) 240-0402",
+                "Email": "tantee1@yahoo.com"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -117.11026,
+                    33.61924                    
+                ]
+            },
+            "properties": {
+                "ID": 15,
+                "Address": "34548 Persian Lilac St., Winchester, CA 92596",
+                "LastName": "Stewart",
+                "FirstName": "Kevin",
+                "Assignment": "FSGO",
+                "Phone": "(951) 553-9008",
+                "Email": "stewartps8318@yahoo.com"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -117.08891,
+                    33.61351                    
+                ]
+            },
+            "properties": {
+                "ID": 16,
+                "Address": "32714 Shadyview St., Winchester, CA 92596",
+                "LastName": "Veasley",
+                "FirstName": "John",
+                "Assignment": "COBE, FSGO",
+                "Phone": "(310) 989-7591",
+                "Email": "1jveasley@gmail.com"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -117.10845,
+                    33.56546                    
+                ]
+            },
+            "properties": {
+                "ID": 17,
+                "Address": "31576 Rosales Ave., Murrieta, CA 92563",
+                "LastName": "Weatherly",
+                "FirstName": "Nathan",
+                "Assignment": "FSGO",
+                "Phone": "(951) 704-4752",
+                "Email": "brne4x4@qmail.com"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -117.09141,
+                    33.60321                    
+                ]
+            },
+            "properties": {
+                "ID": 19,
+                "Address": "32541 Zola Circle, Winchester, CA 92596",
+                "LastName": "Williams",
+                "FirstName": "Bryan",
+                "Assignment": "FSGO",
+                "Phone": "(858) 401-2528",
+                "Email": "bryanw.fvcong@gmail.com"
+            }
+        }
+                                                                                                                                                                
+
+    ]
+}

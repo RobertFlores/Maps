@@ -59,7 +59,7 @@
       <arcgis-map center="-117.16191034, 32.70659511" zoom="17">
         <arcgis-layer-list slot="top-left"></arcgis-layer-list>
       </arcgis-map>
-
+<!-- 
       <calcite-shell-panel slot="panel-end" display-mode="float">
         <calcite-panel
           id="shortcuts"
@@ -103,7 +103,7 @@
             src="data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3C!-- Created with Inkscape (http://www.inkscape.org/) --%3E%3Csvg width='22' height='22' version='1.1' viewBox='0 0 22 22' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='3.5' y='3.5' width='15' height='15' fill='none' stroke='%23000' stroke-dasharray='1,1'/%3E%3Crect x='3.5' y='3.5' width='15' height='15' fill='none' stroke='%23fff' stroke-dasharray='1, 1' stroke-dashoffset='1'/%3E%3Cg%3E%3Ccircle cx='3.5' cy='3.5' r='2.5'/%3E%3Ccircle cx='18.5' cy='3.5' r='2.5'/%3E%3Ccircle cx='3.5' cy='18.5' r='2.5'/%3E%3Ccircle cx='18.5' cy='18.5' r='2.5'/%3E%3C/g%3E%3C/svg%3E%0A" />
         </calcite-action>
       </calcite-action-bar>
-    </calcite-shell>
+    </calcite-shell> -->
     <script type="module">
       const [Map, Point, Sketch, GraphicsLayer, MediaLayer, ControlPointsGeoreference, webMercatorUtils, ImageElement] =
         await $arcgis.import([
@@ -128,26 +128,26 @@
 
       // Define four points representing known map coordinates on the MediaLayer's ImageElement.
       const mapPoint0 = new Point({
-        x: -117.15907846,
-        y: 32.70440543,
+        x: -117.16443105,
+        y: 32.70809690,
         spatialReference: { wkid: 4326 },
       });
 
       const mapPoint1 = new Point({
-        x: -117.16333756,
-        y: 32.70577991,
+        x: -117.16406477,
+        y: 32.70669779,
         spatialReference: { wkid: 4326 },
       });
 
       const mapPoint2 = new Point({
-        x: -117.16446063,
-        y: 32.70815131,
+        x: -117.15919199,
+        y: 32.70572391,
         spatialReference: { wkid: 4326 },
       });
 
       const mapPoint3 = new Point({
-        x: -117.16057190,
-        y: 32.70691511,
+        x: -117.15926766,
+        y: 32.70459113,
         spatialReference: { wkid: 4326 },
       });
 
@@ -180,28 +180,28 @@
       // on the image element in pixels, and a mapPoint which is the location of the
       // sourcePoint in map coordinates.
       const controlPoint0 = {
-        sourcePoint: { x: 26, y: 262 },
+        sourcePoint: { x: 0, y: 56 },
         mapPoint: mapPoint0,
       };
 
       const controlPoint1 = {
-        sourcePoint: { x: 858, y: 56 },
+        sourcePoint: { x: 62, y: 326 },
         mapPoint: mapPoint1,
       };
 
       const controlPoint2 = {
-        sourcePoint: { x: 1352, y: 364 },
+        sourcePoint: { x: 976, y: 548 },
         mapPoint: mapPoint2,
       };
 
       const controlPoint3 = {
-        sourcePoint: { x: 574, y: 558 },
+        sourcePoint: { x: 961, y: 815 },
         mapPoint: mapPoint3,
       };
 
   
         const controlPoint4 = {
-        sourcePoint: { x: 376, y: 242 },
+        sourcePoint: { x: 642, y: 80 },
         mapPoint: mapPoint4,
       // second set
       };
@@ -211,7 +211,7 @@
         mapPoint: mapPoint5,
       };
 
-     const controlPoints = [controlPoint0, controlPoint1, controlPoint2, controlPoint3, controlPoint4, controlPoint5];
+     const controlPoints = [controlPoint0, controlPoint1, controlPoint2, controlPoint3];
 
       //   sourcePoint: { x: 1056, y: 188 },
       //   mapPoint: mapPoint6,
@@ -229,8 +229,8 @@
       // image height, and image width.
       const georeference = new ControlPointsGeoreference({
         controlPoints,
-        height: 650,
-        width: 1400,
+        height: 858,
+        width: 984,
       });
 
       // const georeference2 = new ControlPointsGeoreference({
@@ -242,7 +242,7 @@
       // Create a new image element with the image url and georeference.
       const imageElement = new ImageElement({
         image:
-          "clip1.png",
+          "lower.png",
         georeference,
       });
 
@@ -281,29 +281,29 @@
       const mediaLayerView = await viewElement.whenLayerView(mediaLayer);
 
       // Set the interaction options tool to reshape.
-      mediaLayerView.interactionOptions.tool = "reshape";
+      // mediaLayerView.interactionOptions.tool = "reshape";
 
       // Set the media layer view's interactive property to true and when users
       // click on the layer view the reshape tool will activate.
-      mediaLayerView.interactive = true;
+      // mediaLayerView.interactive = true;
 
       // Add event listeners to the interactive tool actions
       // to indicate which tool is active and set the media layer view's
       // interaction options to the appropriate tool.
 
-      transformAction.addEventListener("click", () => {
-        transformAction.active = true;
-        reshapeAction.active = false;
+      // transformAction.addEventListener("click", () => {
+      //   transformAction.active = true;
+      //   reshapeAction.active = false;
 
-        mediaLayerView.interactionOptions.tool = "transform";
-      });
+      //   mediaLayerView.interactionOptions.tool = "transform";
+      // });
 
-      reshapeAction.addEventListener("click", () => {
-        transformAction.active = false;
-        reshapeAction.active = true;
+      // reshapeAction.addEventListener("click", () => {
+      //   transformAction.active = false;
+      //   reshapeAction.active = true;
 
-        mediaLayerView.interactionOptions.tool = "reshape";
-      });
+      //   mediaLayerView.interactionOptions.tool = "reshape";
+      // });
 
               // set up coords widget
         var coordsWidget = document.createElement("div");
@@ -312,7 +312,7 @@
         coordsWidget.style.padding = "2px 5px";
         coordsWidget.style.margin = "0 0 -12px -12px";
         coordsWidget.style.opacity = 0.8;
-        coordsWidget.style.fontSize = "14px";
+        coordsWidget.style.fontSize = "12px";
 
         var theView = viewElement.view;
 
@@ -350,7 +350,7 @@
           creationMode: "update",
           });
 
-          theView.ui.add(sketch, "bottom-left");
+          theView.ui.add(sketch, "top-right");
           theSketch = sketch;
           theSketch.visible = true;
       // });

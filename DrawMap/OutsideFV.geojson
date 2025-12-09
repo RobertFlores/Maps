@@ -1,0 +1,638 @@
+{
+	"type" : "FeatureCollection",
+	"name" : "Families outside FV boundary",
+	"features" : [
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.135067, 33.580258 ]
+			},
+			"properties" : {
+				"FID" : 0,
+				"OBJECTID" : 2,
+				"ID" : "86",
+				"Address" : "37080 Galileo Ln, Murrieta, CA 92563",
+				"FamilyName" : "Aguirre",
+				"Names" : "Isaac, Isha",
+				"Members" : "2",
+				"Phone" : "(951) 219-0910",
+				"Email" : "1saacaguirre2012@yahoo.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.145362621, 33.546586856 ]
+			},
+			"properties" : {
+				"FID" : 1,
+				"OBJECTID" : 4,
+				"ID" : "87",
+				"Address" : " ",
+				"FamilyName" : "Allen",
+				"Names" : "Erica",
+				"Members" : "1",
+				"Phone" : "(619) 602-6818",
+				"Email" : "newe1@yahoo.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -116.92562, 33.54104 ]
+			},
+			"properties" : {
+				"FID" : 2,
+				"OBJECTID" : 9,
+				"ID" : "6",
+				"Address" : "42135 Gray Squirrel Road, Hemet, CA 92544",
+				"FamilyName" : "Boswell",
+				"Names" : "Curtis, Helen, Ivy",
+				"Members" : "3",
+				"Phone" : "(951) 553-6028, (951) 234-2680",
+				"Email" : "lankster29@gmail.com, boswellh116@gmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.15328, 33.56 ]
+			},
+			"properties" : {
+				"FID" : 3,
+				"OBJECTID" : 15,
+				"ID" : "11",
+				"Address" : "29110 Via Princess East, Murrieta, CA 92563",
+				"FamilyName" : "Burbank, Metts",
+				"Names" : "Tanya Burbank, Carl Metts",
+				"Members" : "2",
+				"Phone" : "(479) 387-1545, (949) 922-9084",
+				"Email" : "tanbank101@gmail.com, cdm_mkm@yahoo.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.13386, 33.54543 ]
+			},
+			"properties" : {
+				"FID" : 4,
+				"OBJECTID" : 17,
+				"ID" : "13",
+				"Address" : "30320 Mondavi Cir., Murrieta, CA 92563",
+				"FamilyName" : "Cardiel",
+				"Names" : "Reggie, Carol",
+				"Members" : "2",
+				"Phone" : "(951) 813-5627, (951) 813-5626",
+				"Email" : "unclebubbie@verizon.net"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.14412, 33.55731 ]
+			},
+			"properties" : {
+				"FID" : 5,
+				"OBJECTID" : 20,
+				"ID" : "16",
+				"Address" : "29590 Branwin St., Murrieta,CA 92563",
+				"FamilyName" : "Cerda",
+				"Names" : "Dan, Ofelia, Danika, Leah",
+				"Members" : "4",
+				"Phone" : "(951) 691-7455, (951) 691-7458",
+				"Email" : "cerdadan@yahoo.com, cerdaofy@yahoo.com"
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+			"type": "Point",
+			"coordinates": [
+				-117.09492,
+				33.69252
+			]
+			},
+			"properties": {
+			"ID": 17,
+			"Address": "32425 Iron trail Rd., Winchester CA, 92596",
+			"FamilyName": "Chatman",
+			"Names": "LeTroy, Lauren, Ava, Blakey, Nicholas",
+			"Members": 5,
+			"Phone": "(951) 401-7878, (951) 401-7951",
+			"Email": "parkside15@gmail.com, beyondtasty19@gmail.com"
+			}
+			},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.07011, 33.48242 ]
+			},
+			"properties" : {
+				"FID" : 8,
+				"OBJECTID" : 25,
+				"ID" : "21",
+				"Address" : "33686 Channel St., Temecula, CA 92592",
+				"FamilyName" : "Dozier, Wimby",
+				"Names" : "Cathie Dozier, Trisen Wimby",
+				"Members" : "2",
+				"Phone" : "(916) 225-2214, (775) 857-6156",
+				"Email" : "catcat63@icloud.com, titusleo89@icloud.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.149086881, 33.712047179 ]
+			},
+			"properties" : {
+				"FID" : 10,
+				"OBJECTID" : 27,
+				"ID" : "92",
+				"Address" : "28163 Lookout Point Ln, Menifee, CA 92585",
+				"FamilyName" : "Eastin",
+				"Names" : "Mike, Brianna, Beckham, Ellis, Roman",
+				"Members" : "5",
+				"Phone" : "(503) 910-2885, (978) 631-9764",
+				"Email" : "mikedeastin@gmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.12492, 33.51112 ]
+			},
+			"properties" : {
+				"FID" : 11,
+				"OBJECTID" : 31,
+				"ID" : "25",
+				"Address" : "42163 Sweetshade Lane, Temecula, CA 92591",
+				"FamilyName" : "Garcia",
+				"Names" : "Miguel, Jill",
+				"Members" : "2",
+				"Phone" : "(562) 507-9386, (562) 708-6574",
+				"Email" : "miguelangelogarcia@gmail.com, jillgarcia78@gmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.08084, 33.61174 ]
+			},
+			"properties" : {
+				"FID" : 12,
+				"OBJECTID" : 33,
+				"ID" : "27",
+				"Address" : "33186 Carignan Ct., Winchester, CA 92596",
+				"FamilyName" : "Giannola",
+				"Names" : "Daniele, Karla, Isabella, Valentina",
+				"Members" : "4",
+				"Phone" : "(951) 423-4989, (773) 213-6536",
+				"Email" : "dgiannola55@yahoo.com, giannola.karla@qmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.10342, 33.51895 ]
+			},
+			"properties" : {
+				"FID" : 13,
+				"OBJECTID" : 36,
+				"ID" : "30",
+				"Address" : "32010 Merlot Ct., Temecula, CA 92591",
+				"FamilyName" : "Gonzales",
+				"Names" : "Robert, Susan, Madeline",
+				"Members" : "3",
+				"Phone" : "(951) 232-9900, (951) 232-8158, (951) 514-9035",
+				"Email" : "magnanimous.bq@qmail.com, sperezgonz@gmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.0828, 33.61181 ]
+			},
+			"properties" : {
+				"FID" : 14,
+				"OBJECTID" : 37,
+				"ID" : "31",
+				"Address" : "35061 Gamay Way, Winchester, CA 92596",
+				"FamilyName" : "Gonzalez",
+				"Names" : "Frank, Brigitte",
+				"Members" : "2",
+				"Phone" : "(714) 348-8166",
+				"Email" : "ideasman3@aol.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.30481, 33.57211 ]
+			},
+			"properties" : {
+				"FID" : 15,
+				"OBJECTID" : 42,
+				"ID" : "35",
+				"Address" : "20450 Kyle Ct., Murrieta, CA 92562",
+				"FamilyName" : "Harris",
+				"Names" : "Bobby, Teresa, Bella, Cody",
+				"Members" : "4",
+				"Phone" : "(760) 898-4019, (760) 898-3981, (951) 541-3694",
+				"Email" : "bobby@turnkeylabor.com, teresa@turnkeylabor.com, isabellaharris286@qmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.10931, 33.51505 ]
+			},
+			"properties" : {
+				"FID" : 16,
+				"OBJECTID" : 43,
+				"ID" : "36",
+				"Address" : "42000 Delmonte St., Temecula, CA 92591",
+				"FamilyName" : "Hazzard",
+				"Names" : "Sam, Phyllis",
+				"Members" : "2",
+				"Phone" : "(619) 244-4391, (619) 335-3518",
+				"Email" : "25shazzard@qmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.13327, 33.618587 ]
+			},
+			"properties" : {
+				"FID" : 17,
+				"OBJECTID" : 44,
+				"ID" : "95",
+				"Address" : "34548 Mistletoe Ln Murrieta, CA 92563",
+				"FamilyName" : "Hinkle",
+				"Names" : "Howard, Jane",
+				"Members" : "2",
+				"Phone" : "(310) 403-8507, (562) 253-8641",
+				"Email" : "hhinkle@mac.com, jl.hinkle@icloud.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.082814143, 33.509219141 ]
+			},
+			"properties" : {
+				"FID" : 18,
+				"OBJECTID" : 45,
+				"ID" : "97",
+				"Address" : "42215 Wyandotte St, Temecula, CA 92592",
+				"FamilyName" : "Huber",
+				"Names" : "Derek, Jolie",
+				"Members" : "2",
+				"Phone" : "(760) 808-4306, (760) 808-4305",
+				"Email" : " "
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.13545, 33.55097 ]
+			},
+			"properties" : {
+				"FID" : 19,
+				"OBJECTID" : 47,
+				"ID" : "38",
+				"Address" : "39284 Memory Drive, Murrieta, CA 92562",
+				"FamilyName" : "Johnson",
+				"Names" : "Joylene",
+				"Members" : "1",
+				"Phone" : "(310) 303-0627",
+				"Email" : "queenjoylene@qmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.1513, 33.54465 ]
+			},
+			"properties" : {
+				"FID" : 20,
+				"OBJECTID" : 49,
+				"ID" : "39",
+				"Address" : "26935 Montseratt Ct., Murrieta CA, 92563",
+				"FamilyName" : "Juarez",
+				"Names" : "Andre, Adrea",
+				"Members" : "2",
+				"Phone" : "(951) 729-9600, (661) 964-9692",
+				"Email" : "drejuarez@sent.com, feynic@gmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.11444, 33.54583 ]
+			},
+			"properties" : {
+				"FID" : 21,
+				"OBJECTID" : 50,
+				"ID" : "40",
+				"Address" : "31250 Indian Summer Dr., Temecula, CA 92591",
+				"FamilyName" : "Juarez",
+				"Names" : "Jaime, Alice, Aaron",
+				"Members" : "3",
+				"Phone" : "(951) 719-9417, (951) 225-5399",
+				"Email" : "alicejuarez@msn.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.04206, 33.50389 ]
+			},
+			"properties" : {
+				"FID" : 22,
+				"OBJECTID" : 53,
+				"ID" : "42",
+				"Address" : "35435 Via Sol Vista, Temecula, CA 92592",
+				"FamilyName" : "King",
+				"Names" : "Brian, Cristina",
+				"Members" : "2",
+				"Phone" : "(951) 531-6685, (760) 576-9206",
+				"Email" : "brian_kking@yahoo.com, christinagaribay2010@hotmail.com"
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+			"type": "Point",
+			"coordinates": [
+			-117.12957,
+			33.65099
+			]
+			},
+			"properties": {
+			"ID": 44,
+			"Address": "32512 Parker Street, Menifee, CA 92584",
+			"FamilyName": "Leonard",
+			"Names": "Dustin, Summer, Austin, Autumn",
+			"Members": 4,
+			"Phone": "(951) 541-7413, (951) 443-6982",
+			"Email": "heydustinleonard@qmail.com, summerrain2003@yahoo.com"
+			}
+			},
+				{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.13353, 33.54559 ]
+			},
+			"properties" : {
+				"FID" : 24,
+				"OBJECTID" : 59,
+				"ID" : "48",
+				"Address" : "30336 Mondavi Cir., Murrieta, CA 92563",
+				"FamilyName" : "McGhee",
+				"Names" : "Glen, Helen",
+				"Members" : "2",
+				"Phone" : "(951) 837-0494, (951) 837-0474",
+				"Email" : "gemcghee62@gmail.com, helen.mcghee48@gmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.123909, 33.690284 ]
+			},
+			"properties" : {
+				"FID" : 25,
+				"OBJECTID" : 61,
+				"ID" : "104",
+				"Address" : "30738 Pony Express Dr, Winchester, CA 92596",
+				"FamilyName" : "Messenger",
+				"Names" : "Gary, Ann, Miles, Bruna",
+				"Members" : "4",
+				"Phone" : "(760) 219-6427, (818) 400-1957, (951) 541-6026, (951) 519-6009",
+				"Email" : "garan70@gmail.com, amess42@gmail.com, miles.messenger24@gmail.com, brluz@live.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.149921379, 33.541957363 ]
+			},
+			"properties" : {
+				"FID" : 26,
+				"OBJECTID" : 62,
+				"ID" : "49",
+				"Address" : "39830 Rustic Glen Dr Temecula, CA 92591",
+				"FamilyName" : "Naranjo",
+				"Names" : "Deisy",
+				"Members" : "1",
+				"Phone" : "(951) 551-4490",
+				"Email" : "gdeisy66@yahoo.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.14488, 33.55801 ]
+			},
+			"properties" : {
+				"FID" : 27,
+				"OBJECTID" : 63,
+				"ID" : "50",
+				"Address" : "38515 Royal Burgh Drive, Murrieta, CA 92563",
+				"FamilyName" : "Nicholls",
+				"Names" : "Michele",
+				"Members" : "1",
+				"Phone" : "(951) 255-5360",
+				"Email" : "michelenicholls5@gmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.13196, 33.54992 ]
+			},
+			"properties" : {
+				"FID" : 28,
+				"OBJECTID" : 68,
+				"ID" : "56",
+				"Address" : "30286 Pelican Bay, Unit E, Murrieta, CA 92563",
+				"FamilyName" : "Pena",
+				"Names" : "Linda",
+				"Members" : "1",
+				"Phone" : "(951) 990-9432",
+				"Email" : "lindaannpena@gmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.14989, 33.64355 ]
+			},
+			"properties" : {
+				"FID" : 29,
+				"OBJECTID" : 71,
+				"ID" : "59",
+				"Address" : "32861 Pitman Ln., Menifee, CA 92584",
+				"FamilyName" : "Perez",
+				"Names" : "Manuel, Kristina, Alyssa, Mattieu",
+				"Members" : "4",
+				"Phone" : "(951) 966-0453, (951) 282-5012",
+				"Email" : "mperez.isqinc@qmail.com, kristinaperez2006@aol.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -116.925796, 33.541545 ]
+			},
+			"properties" : {
+				"FID" : 31,
+				"OBJECTID" : 79,
+				"ID" : "105",
+				"Address" : "42135 Gray Squirrel Rd, Hemet, CA 92544",
+				"FamilyName" : "Sheets",
+				"Names" : "Brandon, Stephanie",
+				"Members" : "2",
+				"Phone" : "(951) 746-4492, (909) 732-9491",
+				"Email" : "13brandy13@gmail.com, stephmarlow@yahoo.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.15336081, 33.675864864 ]
+			},
+			"properties" : {
+				"FID" : 32,
+				"OBJECTID" : 82,
+				"ID" : "70",
+				"Address" : "30631 View Ridge Lane, Menifee, CA 92584",
+				"FamilyName" : "Smeby",
+				"Names" : "John, Patti, Dejon",
+				"Members" : "3",
+				"Phone" : "(951) 283-3003, (951) 515-6102",
+				"Email" : "jesvine@verizon.net, pattismeby@gmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -116.92857, 33.54274 ]
+			},
+			"properties" : {
+				"FID" : 33,
+				"OBJECTID" : 85,
+				"ID" : "73",
+				"Address" : "42137 Gray Squirrel Road, Hemet, CA 92544",
+				"FamilyName" : "Stewart",
+				"Names" : "Margaret",
+				"Members" : "1",
+				"Phone" : "(951) 294-7204",
+				"Email" : "bajamargaret@gmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.15688, 33.5685 ]
+			},
+			"properties" : {
+				"FID" : 34,
+				"OBJECTID" : 87,
+				"ID" : "75",
+				"Address" : "38024 Calle Amiable, Murrieta, CA 92563",
+				"FamilyName" : "Thiesse",
+				"Names" : "Bill, Evelyn",
+				"Members" : "2",
+				"Phone" : "(239) 560-0940, (858) 337-5220",
+				"Email" : "celbill@yahoo.com, evelyngates@ymail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -116.9236, 33.56608 ]
+			},
+			"properties" : {
+				"FID" : 35,
+				"OBJECTID" : 90,
+				"ID" : "205",
+				"Address" : "2822 Trifone Rd. Hemet, CA",
+				"FamilyName" : "Vasquez",
+				"Names" : "Silva",
+				"Members" : "1",
+				"Phone" : "(951) 551-2910",
+				"Email" : " "
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -116.925796, 33.541545 ]
+			},
+			"properties" : {
+				"FID" : 36,
+				"OBJECTID" : 94,
+				"ID" : "108",
+				"Address" : "42135 Gray Squirrel Rd, Hemet, CA 92544",
+				"FamilyName" : "Von Hoogenstyn",
+				"Names" : "Erik, Courtney",
+				"Members" : "2",
+				"Phone" : "(951) 440-2218, (951) 775-6945",
+				"Email" : "wilsrf4food@gmail.com, hairfullofhope@gmail.com"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ -117.13863, 33.66626 ]
+			},
+			"properties" : {
+				"FID" : 37,
+				"OBJECTID" : 98,
+				"ID" : "85",
+				"Address" : "29806 Gypsy Vanner Way, Menifee, CA 92584",
+				"FamilyName" : "Wilson",
+				"Names" : "Jesse, Megan",
+				"Members" : "2",
+				"Phone" : "(818) 599-4809, (951) 466-9019",
+				"Email" : "wilsondjesse@gmail.com, meagan@tier1power.com"
+			}
+		}
+	]
+}

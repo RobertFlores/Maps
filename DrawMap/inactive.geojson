@@ -1,0 +1,161 @@
+{
+    "name": "French Valley locations",
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+            "type": "Point",
+            "coordinates": [
+            -117.10044,
+            33.60561
+            ]
+            },
+            "properties": {
+            "ID": 0,
+            "Inside": "Yes",
+            "Address": "35489 Calendula Cir., Winchester, CA 92596",
+            "FamilyName": "Acosta",
+            "Names": "Zaida, Mathew",
+            "Members": 2,
+            "Phone": "(818) 581-5678, (951) 448-9349",
+            "Email": "zacosta513@yahoo.com, stevenacosta513@gmail.com"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+            "type": "Point",
+            "coordinates": [
+            -117.18545,
+            33.56859
+            ]
+            },
+            "properties": {
+            "ID": 15,
+            "Inside": "No",
+            "Address": "40125 Los Alamos Rd. Apt C120, Murrieta, CA 92562",
+            "FamilyName": "Caruso",
+            "Names": "Angela",
+            "Members": 1,
+            "Phone": "(951) 926-8971",
+            "Email": "macdame44@qmail.com"
+            }
+        },
+                {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    
+                    
+                ]
+            },
+            "properties": {
+                "ID": 0,
+                "Address": "",
+                "FamilyName": "",
+                "Names": "",
+                "Members": 0,
+                "Phone": "",
+                "Email": ""
+            }    
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    
+                    
+                ]
+            },
+            "properties": {
+                "ID": 0,
+                "Address": "",
+                "FamilyName": "",
+                "Names": "",
+                "Members": 0,
+                "Phone": "",
+                "Email": ""
+            }    
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    
+                    
+                ]
+            },
+            "properties": {
+                "ID": 0,
+                "Address": "",
+                "FamilyName": "",
+                "Names": "",
+                "Members": 0,
+                "Phone": "",
+                "Email": ""
+            }    
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    
+                    
+                ]
+            },
+            "properties": {
+                "ID": 0,
+                "Address": "",
+                "FamilyName": "",
+                "Names": "",
+                "Members": 0,
+                "Phone": "",
+                "Email": ""
+            }    
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    
+                    
+                ]
+            },
+            "properties": {
+                "ID": 0,
+                "Address": "",
+                "FamilyName": "",
+                "Names": "",
+                "Members": 0,
+                "Phone": "",
+                "Email": ""
+            }    
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    
+                    
+                ]
+            },
+            "properties": {
+                "ID": 0,
+                "Address": "",
+                "FamilyName": "",
+                "Names": "",
+                "Members": 0,
+                "Phone": "",
+                "Email": ""
+            }    
+        }
+        
+    ]
+}
