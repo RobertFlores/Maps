@@ -734,7 +734,7 @@
     <div id="basemapButton" title="Toggle Map Style"  onclick="toggleMapGallery()"></div>
     
     <div id="drawIcon" onclick="toggleSketch(event)" title="Draw Tools"></div> 
-
+    <div id="rotateButton" title="Toggle Map Rotation" onclick="toggleRotate()"></div>
 
     <style>
         .esri-basemap-gallery__item-thumbnail {
@@ -840,7 +840,7 @@
             right: 20px;
             top: 0px;
         }
-        #legendButton, #layersButton, #basemapButton, #drawIcon {
+        #legendButton, #layersButton, #basemapButton, #drawIcon,#rotateButton {
             position: absolute;
             left: 15px;
             width: 32px;
@@ -869,6 +869,11 @@
             top: 190px;
             left: 15px;
             background-image: url(images/layer-basemap.svg);
+        }
+        #rotateButton {
+            top: 260px;
+            left: 15px;
+            background-image: url(images/rotate.png);
         }
         .esri-feature-table vaadin-grid::part(body-cell) {
             font-size: 13px;
@@ -1023,6 +1028,16 @@
             var checkbox = e.target;
             khLayer.visible = checkbox.checked;
         }
+
+        function toggleRotate(e) {
+            var rotation = theView.rotation;
+            if (rotation == 0) {
+                theView.rotation = 145;
+            } else (
+                theView.rotation = 0
+            )
+        }
+
 
 
     </script>
