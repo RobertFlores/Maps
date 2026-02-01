@@ -1,0 +1,126 @@
+<html>
+    <head>
+        <title>Map Samples</title>
+        <style>
+            #Titles {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 46px;
+                background-color: white;
+                padding: 0;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            #MapBox {
+                position: absolute;
+                top: 46px;
+                left: 0;
+                width: 100%;
+                height: calc(100% - 46px);
+                background-color: black;
+                overflow: hidden;
+            }
+            #MapFrame {
+                position: absolute;
+                top: 0px;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: black;
+                overflow: hidden;
+            }
+            input {
+                opacity: 0;
+                position: absolute;
+                top: 5px;
+            }
+            input:checked + label {
+                background: black;
+            }
+            label {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 150px;
+                height: 40px;
+                background: #999999;
+                color: white;
+                border-radius: 5px;
+                margin: 0px;
+                cursor: pointer;
+            }
+            table, tr, td {
+                margin: 0;
+                padding: 0;
+            }
+        </style>
+
+    </head>
+    <body>
+        <div id="Titles">
+            <table>
+                <tr>
+                    <td>
+                        <input type="radio" name="linkChoice" id="2017Ontario" value="7" onchange="showMap(event)">
+                        <label for="2017Ontario">2017 Ontario</label>
+                    </td>                   
+                    <td>
+                        <input type="radio" name="linkChoice" id="FV" value="0" onchange="showMap(event)">
+                        <label for="FV">French Vallley</label>
+                    </td>
+                    <td>
+                        <input type="radio" name="linkChoice" id="FV3D" value="8" onchange="showMap(event)">
+                        <label for="FV3D">French Vallley 3D</label>
+                    </td>
+                    <td>
+                        <input type="radio" name="linkChoice" id="SDCC3" value="3" onchange="showMap(event)">
+                        <label for="SDCC3">Hotel to SDCC</label>
+                    </td>
+                    <td>
+                        <input type="radio" name="linkChoice" id="SDCC1" value="1" onchange="showMap(event)">
+                        <label for="SDCC1">SDCC Boxes</label>
+                    </td>
+                    <td>
+                        <input type="radio" name="linkChoice" id="SDCC2" value="2" onchange="showMap(event)">
+                        <label for="SDCC2">SDCC Route</label>
+                    </td>
+                    <td>
+                        <input type="radio" name="linkChoice" id="5Empires" value="4" onchange="showMap(event)">
+                        <label for="5Empires">5 World Powers</label>
+                    </td>                   
+                    <td>
+                        <input type="radio" name="linkChoice" id="2Empires" value="5" onchange="showMap(event)">
+                        <label for="2Empires">2 World Powers</label>
+                    </td>                   
+                    <td>
+                        <input type="radio" name="linkChoice" id="CalleGirsol" value="6" onchange="showMap(event)">
+                        <label for="CalleGirsol">Calle Girsol</label>
+                    </td>                   
+                </tr>
+            </table>
+        </div>
+        <div id="MapBox">
+            <iframe id="MapFrame">
+
+            </iframe>
+        </div>
+        <script>
+            var mapFrame = document.getElementById("MapFrame");
+            var mUrl = [];
+            mUrl.push("../../dev/FrenchValley/?ML=on");
+            mUrl.push("../../dev/sdcc/");
+            mUrl.push("../../dev/sdcc/Routes.html");
+            mUrl.push("../../dev/sdcc/HotelRoute.html");
+            mUrl.push("../../Maps/3d/Empires/5Powers.html");
+            mUrl.push("../../Maps/3d/Empires/2Powers.html");
+            mUrl.push("../../CalleGirasol/Congregations.html")
+            mUrl.push("../../../Maps/concept/venue_Ontario/");
+            mUrl.push("../../dev/FrenchValley/index_3d.html");
+            function showMap(e) {
+                var item = e.target;
+                mapFrame.src = mUrl[parseInt(item.value)];
+            }
+        </script>
+    </body>
+</html>

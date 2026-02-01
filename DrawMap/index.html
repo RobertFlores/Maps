@@ -69,7 +69,7 @@
         // Area for files and creating layer files
         // Begin
 
-        const fvUrl = "data/FrenchValleyBoundary.geojson";
+        const fvUrl = "data/Room2.geojson";
 
         
         const fvRenderer = {
@@ -88,7 +88,7 @@
             url: fvUrl,
             copyright: "",
             renderer: fvRenderer,
-            title: "French Valley Boundary",
+            title: "Rooms",
             // popupTemplate: congTemplate,
             opacity: 0.5,
             visible: true
@@ -500,10 +500,10 @@
         const map = new Map({
             basemap: "topo-vector",
             layers: [
-                // fvLayer,
                 // terrLayer,
                 // pubLayer,
                 mediaLayer,
+                fvLayer,
                 graphicsLayer
                 
             ]
@@ -1032,7 +1032,7 @@
         function toggleRotate(e) {
             var rotation = theView.rotation;
             if (rotation == 0) {
-                theView.rotation = 145;
+                theView.rotation = 141;
             } else (
                 theView.rotation = 0
             )
