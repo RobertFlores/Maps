@@ -1,0 +1,179 @@
+﻿<html>
+    <head>
+        <title>Ontario Venue 2017</title>
+        <meta charset="utf-8" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.0/dist/leaflet.css" />
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+        <link rel="stylesheet" href="app.css"; />
+        <link rel="stylesheet" href="ontarioVenue.css" />
+        
+    </head>
+<body class="body">
+    <div id="mapid"></div>
+    <div id="rightSide"></div>
+    <div id="titleHeader">Ontario California Venue 2017</div>
+    <div id="rightTitle">Layers</div>
+    <div id="rightContents">
+        <!-- Right panels -->
+
+        <!-- Layers panel -->
+        <div id="layerList" style="display: block;">
+            <div class="congTabSubHeading">Visible Layers: </div>
+            <table id="visibilityTable">
+                <!-- Congregation layers -->
+                <tr>
+                    <td class="settings_table_cell"><input id="fa1VisibilityToggle" type="checkbox" onchange="toggleLayer(faLayer1, this.checked);" checked="checked" /></td>
+                    <td class="imageCell"><div class="ontarioBox1 congAlignCenter"></div></td>
+                    <td class="leftAlign">Congregations attending Ontario July 28-30</td>
+                </tr>
+                <tr>
+                    <td class="settings_table_cell"><input id="fa2VisibilityToggle" type="checkbox" onchange="toggleLayer(faLayer2, this.checked);" checked="checked" /></td>
+                    <td class="imageCell"><div class="ontarioBox2 congAlignCenter"></div></td>
+                    <td class="leftAlign">Congregations attending Ontario August 4-6</td>
+                </tr>
+                <tr>
+                    <td class="settings_table_cell"><input id="fa3VisibilityToggle" type="checkbox" onchange="toggleLayer(faLayer3, this.checked);" checked="checked" /></td>
+                    <td class="imageCell"><div class="ontarioBox3 congAlignCenter"></div></td>
+                    <td class="leftAlign">Congregations attending Ontario August 11-13</td>
+                </tr>
+                <tr>
+                    <td class="imageCell"><div ></div></td>
+                    <td class="settings_table_cell"><input id="fa3bVisibilityToggle" type="checkbox" onchange="toggleLayer(faLayer3b, this.checked);" /></td>
+                    <td class="leftAlign">Indonesian congregation Ontario August 11-13</td>
+                </tr>
+                <tr>
+                    <td class="settings_table_cell"><input id="fa4VisibilityToggle" type="checkbox" onchange="toggleLayer(faLayer4, this.checked);" checked="checked" /></td>
+                    <td class="imageCell"><div class="ontarioBox4 congAlignCenter"></div></td>
+                    <td class="leftAlign">Congregations attending Ontario August 18-20</td>
+                </tr>
+                <tr>
+                    <td class="settings_table_cell"><input id="fa5VisibilityToggle" type="checkbox" onchange="toggleLayer(faLayer5, this.checked);" checked="checked" /></td>
+                    <td class="imageCell"><div class="ontarioBox5 congAlignCenter"></div></td>
+                    <td class="leftAlign">Congregations attending Ontario August 25-27</td>
+                </tr>
+                <!-- Venue icon -->
+                <tr>
+                    <td class="settings_table_cell"><input id="venueVisibilityToggle" type="checkbox" onchange="toggleLayer(venueLayer, this.checked);" checked="checked" /></td>
+                    <td class="imageCell"><img src="../images/fat_pin_magenta_20x24.png" alt="" class="fatPinSpacer fatPinDimensions" /></td>
+                    <td class="leftAlign">Citizens Bank Arena - Ontario Convention Venue</td>
+                </tr>
+                <!-- Media layer -->
+                <tr>
+                    <td><input id="co2OccupVisibilityToggle" type="checkbox" data-show="occup" onchange="toggleLayer(mediaLayer, this.checked);" /></td>
+                    <td class="congLayerDescription" colspan="2">Media Locations</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td valign="top"><div class="dotMask10 colorCO2" ><img src="../common/images/dotMask_10x10.png" class="dotMaskImage10"/></div></td>
+                    <td class="congLayerDescription">Newspapers</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td valign="top"><div class="dotMask10 colorAHG" ><img src="../common/images/dotMask_10x10.png" class="dotMaskImage10"/></div></td>
+                    <td class="congLayerDescription">Radio</td>
+                </tr>
+                <!-- City layer -->
+                <tr>
+                    <td class="settings_table_cell"><input id="cityVisibilityToggle" type="checkbox" onchange="toggleLayer(cityLayer, this.checked);" /></td>
+                    <td class="imageCell"><div class="cityBox congAlignCenter"></div></td>
+                    <td class="leftAlign">Surrounding Cities</td>
+                </tr>
+                <!-- Congregations layer -->
+                <!-- <tr>
+                    <td class="settings_table_cell"><input id="congVisibilityToggle" type="checkbox" onchange="toggleCongLayer(this.checked);" /></td>
+                    <td class="imageCell"><img src="../common/images/slash_magenta.png"/></td>
+                    <td class="leftAlign">Congregations</td>
+                </tr> -->
+
+            </table>
+            <hr class="wide75" />
+
+        </div>
+
+        <!-- Background maps panel -->
+        <div id='basemapList' style="display: none;">
+            <div>Some styles are only available within a limited zoom range.</div>
+            <ul id='basemapUL' class="baseMapListStyle"></ul>
+        </div>
+
+        <!-- Find congregation panel -->
+        <div id="findCongregation" style="display: none;">
+            <br/>
+            <div id="searchPaneContainer">
+                <div id="searchPane" class="smallerText">
+                    <div id="faSearch" class="shown">
+                        Attending Congregation Search:<br />
+                        <input type="text" id="searchFAInput" class="searchInput" onkeydown="processFASearch(this.value);" placeholder="name" />
+                    </div>
+                </div>
+                <br/>
+                <div id="searchResults">
+                    Enter the name of the congregation you want to find in the input box above, and click on the selected one in the results.
+                </div>
+            </div>
+        </div>
+
+        <!-- Convention list panel -->
+        <div id="conventionList" style="display: none;">
+            <br/>
+            <div id="listPaneContainer">
+                <div id="listPane" class="smallerText">
+                    <div id="listTitle" class="shown" style="margin-bottom:5px;">Congregations attending </div>
+                    
+                    <div>
+                        <select id="listDate" onchange="getConventionList(this.selectedIndex);">
+                            <option>Select Dates</option>
+                            <option>July 28-30</option>
+                            <option>August 4-6</option>
+                            <option>August 11-13</option>
+                            <option>August 18-20</option>
+                            <option>August 25-27</option>
+                        <select>
+                    </div>
+
+                </div>
+                <div id="listBanner" class="listBanner"></div>
+               
+                <div id="listResults"></div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div id="topMenu">
+        <select id="menuDropdown" onchange="onMenuChange(this);">
+            <option value="Layers" >Layers</option>
+            <option value="Map Styles" >Map Styles</option>
+            <option value="Find Congregation" >Find Congregation</option>
+           <option value="Convention List" >Convention List</option>
+        </select>
+    </div>
+    <div id="coordsSpan" class="coordsStyle"></div>
+
+    <script src="https://unpkg.com/leaflet@1.0.0/dist/leaflet.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"   integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="   crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="http://leaflet.github.io/Leaflet.heat/dist/leaflet-heat.js"></script>
+        <script src="data/OntarioVenue_2017.js"></script><!--Cong data-->
+        <script src="data/Ontario2017_1.js"></script>
+        <script src="data/Ontario2017_2.js"></script>
+        <script src="data/Ontario2017_3.js"></script>
+        <script src="data/Ontario2017_4.js"></script>
+        <script src="data/Ontario2017_5.js"></script>
+        <script src="data/Ontario2017_Indonesian.js"></script>
+        <script src="data/SoCalCities.js"></script>
+        <script src="MediaLocations.js"></script>
+    <script src="js/leaflet-providers.js"></script>
+    <script src="js/fuse.min.js"></script>
+    <script src="js/leaflet.label.js"></script>
+    <script src='js/Basemaps.js'></script>
+    <!--<script src="js/CongregationLayers.js" async></script>-->
+    <script src="app.js"></script>
+    <script src="map.js"></script>
+    <script src="ontarioSearch.js"></script>
+</body>
+</html>

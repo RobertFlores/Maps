@@ -1,0 +1,201 @@
+.rightSpacer {
+    margin-right: 10px;
+}
+
+.tabSpacer {
+    margin: 0; 
+    padding: 5px;
+    width: 100%; 
+    height: 100%;
+}
+
+.wide15 {
+    width: 15px;
+}
+
+.wide75 {
+    width: 75%
+}
+
+.mapElemListTable {
+    padding: 5px; 
+    table-layout: fixed;
+}
+
+#addressSearchInput {
+    width: 250px;
+}
+
+#geocodeAddressResults {
+    font-size: smaller; 
+    margin-bottom: 5px;
+}
+
+.topSpacer10 {
+    margin-top: 10px;
+}
+
+.bottomSpacer10 {
+    margin-top: 10px;
+}
+
+#contentPaneContainer {
+    display: block; 
+    padding: 10px; 
+    border: none; 
+    margin: 0;
+}
+
+#hideDataBoxButton {
+    cursor: pointer; 
+    float: right; 
+    margin-right: 5px;
+}
+
+#dataBoxInfo {
+    float: left; 
+    margin-left: 10px; 
+    font-size: 10px; 
+    margin-top: 3px;
+}
+
+#SideBar {
+    position: absolute;
+    width: 300px;
+    right: 0;
+    top: 35px;
+    bottom: 0;
+    background-color: white;
+    border: 1px solid #999999;
+    display: block;
+    z-index: 990;
+    overflow: hidden;
+}
+
+.tabContents {
+    top: 23px;
+}
+
+.mapSettingsStyle {
+    padding-top: 10px;
+}
+
+#searchResults {
+    top: 125px;
+}
+
+#selectorResults {
+    top: 185px;
+}
+
+.buildSearchPopup {
+    margin: 5px 0 10px 15px; 
+    font-size: smaller;
+}
+
+.getSearchListItem {
+    cursor: pointer; 
+    font-weight: bold;
+}
+
+.ontarioBox1 {
+    width: 10px;
+    height: 10px;
+    border: 2px solid #666666;
+    background-color: #739cdf;
+    opacity: 0.75;
+}
+
+.ontarioBox2 {
+    width: 10px;
+    height: 10px;
+    border: 2px solid #666666;
+    background-color: #8fdf73;
+    opacity: 0.75;
+}
+
+.ontarioBox3 {
+    width: 10px;
+    height: 10px;
+    border: 2px solid #666666;
+    background-color: #d173df;
+    opacity: 0.75;
+}
+
+.ontarioBox4 {
+    width: 10px;
+    height: 10px;
+    border: 2px solid #666666;
+    background-color: #df7373;
+    opacity: 0.75;
+    text-align: center;
+}
+
+.ontarioBox5 {
+    width: 10px;
+    height: 10px;
+    border: 2px solid #666666;
+    background-color: orange;
+    opacity: 0.75;
+    text-align: center;
+}
+.cityBox {
+    width: 10px;
+    height: 10px;
+    border: 3px solid #ff0000;
+    background-color: transparent;
+    opacity: 0.75;
+    text-align: center;
+}
+
+
+.khSpacer {
+    margin-left: 7px;
+    margin-right: 7px;
+}
+
+.fatPinSpacer {
+    margin-left: 0;
+    margin-right: 3px;
+}
+
+.fatPinDimensions {
+    width: 15px; 
+    height: 18px;
+}
+
+.waLabelClass {
+    font-size: 9px!important;
+    line-height: 10px!important;
+    font-weight: normal!important;
+    background: rgba(255, 255, 255, 0.9)!important;
+	border-color: rgba(0,0,0,0.35)!important;
+	border-width: 2px!important;
+	color: #000!important;
+}
+
+.leaflet-label:before,
+.leaflet-label:after {
+	top: 5px!important;
+}
+
+.leaflet-label:before {
+	left: -8px!important;
+}
+
+.leaflet-label:after {
+	right: -8px!important;
+}
+
+.popupTitle,
+.popupKey {
+    font-weight: bold;
+}
+
+.listBanner {
+    width: 100%;
+    height: 10px;
+    background-color: ghostwhite;
+    margin-top: 5px;
+    margin-bottom: 3px;
+}
