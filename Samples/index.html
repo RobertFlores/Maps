@@ -42,7 +42,7 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                width: 150px;
+                width: 140px;
                 height: 40px;
                 background: #999999;
                 color: white;
@@ -62,7 +62,7 @@
             <table>
                 <tr>
                     <td>
-                        <input type="radio" name="linkChoice" id="2017Ontario" value="7" onchange="showMap(event)">
+                        <input type="radio" name="linkChoice" id="2017Ontario" value="7" onchange="showMap(event)" checked>
                         <label for="2017Ontario">2017 Ontario</label>
                     </td>                   
                     <td>
@@ -81,10 +81,10 @@
                         <input type="radio" name="linkChoice" id="SDCC1" value="1" onchange="showMap(event)">
                         <label for="SDCC1">SDCC Boxes</label>
                     </td>
-                    <td>
+                    <!-- <td>
                         <input type="radio" name="linkChoice" id="SDCC2" value="2" onchange="showMap(event)">
                         <label for="SDCC2">SDCC Route</label>
-                    </td>
+                    </td> -->
                     <td>
                         <input type="radio" name="linkChoice" id="5Empires" value="4" onchange="showMap(event)">
                         <label for="5Empires">5 World Powers</label>
@@ -121,6 +121,7 @@
                 var item = e.target;
                 mapFrame.src = mUrl[parseInt(item.value)];
             }
+            mapFrame.src = "../../Maps/Samples/venue_Ontario/";
         </script>
     </body>
 </html>
